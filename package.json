@@ -1,0 +1,59 @@
+{
+  "name": "@zenstone/ts-utils",
+  "version": "0.0.1",
+  "description": "A collection of utility functions for TypeScript",
+  "author": "Jiankai Zeng <janpoem@163.com>",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "utility",
+    "functions",
+    "utils"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "bun": "./src/index.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./http": {
+      "bun": "./src/http/index.ts",
+      "require": "./dist/http/index.js",
+      "import": "./dist/http/index.mjs",
+      "default": "./dist/http/index.js",
+      "types": "./dist/http/index.d.ts"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "test": "bun test --coverage",
+    "rollup": "rollup -c --bundleConfigAsCjs",
+    "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+    "doc:http": "bun typedoc src/http/index.ts --plugin typedoc-plugin-markdown --out ./docs/http",
+    "doc": "bun run doc:index && bun run doc:http",
+    "build": "bun run test && bun run rollup"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@biomejs/biome": "^1.9.4",
+    "rollup": "^4.34.8",
+    "rollup-plugin-swc3": "^0.12.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "typedoc": "^0.27.8",
+    "typedoc-plugin-markdown": "^4.4.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
