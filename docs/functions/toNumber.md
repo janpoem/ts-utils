@@ -8,7 +8,7 @@
 
 > **toNumber**(`val`, `dft`): `number`
 
-Defined in: number.ts:35
+Defined in: [number.ts:35](https://github.com/janpoem/ts-utils/blob/4facee14310dda7258a7321b86b7470b497dc0e0/src/number.ts#L35)
 
 将包含有效数值的 val 转换为对应的数字类型，只支持以下情形：
 

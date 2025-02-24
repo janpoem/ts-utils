@@ -8,7 +8,7 @@
 
 > **mergeHeaders**(...`inputs`): `Headers`
 
-Defined in: headers.ts:61
+Defined in: [headers.ts:61](https://github.com/janpoem/ts-utils/blob/4facee14310dda7258a7321b86b7470b497dc0e0/src/http/headers.ts#L61)
 
 合并多个 [HeadersInitInput](../type-aliases/HeadersInitInput.md) 为 `Headers` 对象
 

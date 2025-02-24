@@ -4,16 +4,10 @@
 
 # @zenstone/ts-utils
 
-To install dependencies:
+TypeScript 工具函数库。主要集中近 2 年使用频率较高的工具函数。主要便于快速在 Bun.js 和 TypeScript 项目中使用。
+
+## 安装
 
 ```bash
-bun install
+npm install @zenstone/ts-utils
 ```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.2.2. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
