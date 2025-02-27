@@ -45,8 +45,4 @@ npm install @zenstone/ts-utils
 - [mergeHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeHeaders.md)
 - [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeRespInit.md)
 - [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/toAryHeaders.md)
-
-
-
-
-
+- [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeAbortSignals.md)

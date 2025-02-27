@@ -8,7 +8,7 @@
 
 > **notEmptyStr**(`val`): `val is string`
 
-Defined in: [string.ts:15](https://github.com/janpoem/ts-utils/blob/4facee14310dda7258a7321b86b7470b497dc0e0/src/string.ts#L15)
+Defined in: [string.ts:15](https://github.com/janpoem/ts-utils/blob/d3cd470a5c675e0cbb24c01f6f88f5c578c50491/src/string.ts#L15)
 
 检查 val 是否为非空字符串（含 infer）
 

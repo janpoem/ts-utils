@@ -24,6 +24,7 @@
 
 - [createPathUtils](functions/createPathUtils.md)
 - [joinHttpPath](functions/joinHttpPath.md)
+- [mergeAbortSignals](functions/mergeAbortSignals.md)
 - [mergeHeaders](functions/mergeHeaders.md)
 - [mergeRespInit](functions/mergeRespInit.md)
 - [purgeHttpPath](functions/purgeHttpPath.md)

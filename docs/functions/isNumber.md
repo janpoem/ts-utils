@@ -8,7 +8,7 @@
 
 > **isNumber**(`val`): `val is number`
 
-Defined in: [number.ts:6](https://github.com/janpoem/ts-utils/blob/4facee14310dda7258a7321b86b7470b497dc0e0/src/number.ts#L6)
+Defined in: [number.ts:6](https://github.com/janpoem/ts-utils/blob/d3cd470a5c675e0cbb24c01f6f88f5c578c50491/src/number.ts#L6)
 
 判断是否为有效的数字类型
 
