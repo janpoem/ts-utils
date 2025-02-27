@@ -2,7 +2,7 @@
  * 合并多个 AbortSignals
  *
  * ```ts
- * cosnt maybeSignal: AbortSignal | null = null;
+ * const maybeSignal: AbortSignal | null = null;
  * mergeAbortSignals(new AbortController, AbortSignal.timeout(5000), maybeSignal);
  * // AbortSignal.any([new AbortController, AbortSignal.timeout(5000)])
  * ```

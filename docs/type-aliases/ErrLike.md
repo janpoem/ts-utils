@@ -8,7 +8,7 @@
 
 > **ErrLike**: `object`
 
-Defined in: [error.ts:4](https://github.com/janpoem/ts-utils/blob/d3cd470a5c675e0cbb24c01f6f88f5c578c50491/src/error.ts#L4)
+Defined in: [error.ts:4](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/error.ts#L4)
 
 ## Type declaration
 
