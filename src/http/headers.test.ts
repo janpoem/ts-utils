@@ -1,5 +1,5 @@
-import { describe, test, expect } from 'bun:test';
-import { toAryHeaders, mergeHeaders, type HeadersInitInput } from './headers';
+import { describe, expect, test } from 'bun:test';
+import { type HeadersInitInput, mergeHeaders, toAryHeaders } from './headers';
 
 describe('http/headers.ts', () => {
   describe('toAryHeaders', () => {
@@ -14,17 +14,23 @@ describe('http/headers.ts', () => {
     test('should return an array of headers for a Headers object', () => {
       const headers = new Headers();
       headers.set('content-type', 'application/json');
-      expect(toAryHeaders(headers)).toEqual([['content-type', 'application/json']]);
+      expect(toAryHeaders(headers)).toEqual([
+        ['content-type', 'application/json'],
+      ]);
     });
 
     test('should return an array of headers for a HeadersInit object', () => {
       const headers = { 'Content-Type': 'application/json' };
-      expect(toAryHeaders(headers)).toEqual([['Content-Type', 'application/json']]);
+      expect(toAryHeaders(headers)).toEqual([
+        ['Content-Type', 'application/json'],
+      ]);
     });
 
     test('should return an array of headers for a HeadersInit array', () => {
       const headers: HeadersInit = [['Content-Type', 'application/json']];
-      expect(toAryHeaders(headers)).toEqual([['Content-Type', 'application/json']]);
+      expect(toAryHeaders(headers)).toEqual([
+        ['Content-Type', 'application/json'],
+      ]);
     });
   });
 
@@ -39,7 +45,9 @@ describe('http/headers.ts', () => {
       expect(mergedHeaders.get('content-type')).toBe('application/json');
       expect(mergedHeaders.get('accept')).toBe('application/json');
 
-      mergedHeaders = mergeHeaders(mergedHeaders, [['content-type', 'text/html']]);
+      mergedHeaders = mergeHeaders(mergedHeaders, [
+        ['content-type', 'text/html'],
+      ]);
       expect(mergedHeaders).toBeInstanceOf(Headers);
       expect(mergedHeaders.get('content-type')).toBe('text/html');
       expect(mergedHeaders.get('accept')).toBe('application/json');
@@ -55,7 +63,7 @@ describe('http/headers.ts', () => {
         { accept: 'application/json' },
         { 'set-cookie': cookie },
       ];
-      
+
       const res = mergeHeaders(...inputs);
       expect(res).toBeInstanceOf(Headers);
       expect(res.get('content-type')).toBe('text/html');
@@ -73,7 +81,7 @@ accept`;
           // empty name => skip
           ['  ', 'test1'],
           // empty name => skip
-          ['', 'test2']
+          ['', 'test2'],
         ],
         // invalid name => tune to 'accept'
         { [key]: 'application/json' },

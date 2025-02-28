@@ -3,18 +3,22 @@ import { mergeHeaders } from './headers';
 
 export type HttpStatusCode = number;
 
-export type ResponseInitInput = ResponseInit | HttpStatusCode | null | undefined;
+export type ResponseInitInput =
+  | ResponseInit
+  | HttpStatusCode
+  | null
+  | undefined;
 
 /**
  * 合并多个 {@link ResponseInitInput} 为 `ResponseInit` 对象
- * 
+ *
  * 主要针对：
  * - 允许传入 {@link HttpStatusCode} 作为 `ResponseInit`，即：`new Response(body, mergeRespInit(404))`
  * - 处理多个 `ResponseInit` 对象的 `headers` 合并
  * - 合并多个 `ResponseInit`
- * 
+ *
  * ```ts
- * new Response(body, 
+ * new Response(body,
  *   mergeRespInit(
  *     404,
  *     { headers: { 'x-a': '1' } },
@@ -23,9 +27,9 @@ export type ResponseInitInput = ResponseInit | HttpStatusCode | null | undefined
  *   )
  * );
  * ```
- * 
- * @param opts 
- * @returns 
+ *
+ * @param opts
+ * @returns
  */
 export const mergeRespInit = (...opts: ResponseInitInput[]): ResponseInit => {
   const headersInit: HeadersInit[] = [];

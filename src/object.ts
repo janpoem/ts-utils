@@ -54,12 +54,11 @@ export type RecordObj = Record<string, unknown>;
  * @param fn 检查函数
  */
 export const isInferObj = <T extends RecordObj = RecordObj>(
-	obj: unknown,
-	fn?: (it: T) => boolean,
+  obj: unknown,
+  fn?: (it: T) => boolean,
 ): obj is T =>
-	obj != null && typeof obj === 'object' && !Array.isArray(obj)
-		? typeof fn === 'function'
-			? fn(obj as T)
-			: true
-		: false;
-
+  obj != null && typeof obj === 'object' && !Array.isArray(obj)
+    ? typeof fn === 'function'
+      ? fn(obj as T)
+      : true
+    : false;

@@ -1,15 +1,15 @@
-import { describe, test, expect } from 'bun:test';
+import { describe, expect, test } from 'bun:test';
 import {
+  ceil10,
+  decimalAdjust,
+  floor10,
   isNumber,
   isNumberVal,
-  toNumber,
-  limitNumberMin,
   limitNumberMax,
+  limitNumberMin,
   limitNumberMinMax,
-  decimalAdjust,
   round10,
-  ceil10,
-  floor10
+  toNumber,
 } from './number';
 
 describe('number', () => {

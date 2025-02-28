@@ -1,5 +1,5 @@
-import { describe, test, expect } from 'bun:test';
-import { purgeHttpPath, joinHttpPath } from './path';
+import { describe, expect, test } from 'bun:test';
+import { joinHttpPath, purgeHttpPath } from './path';
 
 describe('purgeHttpPath', () => {
   test('should remove leading and trailing separators', () => {
@@ -36,15 +36,17 @@ describe('joinHttpPath', () => {
     expect(joinHttpPath('test/', 'test')).toBe('test/test');
     expect(joinHttpPath('test', '/test')).toBe('test/test');
     expect(joinHttpPath('test/', '/test')).toBe('test/test');
-
-
   });
 
   test('multiple parts with ".."', () => {
     expect(joinHttpPath('test/', '../../..', '/test')).toBe('../../test');
-    expect(joinHttpPath('a', 'b', 'c', '../../../../../..', 'd')).toBe('../../../d');
+    expect(joinHttpPath('a', 'b', 'c', '../../../../../..', 'd')).toBe(
+      '../../../d',
+    );
 
-    expect(joinHttpPath('a', 'b', 'c', '../../../../../..', 'd', '../../..', 'e')).toBe('../../../../../e');
+    expect(
+      joinHttpPath('a', 'b', 'c', '../../../../../..', 'd', '../../..', 'e'),
+    ).toBe('../../../../../e');
   });
 
   test('should handle null or undefined paths', () => {

@@ -75,7 +75,7 @@ export const limitNumberMinMax = (
   val: unknown,
   min: number,
   max: number,
-  dft = 0
+  dft = 0,
 ) => {
   const v = toNumber(val, dft);
   return v < min ? min : v > max ? max : v;
@@ -93,7 +93,7 @@ export const limitNumberMinMax = (
 export const decimalAdjust = (
   type: 'round' | 'ceil' | 'floor',
   value: number,
-  exp?: number
+  exp?: number,
 ): number => {
   let _value = value;
   let _exp = exp;
@@ -113,7 +113,7 @@ export const decimalAdjust = (
   _value = Math[type](
     // @ts-ignore here
     // biome-ignore lint/style/useTemplate: allow no use template to keep source code
-    +(_value[0] + 'e' + (_value[1] ? +_value[1] - _exp : -_exp))
+    +(_value[0] + 'e' + (_value[1] ? +_value[1] - _exp : -_exp)),
   );
   // Shift back
   // @ts-ignore value type change

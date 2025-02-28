@@ -6,7 +6,7 @@ export const WinDS = '\\';
 
 export type PathReplacementCallback = (
   path: string,
-  separator: string
+  separator: string,
 ) => string;
 
 export type PathUtilsOptions = {
@@ -29,8 +29,8 @@ export const createPathUtils = ({
   const separator = !inputSeparator
     ? UnixDS
     : inputSeparator.length > 1
-    ? inputSeparator.slice(0, 1)
-    : inputSeparator;
+      ? inputSeparator.slice(0, 1)
+      : inputSeparator;
 
   const purgePath = (path: PathInput) => {
     let _path = path == null ? '' : path.trim();
