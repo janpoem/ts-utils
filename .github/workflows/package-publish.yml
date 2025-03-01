@@ -27,6 +27,12 @@ jobs:
       - name: Build sources
         run: bun run build
 
+      #      - name: Publish package to NPM
+      #        if: ${{ github.event.inputs.publish_to_npm }}
+      #        run: bun publish --access public
+      #        env:
+      #          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
