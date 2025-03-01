@@ -4,25 +4,22 @@
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
-  "keywords": [
-    "typescript",
-    "utility",
-    "functions",
-    "utils"
-  ],
+  "keywords": ["typescript", "utility", "functions", "utils"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/janpoem/ts-utils"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "type": "module",
   "exports": {
     ".": {
-      "bun": "./src/index.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./http": {
-      "bun": "./src/http/index.ts",
       "require": "./dist/http/index.js",
       "import": "./dist/http/index.mjs",
       "default": "./dist/http/index.js",
@@ -30,16 +27,14 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "scripts": {
     "test": "bun test --coverage",
     "rollup": "rollup -c --bundleConfigAsCjs",
     "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
     "doc:http": "bun typedoc src/http/index.ts --plugin typedoc-plugin-markdown --out ./docs/http",
     "doc": "bun run doc:index && bun run doc:http",
+    "lint": "biome lint ./src",
     "build": "bun run test && bun run rollup"
   },
   "devDependencies": {
