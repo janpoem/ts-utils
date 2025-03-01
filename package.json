@@ -27,7 +27,7 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": ["dist"],
   "scripts": {
     "test": "bun test --coverage",
     "rollup": "rollup -c --bundleConfigAsCjs",
