@@ -15,20 +15,19 @@ jobs:
     if: startsWith(github.event.head_commit.message, 'build:')
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Bun.js setup
-      uses: oven-sh/setup-bun@v2
+      - name: Bun.js setup
+        uses: oven-sh/setup-bun@v2
 
-    - name: Install dependencies
-      run: bun install --frozen-lockfile
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
 
-    - name: Build sources
-      run: bun run build
+      - name: Build sources
+        run: bun run build
 
-    - name: Publish
-      env:
-        NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: bun publish --access public
-
+      - name: Publish package to NPM
+        run: bun publish --access public
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
