@@ -14,12 +14,14 @@
   "type": "module",
   "exports": {
     ".": {
+      "bun": "./src/index.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./http": {
+      "bun": "./src/http/index.ts",
       "require": "./dist/http/index.js",
       "import": "./dist/http/index.mjs",
       "default": "./dist/http/index.js",
@@ -27,7 +29,7 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": ["dist", "src"],
   "scripts": {
     "test": "bun test --coverage",
     "rollup": "rollup -c --bundleConfigAsCjs",

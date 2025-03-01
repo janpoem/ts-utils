@@ -27,7 +27,13 @@ jobs:
       - name: Build sources
         run: bun run build
 
-      - name: Publish package to NPM
-        run: bun publish
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Npm Publish
+        run: npm publish --access public
         env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
