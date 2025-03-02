@@ -92,7 +92,7 @@
     "genExports": "bun run ./scripts/genExports.ts",
     "doc": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
     "lint": "biome lint --error-on-warnings ./src",
-    "build": "bun run test && bun run rollup"
+    "build": "bun run rollup"
   },
   "devDependencies": {
     "@types/bun": "latest",
