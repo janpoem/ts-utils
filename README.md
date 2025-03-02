@@ -66,9 +66,9 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 
 #### `@zenstone/ts-utils/path`
 
-- [createPathUtils](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/createPathUtils.md)
-- [purgeHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/purgeHttpPath.md)
-- [joinHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/joinHttpPath.md)
+- [createPathUtils](https://github.com/janpoem/ts-utils/blob/main/docs/functions/createPathUtils.md)
+- [purgeHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/purgeHttpPath.md)
+- [joinHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/joinHttpPath.md)
 
 #### `@zenstone/ts-utils/string`
 
@@ -77,7 +77,7 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 
 #### `@zenstone/ts-utils/http`
 
-- [mergeHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeHeaders.md)
-- [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeRespInit.md)
-- [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/toAryHeaders.md)
-- [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/http/functions/mergeAbortSignals.md)
+- [mergeHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeHeaders.md)
+- [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeRespInit.md)
+- [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
+- [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
