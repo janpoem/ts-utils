@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'bun:test';
-import { mergeAbortSignals } from './request';
+import { isRequest, mergeAbortSignals } from './request';
 
 describe('request', () => {
   describe('mergeAbortSignals', () => {
@@ -42,6 +42,20 @@ describe('request', () => {
         abortController1.signal,
       );
       expect(signal).toBe(abortController1.signal);
+    });
+  });
+
+  describe('isRequest', () => {
+    it('should return true when the input is a Request instance', () => {
+      const request = new Request('https://example.com');
+      expect(isRequest(request)).toBe(true);
+    });
+
+    it('should return false when the input is not a Request instance', () => {
+      expect(isRequest(null)).toBe(false);
+      expect(isRequest(undefined)).toBe(false);
+      expect(isRequest({})).toBe(false);
+      expect(isRequest('https://example.com')).toBe(false);
     });
   });
 });
