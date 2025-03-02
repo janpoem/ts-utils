@@ -1,8 +1,9 @@
 /**
  * 单个 Http Header 的数组类型
  *
- * @example
- * const header: HeaderAry = ['Content-Type', 'application/json'];
+ * ```ts
+ * const header: HeaderAry = ['content-type', 'application/json'];
+ * ```
  */
 export type AryHeaderItem = [string, string];
 
