@@ -8,7 +8,7 @@
 
 > **mergeRespInit**(...`opts`): `ResponseInit`
 
-Defined in: [response.ts:30](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/http/response.ts#L30)
+Defined in: [http/response.ts:34](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/http/response.ts#L34)
 
 合并多个 [ResponseInitInput](../type-aliases/ResponseInitInput.md) 为 `ResponseInit` 对象
 
@@ -18,7 +18,7 @@ Defined in: [response.ts:30](https://github.com/janpoem/ts-utils/blob/0cd4777c12
 - 合并多个 `ResponseInit`
 
 ```ts
-new Response(body, 
+new Response(body,
   mergeRespInit(
     404,
     { headers: { 'x-a': '1' } },

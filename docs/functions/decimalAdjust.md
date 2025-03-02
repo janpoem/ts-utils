@@ -8,7 +8,7 @@
 
 > **decimalAdjust**(`type`, `value`, `exp`?): `number`
 
-Defined in: [number.ts:93](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/number.ts#L93)
+Defined in: [number.ts:93](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/number.ts#L93)
 
 数字精度调整，支持 `round`、`ceil`、`floor` 三种类型
 
@@ -18,7 +18,7 @@ Defined in: [number.ts:93](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff
 
 调整类型
 
-`"ceil"` | `"floor"` | `"round"`
+`"round"` | `"ceil"` | `"floor"`
 
 ### value
 

@@ -8,4 +8,4 @@
 
 > **HeadersInitInput**: `HeadersInit` \| `undefined` \| `null`
 
-Defined in: [headers.ts:9](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/http/headers.ts#L9)
+Defined in: [http/headers.ts:10](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/http/headers.ts#L10)
