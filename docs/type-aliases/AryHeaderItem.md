@@ -8,12 +8,10 @@
 
 > **AryHeaderItem**: \[`string`, `string`\]
 
-Defined in: [headers.ts:7](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/http/headers.ts#L7)
+Defined in: [http/headers.ts:8](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/http/headers.ts#L8)
 
 单个 Http Header 的数组类型
 
-## Example
-
 ```ts
-const header: HeaderAry = ['Content-Type', 'application/json'];
+const header: HeaderAry = ['content-type', 'application/json'];
 ```

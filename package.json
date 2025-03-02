@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
@@ -9,35 +9,90 @@
     "type": "git",
     "url": "https://github.com/janpoem/ts-utils"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "bun": "./src/index.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/index.cjs",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./error": {
+      "import": {
+        "default": "./dist/error.js",
+        "types": "./dist/error.d.ts"
+      },
+      "require": {
+        "default": "./dist/error.cjs",
+        "types": "./dist/error.d.ts"
+      }
+    },
+    "./number": {
+      "import": {
+        "default": "./dist/number.js",
+        "types": "./dist/number.d.ts"
+      },
+      "require": {
+        "default": "./dist/number.cjs",
+        "types": "./dist/number.d.ts"
+      }
+    },
+    "./object": {
+      "import": {
+        "default": "./dist/object.js",
+        "types": "./dist/object.d.ts"
+      },
+      "require": {
+        "default": "./dist/object.cjs",
+        "types": "./dist/object.d.ts"
+      }
+    },
+    "./path": {
+      "import": {
+        "default": "./dist/path.js",
+        "types": "./dist/path.d.ts"
+      },
+      "require": {
+        "default": "./dist/path.cjs",
+        "types": "./dist/path.d.ts"
+      }
+    },
+    "./string": {
+      "import": {
+        "default": "./dist/string.js",
+        "types": "./dist/string.d.ts"
+      },
+      "require": {
+        "default": "./dist/string.cjs",
+        "types": "./dist/string.d.ts"
+      }
     },
     "./http": {
-      "bun": "./src/http/index.ts",
-      "require": "./dist/http/index.js",
-      "import": "./dist/http/index.mjs",
-      "default": "./dist/http/index.js",
-      "types": "./dist/http/index.d.ts"
+      "import": {
+        "default": "./dist/http/index.js",
+        "types": "./dist/http/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/http/index.cjs",
+        "types": "./dist/http/index.d.ts"
+      }
     }
   },
-  "types": "./dist/index.d.ts",
-  "files": ["dist", "src"],
+  "files": ["dist"],
   "scripts": {
     "test": "bun test --coverage",
-    "rollup": "rollup -c --bundleConfigAsCjs",
-    "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
-    "doc:http": "bun typedoc src/http/index.ts --plugin typedoc-plugin-markdown --out ./docs/http",
-    "doc": "bun run doc:index && bun run doc:http",
-    "lint": "biome lint ./src",
-    "build": "bun run test && bun run rollup"
+    "rollup": "bunx --bun rollup -c rollup.config.ts",
+    "genExports": "bun run ./scripts/genExports.ts",
+    "doc": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+    "lint": "biome lint --error-on-warnings ./src",
+    "build": "bun run rollup"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -48,7 +103,8 @@
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "typedoc": "^0.27.8",
-    "typedoc-plugin-markdown": "^4.4.2"
+    "typedoc-plugin-markdown": "^4.4.2",
+    "glob": "^11.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

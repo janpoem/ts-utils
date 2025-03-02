@@ -8,7 +8,9 @@
 
 > **ErrLike**: `object`
 
-Defined in: [error.ts:4](https://github.com/janpoem/ts-utils/blob/0cd4777c12ff7de2b512ea29cc29419037e8cb6f/src/error.ts#L4)
+Defined in: [error.ts:7](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/error.ts#L7)
+
+可能是一个包含错误消息的结构
 
 ## Type declaration
 
