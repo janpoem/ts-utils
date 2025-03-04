@@ -19,11 +19,3 @@ export const mergeAbortSignals = (
   // @ts-ignore AbortSignal.any
   if (size > 1) return AbortSignal.any(signals);
 };
-
-/**
- * 检查对象是否 Request 实例
- *
- * @param obj
- */
-export const isRequest = (obj: unknown) =>
-  obj != null && obj instanceof Request;

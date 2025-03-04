@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import {
+  calcProgress,
   ceil10,
   decimalAdjust,
   floor10,
@@ -197,6 +198,38 @@ describe('number', () => {
       expect(floor10(59, 1)).toBe(50);
       expect(floor10(-55.51, -1)).toBe(-55.6);
       expect(floor10(-51, 1)).toBe(-60);
+    });
+  });
+
+  describe('calcProgress', () => {
+    test('should return the correct progress when total is a positive number', () => {
+      expect(calcProgress(50, 100)).toBe(0.5);
+      expect(calcProgress(75, 100)).toBe(0.75);
+      expect(calcProgress(100, 100)).toBe(1);
+    });
+
+    test('should return 0 when value is 0', () => {
+      expect(calcProgress(0, 100)).toBe(0);
+    });
+
+    test('should return 1 when value is equal to total', () => {
+      expect(calcProgress(100, 100)).toBe(1);
+    });
+
+    test('should return 1 when value is greater than total', () => {
+      expect(calcProgress(150, 100)).toBe(1);
+    });
+
+    test('should throw an error when total is 0', () => {
+      expect(() => calcProgress(50, 0)).toThrow(
+        'The denominator cannot be 0 or NaN',
+      );
+    });
+
+    test('should throw an error when total is NaN', () => {
+      expect(() => calcProgress(50, Number.NaN)).toThrow(
+        'The denominator cannot be 0 or NaN',
+      );
     });
   });
 });

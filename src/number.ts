@@ -30,7 +30,7 @@ export const isNumberVal = (val: unknown): boolean => {
  * - 布尔类型，如 `true`，转换为 `1`，`false` 转换为 `0`
  *
  * @param val
- * @param {number} dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
+ * @param dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
  */
 export const toNumber = (val: unknown, dft = 0): number => {
   if (typeof val === 'boolean') return val ? 1 : 0;
@@ -53,10 +53,9 @@ export const limitNumberMin = (val: unknown, min: number, dft = 0) => {
 
 /**
  * 限制 val 在最大值范围内
- *
  * @param val
- * @param {number} max 最大值
- * @param {number} dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
+ * @param max 最大值
+ * @param dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
  */
 export const limitNumberMax = (val: unknown, max: number, dft = 0) => {
   const v = toNumber(val, dft);
@@ -65,11 +64,10 @@ export const limitNumberMax = (val: unknown, max: number, dft = 0) => {
 
 /**
  * 限制 val 在最小值和最大值范围内
- *
  * @param val
- * @param {number} min 最小值
- * @param {number} max 最大值
- * @param {number} dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
+ * @param min 最小值
+ * @param max 最大值
+ * @param dft 默认值，仅当 val 为 `null` 或 `undefined` 或 非包含有效数值时生效
  */
 export const limitNumberMinMax = (
   val: unknown,
@@ -131,3 +129,16 @@ export const floor10 = (value: number, exp?: number): number =>
 
 export const ceil10 = (value: number, exp?: number): number =>
   decimalAdjust('ceil', value, exp);
+
+/**
+ * 计算进度值，返回的结果为一个浮点值，表示进度比例，取值在 0 - 1 之间。
+ *
+ * @param value
+ * @param total
+ */
+export const calcProgress = (value: number, total: number) => {
+  if (total === 0 || !isNumber(total)) {
+    throw new Error('The denominator cannot be 0 or NaN');
+  }
+  return limitNumberMinMax(round10(value / total, -2), 0, 1);
+};
