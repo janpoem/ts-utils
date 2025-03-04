@@ -102,7 +102,8 @@ type ParseModule = {
 
 export const scanInternalDeps = async (dirPath: string, entries: Entry[]) => {
   const externals: string[] = [];
-  const allModules = (
+  // 都有基于文件的 modules
+  const allFileModules = (
     await glob('**/*.{ts,tsx}', {
       cwd: dirPath,
       ignore: {
@@ -119,17 +120,22 @@ export const scanInternalDeps = async (dirPath: string, entries: Entry[]) => {
     })
   ).map((it) => parseModule(join(dirPath, it)));
 
-  for (const module of allModules) {
+  for (const module of allFileModules) {
     const imports = scanImports(module.path);
     for (const ipt of imports) {
       if (!ipt.path.startsWith('./') && !ipt.path.startsWith('../')) continue;
       const iptPath = resolve(module.dir, ipt.path);
-      const iptModule = allModules.find(
+
+      // 先从文件 modules 中去找匹配
+      const iptModule = allFileModules.find(
         (it) => it.modulePath === iptPath || it.path === iptPath,
       );
-      if (iptModule == null) continue;
 
-      const iptEntry = entries.find((it) => it.path === iptModule.path);
+      const iptEntry =
+        iptModule == null
+          ? // 如果在文件 modules 不匹配，则从 entries 里面找 entryDir 进行匹配
+            entries.find((it) => it.entryDir === iptPath)
+          : entries.find((it) => it.path === iptModule.path);
       if (iptEntry == null) continue;
 
       externals.push(ipt.path);

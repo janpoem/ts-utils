@@ -8,7 +8,7 @@
 
 > **ceil10**(`value`, `exp`?): `number`
 
-Defined in: [number.ts:132](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/number.ts#L132)
+Defined in: [number.ts:130](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/number.ts#L130)
 
 ## Parameters
 

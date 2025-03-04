@@ -20,7 +20,14 @@ bun add @zenstone/ts-utils
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/globals.md)
 
-`@zenstone/ts-utils` 包含全部子模块。
+`@zenstone/ts-utils` 包含以下子模块。
+
+- `error`
+- `number`
+- `object`
+- `path`
+- `string`
+- `http`
 
 ```ts
 import { toNumber, mergeHeaders } from '@zenstone/ts-utils';
@@ -42,6 +49,17 @@ import { errMsg } from '@zenstone/ts-utils/error';
 const msg = errMsg(new Error('test error')) || 'unknown error';
 ```
 
+`@zenstone/ts-utils/fetch-download` 是独立的子模块，未包含在 `@zenstone/ts-utils`
+，根据需求来加载。
+
+```ts
+import { fetchDownload } from '@zenstone/ts-utils/fetch-download';
+
+const task = fetchDownload(fetch('url'));
+
+await task.read(() => console.log(`${task.percent} %`));
+```
+
 #### `@zenstone/ts-utils/error`
 
 - [isErrLike](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isErrLike.md)
@@ -59,6 +77,7 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
     - [round10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/round10.md)
     - [ceil10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/ceil10.md)
     - [floor10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/floor10.md)
+- [calcProgress](https://github.com/janpoem/ts-utils/blob/main/docs/functions/calcProgress.md)
 
 #### `@zenstone/ts-utils/object`
 
@@ -81,3 +100,14 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 - [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeRespInit.md)
 - [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
 - [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
+
+### `@zenstone/ts-utils/fetch-download`
+
+[文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
+
+- [fetchDownload](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/fetchDownload.md)
+- [DownloadTask](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTask.md)
+- [DownloadTaskError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTaskError.md)
+- [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
+- [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)
+

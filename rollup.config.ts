@@ -19,9 +19,6 @@ const rmdir = (dir: string) =>
 const entries = scanEntries(srcDir);
 const deps = await scanInternalDeps(srcDir, entries);
 
-// console.log(entries);
-// throw new Error('ttt');
-
 const config: RollupOptions[] = [];
 
 for (const entry of entries) {
@@ -45,10 +42,7 @@ for (const entry of entries) {
           exclude: /node_modules/,
           tsconfig: 'tsconfig.json',
           jsc: {
-            // minify: {
-            //   compress: true,
-            //   mangle: true,
-            // },
+            target: 'es2022',
           },
         }),
       ),

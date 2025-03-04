@@ -8,7 +8,7 @@
 
 > **isStr**(`val`): `val is string`
 
-Defined in: [string.ts:7](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/string.ts#L7)
+Defined in: [string.ts:7](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/string.ts#L7)
 
 判定 val 是否为字符串类型（含 infer）
 

@@ -8,7 +8,7 @@
 
 > **isInferObj**\<`T`\>(`obj`, `fn`?): `obj is T`
 
-Defined in: [object.ts:56](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/object.ts#L56)
+Defined in: [object.ts:56](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/object.ts#L56)
 
 检查 obj 是否为 Object，结果为真时，推导 obj 为 T 类型
 
@@ -60,7 +60,7 @@ if (isInferObj(ver2, isWithVersion)) {
 
 ## Type Parameters
 
-• **T** *extends* [`RecordObj`](../type-aliases/RecordObj.md) = [`RecordObj`](../type-aliases/RecordObj.md)
+• **T** = [`RecordObj`](../type-aliases/RecordObj.md)
 
 obj 的推断类型
 
