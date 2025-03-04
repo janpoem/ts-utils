@@ -81,6 +81,7 @@ await task.read(() => console.log(`${task.percent} %`));
     - [round10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/round10.md)
     - [ceil10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/ceil10.md)
     - [floor10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/floor10.md)
+- [calcProgress](https://github.com/janpoem/ts-utils/blob/main/docs/functions/calcProgress.md)
 
 #### `@zenstone/ts-utils/object`
 
@@ -103,3 +104,13 @@ await task.read(() => console.log(`${task.percent} %`));
 - [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeRespInit.md)
 - [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
 - [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
+
+### `@zenstone/ts-utils/fetch-download`
+
+[文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
+
+- [fetchDownload](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/fetchDownload.md)
+- [DownloadTask](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTask.md)
+- [DownloadTaskError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTaskError.md)
+- [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
+- [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)

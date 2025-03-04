@@ -6,7 +6,7 @@
 
 # Class: DownloadQueue
 
-Defined in: [src/fetch-download/DownloadQueue.ts:17](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/DownloadQueue.ts#L17)
+Defined in: [src/fetch-download/DownloadQueue.ts:17](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadQueue.ts#L17)
 
 ## Implements
 
@@ -18,7 +18,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:17](https://github.com/janpoem/
 
 > **new DownloadQueue**(`tasks`): [`DownloadQueue`](DownloadQueue.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:20](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/DownloadQueue.ts#L20)
+Defined in: [src/fetch-download/DownloadQueue.ts:20](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadQueue.ts#L20)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:20](https://github.com/janpoem/
 
 > **newErr**(`msg`): [`DownloadQueueError`](DownloadQueueError.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:48](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/DownloadQueue.ts#L48)
+Defined in: [src/fetch-download/DownloadQueue.ts:48](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadQueue.ts#L48)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:48](https://github.com/janpoem/
 
 > **read**(`opts`): `Promise`\<[`DownloadQueue`](DownloadQueue.md)\>
 
-Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/DownloadQueue.ts#L24)
+Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadQueue.ts#L24)
 
 #### Parameters
 

@@ -143,28 +143,28 @@ export class DownloadTask implements DownloadProcessImpl {
   }
 
   /**
-   * 当前状态
+   * 当前状态 {@link DownloadTaskState}
    */
   get state() {
     return this.#state;
   }
 
   /**
-   * 获取 Response Content-Length 的大小
+   * 获取 Response Content-Length
    */
   get contentLength() {
     return this.#contentLength;
   }
 
   /**
-   * 获取 Content-Encoding
+   * 获取 Response Content-Encoding
    */
   get encoding() {
     return this.#encoding;
   }
 
   /**
-   * 获取内容的 MIME 类型
+   * 获取 Response Content-Type
    */
   get mimeType() {
     return this.#mimeType;
@@ -178,28 +178,28 @@ export class DownloadTask implements DownloadProcessImpl {
   }
 
   /**
-   * 是否经过压缩
+   * Response 是否经过压缩（基于 Content-Encoding 判定）
    */
   get isCompressed() {
     return !!this.#encoding && compressedEncodings.includes(this.#encoding);
   }
 
   /**
-   * 已接收的内容大小
+   * 已接收 Response body 大小
    */
   get received() {
     return this.#received;
   }
 
   /**
-   * 接收进度小数（0 - 1）
+   * 接收 Response body 进度小数（0 - 1）
    */
   get progress() {
     return this.#progress;
   }
 
   /**
-   * 接收进度百分比（0 - 100）
+   * 接收 Response body 进度百分比（0 - 100）
    */
   get percent() {
     return Math.floor(this.#progress * 100);
@@ -212,12 +212,15 @@ export class DownloadTask implements DownloadProcessImpl {
     return this.#chunks;
   }
 
+  /**
+   * 是否开始 read
+   */
   get isStarted() {
     return this.#state !== DownloadTaskState.init;
   }
 
   /**
-   * 是否已经读取 Response body
+   * 是否已经读取（完毕） Response body
    */
   get isReaded() {
     return this.#received > 0 && this.#chunks != null;
@@ -231,7 +234,7 @@ export class DownloadTask implements DownloadProcessImpl {
   }
 
   /**
-   * 下载完成时间戳
+   * read 完成时间戳
    *
    * - 如果下载未开始，返回 0
    * - 如果下载已开始，但并未下载完成，则会返回当前时间的时间戳
@@ -244,7 +247,11 @@ export class DownloadTask implements DownloadProcessImpl {
   }
 
   /**
-   * 接收数据经过多少时间（秒）
+   * read 数据经过多少时间（毫秒）
+   *
+   * 如果为实际完成，则返回当前时间的时间戳
+   *
+   * 如果未开始，则返回 0
    */
   get elapsedMs() {
     return this.isStarted ? this.completeTs - this.#startTs : 0;
@@ -252,6 +259,8 @@ export class DownloadTask implements DownloadProcessImpl {
 
   /**
    * 接收速度，单位为字节/秒，需要自行转换
+   *
+   * 如果未开始，返回 0
    */
   get speed() {
     if (!this.isStarted) return 0;

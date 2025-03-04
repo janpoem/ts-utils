@@ -6,7 +6,7 @@
 
 # Interface: DownloadProcessImpl
 
-Defined in: [src/fetch-download/types.ts:24](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/types.ts#L24)
+Defined in: [src/fetch-download/types.ts:24](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/types.ts#L24)
 
 ## Methods
 
@@ -14,7 +14,7 @@ Defined in: [src/fetch-download/types.ts:24](https://github.com/janpoem/ts-utils
 
 > **newErr**(`msg`): `Error`
 
-Defined in: [src/fetch-download/types.ts:29](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/types.ts#L29)
+Defined in: [src/fetch-download/types.ts:29](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/types.ts#L29)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [src/fetch-download/types.ts:29](https://github.com/janpoem/ts-utils
 
 > **read**(`opts`): `Promise`\<[`DownloadProcessImpl`](DownloadProcessImpl.md)\>
 
-Defined in: [src/fetch-download/types.ts:25](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/fetch-download/types.ts#L25)
+Defined in: [src/fetch-download/types.ts:25](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/types.ts#L25)
 
 #### Parameters
 
