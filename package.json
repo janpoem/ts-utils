@@ -88,6 +88,7 @@
   "files": ["dist"],
   "scripts": {
     "test": "bun test --coverage",
+    "ts-check": "bunx --bun tsc --noEmit",
     "rollup": "bunx --bun rollup -c rollup.config.ts",
     "genExports": "bun run ./scripts/genExports.ts",
     "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
