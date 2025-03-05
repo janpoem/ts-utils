@@ -4,9 +4,6 @@ import { notEmptyStr } from '../string';
 import type {
   DownloadFetchCallback,
   DownloadInput,
-  DownloadProcessCallback,
-  DownloadProcessImpl,
-  DownloadProcessOptions,
   DownloadRequest,
 } from './types';
 
@@ -29,10 +26,20 @@ export enum DownloadTaskState {
   complete = 3,
 }
 
-export class DownloadTask implements DownloadProcessImpl {
-  static #idIndex = 0;
+export type DownloadTaskProcessCallback = (
+  task: DownloadTask,
+) => void | Promise<void>;
 
-  static newId = () => `DownloadTask_${DownloadTask.#idIndex++}`;
+export type DownloadTaskProcessOptions = {
+  onFetch?: DownloadTaskProcessCallback;
+  onHeaders?: DownloadTaskProcessCallback;
+  onProgress?: DownloadTaskProcessCallback;
+  onComplete?: DownloadTaskProcessCallback;
+  onError?: DownloadTaskProcessCallback;
+};
+
+export class DownloadTask {
+  static #idIndex = 0;
 
   #id: string;
 
@@ -99,15 +106,15 @@ export class DownloadTask implements DownloadProcessImpl {
    * @param input
    */
   constructor(input: DownloadInput | Response) {
-    this.#id = DownloadTask.newId();
+    this.#id = `DownloadTask_${DownloadTask.#idIndex++}`;
     if (input instanceof Response) {
       this.#resp = input;
     } else {
-      this.initFetch(input);
+      this._initFetch(input);
     }
   }
 
-  initFetch = (input: DownloadInput) => {
+  protected _initFetch = (input: DownloadInput) => {
     if (input instanceof Promise) {
       this.#fetch = () =>
         new Promise((resolve, reject) => input.then(resolve).catch(reject));
@@ -202,7 +209,7 @@ export class DownloadTask implements DownloadProcessImpl {
    * 接收 Response body 进度百分比（0 - 100）
    */
   get percent() {
-    return Math.floor(this.#progress * 100);
+    return Math.floor(this.progress * 100);
   }
 
   /**
@@ -290,7 +297,6 @@ export class DownloadTask implements DownloadProcessImpl {
    * ```ts
    * const task = new DownloadTask('download_url');
    * await task.read({
-   *   isNotThrow: true,     // 禁止抛出异常
    *   onFetch: () => {},    // fetch 前
    *   onHeaders: () => {},  // 读取 headers 时，stream read 之前
    *   onProgress: () => {}, // 每一次接收 chunk 流时
@@ -302,7 +308,7 @@ export class DownloadTask implements DownloadProcessImpl {
    * @param opts
    */
   read = async (
-    opts?: DownloadProcessCallback<this> | DownloadProcessOptions<this>,
+    opts?: DownloadTaskProcessCallback | DownloadTaskProcessOptions,
   ): Promise<this> => {
     if (typeof opts === 'function') {
       return this.read({ onProgress: opts });
@@ -401,12 +407,10 @@ export class DownloadTask implements DownloadProcessImpl {
 
     if (this.#error != null) {
       await opts?.onError?.(this);
-      if (!opts?.isNotThrow) {
-        throw this.#error;
-      }
-    } else {
-      await opts?.onComplete?.(this);
+      throw this.#error;
     }
+
+    await opts?.onComplete?.(this);
 
     return this;
   };
