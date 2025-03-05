@@ -57,10 +57,12 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 ```ts
 import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
 
-const task = fetchDownload(fetch('https://example.com/test.js'));
+// download and print the progress
+const task = await fetchDownload(fetch('https://example.com/test.js')).read(
+  () => console.log(`${task.percent} %`)
+);
 
-await task.read(() => console.log(`${task.percent} %`));
-
+// save to local
 saveChunks(task.chunks, 'temp.js', task.mimeType);
 ```
 

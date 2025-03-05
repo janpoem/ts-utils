@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
@@ -72,6 +72,16 @@
       "require": {
         "default": "./dist/string.cjs",
         "types": "./dist/string.d.ts"
+      }
+    },
+    "./fetch-download": {
+      "import": {
+        "default": "./dist/fetch-download/index.js",
+        "types": "./dist/fetch-download/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/fetch-download/index.cjs",
+        "types": "./dist/fetch-download/index.d.ts"
       }
     },
     "./http": {
