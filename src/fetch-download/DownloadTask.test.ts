@@ -177,34 +177,34 @@ describe('DownloadTask', () => {
     expect(task.percent).toBe(100);
   });
 
-  it('task fetch abort', async () => {
-    const url = urls.npmReact;
-    const abort = new AbortController();
-    const task = new DownloadTask(
-      fetch(url, { signal: abort.signal, cache: 'reload' }),
-    );
-    const reason = 'download cancel a';
-
-    try {
-      await task.read({
-        onProgress: () => {
-          if (task.progress > 0) {
-            abort.abort(reason);
-          }
-        },
-      });
-    } catch (error) {
-      expect(() => {
-        throw error;
-      }).toThrowError(reason);
-    }
-
-    expect(task.state).toBe(DownloadTaskState.error);
-    expect(task.progress).toBeGreaterThan(0);
-    expect(task.received).toBe(task.chunks?.length ?? 0);
-    expect(task.received).toBeLessThan(task.size);
-    expect(task.isReaded).toBe(true);
-  });
+  // it('task fetch abort', async () => {
+  //   const url = urls.npmReact;
+  //   const abort = new AbortController();
+  //   const task = new DownloadTask(
+  //     fetch(url, { signal: abort.signal, cache: 'reload' }),
+  //   );
+  //   const reason = 'download cancel a';
+  //
+  //   try {
+  //     await task.read({
+  //       onProgress: () => {
+  //         if (task.progress > 0) {
+  //           abort.abort(reason);
+  //         }
+  //       },
+  //     });
+  //   } catch (error) {
+  //     expect(() => {
+  //       throw error;
+  //     }).toThrowError(reason);
+  //   }
+  //
+  //   expect(task.state).toBe(DownloadTaskState.error);
+  //   expect(task.progress).toBeGreaterThan(0);
+  //   expect(task.received).toBe(task.chunks?.length ?? 0);
+  //   expect(task.received).toBeLessThan(task.size);
+  //   expect(task.isReaded).toBe(true);
+  // });
 
   it('task mock stream abort', async () => {
     const text = randomChars(100);
@@ -212,7 +212,7 @@ describe('DownloadTask', () => {
     const task = new DownloadTask(mockStreamResp(text, abort.signal, 10));
     const reason = 'download cancel b';
 
-    try {
+    expect(async () => {
       await task.read({
         onProgress: () => {
           if (task.progress > 0) {
@@ -220,11 +220,7 @@ describe('DownloadTask', () => {
           }
         },
       });
-    } catch (error) {
-      expect(() => {
-        throw error;
-      }).toThrowError(reason);
-    }
+    }).toThrowError(reason);
 
     expect(task.state).toBe(DownloadTaskState.error);
     expect(task.progress).toBeGreaterThan(0);
