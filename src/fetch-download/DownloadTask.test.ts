@@ -177,7 +177,7 @@ describe('DownloadTask', () => {
     expect(task.percent).toBe(100);
   });
 
-  it('task fetch abort', () => {
+  it('task fetch abort', async () => {
     const url = urls.npmReact;
     const abort = new AbortController();
     const task = new DownloadTask(
