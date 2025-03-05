@@ -59,7 +59,7 @@ import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
 
 // download and print the progress
 const task = await fetchDownload(fetch('https://example.com/test.js')).read(
-  () => console.log(`${task.percent} %`)
+  (task) => console.log(`${task.percent} %`)
 );
 
 // save to local
