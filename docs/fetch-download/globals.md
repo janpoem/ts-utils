@@ -15,19 +15,18 @@
 - [DownloadTask](classes/DownloadTask.md)
 - [DownloadTaskError](classes/DownloadTaskError.md)
 
-## Interfaces
-
-- [DownloadProcessImpl](interfaces/DownloadProcessImpl.md)
-
 ## Type Aliases
 
 - [DownloadFetchCallback](type-aliases/DownloadFetchCallback.md)
 - [DownloadInput](type-aliases/DownloadInput.md)
-- [DownloadProcessCallback](type-aliases/DownloadProcessCallback.md)
-- [DownloadProcessOptions](type-aliases/DownloadProcessOptions.md)
+- [DownloadQueueInput](type-aliases/DownloadQueueInput.md)
+- [DownloadQueueProcessOptions](type-aliases/DownloadQueueProcessOptions.md)
 - [DownloadRequest](type-aliases/DownloadRequest.md)
+- [DownloadTaskProcessCallback](type-aliases/DownloadTaskProcessCallback.md)
+- [DownloadTaskProcessOptions](type-aliases/DownloadTaskProcessOptions.md)
 - [DownloadUrl](type-aliases/DownloadUrl.md)
 
 ## Functions
 
 - [fetchDownload](functions/fetchDownload.md)
+- [saveChunks](functions/saveChunks.md)

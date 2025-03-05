@@ -6,7 +6,7 @@
 
 # Class: DownloadTaskError
 
-Defined in: [src/fetch-download/DownloadTask.ts:13](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadTask.ts#L13)
+Defined in: [src/fetch-download/DownloadTask.ts:10](https://github.com/janpoem/ts-utils/blob/1ba63f4eed7fec22e5d5024d881e7ce38561da5d/src/fetch-download/DownloadTask.ts#L10)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:13](https://github.com/janpoem/t
 
 > **new DownloadTaskError**(`msg`, `task`): [`DownloadTaskError`](DownloadTaskError.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:14](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadTask.ts#L14)
+Defined in: [src/fetch-download/DownloadTask.ts:11](https://github.com/janpoem/ts-utils/blob/1ba63f4eed7fec22e5d5024d881e7ce38561da5d/src/fetch-download/DownloadTask.ts#L11)
 
 #### Parameters
 
@@ -92,7 +92,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 > `readonly` **task**: [`DownloadTask`](DownloadTask.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:16](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/DownloadTask.ts#L16)
+Defined in: [src/fetch-download/DownloadTask.ts:13](https://github.com/janpoem/ts-utils/blob/1ba63f4eed7fec22e5d5024d881e7ce38561da5d/src/fetch-download/DownloadTask.ts#L13)
 
 ***
 

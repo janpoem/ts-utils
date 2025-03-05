@@ -8,7 +8,7 @@
 
 > **DownloadFetchCallback**: () => `Promise`\<`Response`\>
 
-Defined in: [src/fetch-download/types.ts:32](https://github.com/janpoem/ts-utils/blob/647769c6ab17fbf959411c087c243d48d7d88bf8/src/fetch-download/types.ts#L32)
+Defined in: [src/fetch-download/types.ts:13](https://github.com/janpoem/ts-utils/blob/1ba63f4eed7fec22e5d5024d881e7ce38561da5d/src/fetch-download/types.ts#L13)
 
 ## Returns
 
