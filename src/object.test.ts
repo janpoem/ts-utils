@@ -36,12 +36,36 @@ describe('isInferObj', () => {
     key: string;
   };
 
+  type TestType2 = {
+    id: string;
+  };
+
   const isTestType = (it: TestType) =>
     it.key != null && typeof it.key === 'string';
+
+  const isTestType2 = (obj: unknown) =>
+    isInferObj<TestType2>(
+      obj,
+      (it) => it.id != null && typeof it.id === 'string',
+    );
 
   test('check by callback', () => {
     expect(isInferObj({ key: 'aa' }, isTestType)).toBe(true);
     expect(isInferObj({ key: 123 }, isTestType)).toBe(false);
     expect(isInferObj({}, isTestType)).toBe(false);
+  });
+
+  test('type infer', () => {
+    const a = { key: 'test a' };
+
+    if (isInferObj(a, isTestType)) {
+      expect(a.key).toBe('test a');
+    }
+
+    const b = { id: 'test b' };
+
+    if (isTestType2(b)) {
+      expect(b.id).toBe('test b');
+    }
   });
 });

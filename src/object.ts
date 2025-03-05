@@ -50,8 +50,7 @@ export type RecordObj = Record<string, unknown>;
  * ```
  *
  * @param obj 任意类型变量
- * @typeParam T - obj 的推断类型
- * @param fn 检查函数
+ * @param fn 断言类型判断函数
  */
 export const isInferObj = <T = RecordObj>(
   obj: unknown,
