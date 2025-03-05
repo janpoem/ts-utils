@@ -8,7 +8,7 @@
 
 > **limitNumberMin**(`val`, `min`, `dft`): `number`
 
-Defined in: [number.ts:49](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/number.ts#L49)
+Defined in: [number.ts:49](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/number.ts#L49)
 
 限制 val 在最小值范围内
 

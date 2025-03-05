@@ -8,7 +8,7 @@
 
 > **floor10**(`value`, `exp`?): `number`
 
-Defined in: [number.ts:129](https://github.com/janpoem/ts-utils/blob/df5fa129179bf9218996bf53428f8189a02eea4a/src/number.ts#L129)
+Defined in: [number.ts:127](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/number.ts#L127)
 
 ## Parameters
 

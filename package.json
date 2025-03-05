@@ -88,9 +88,12 @@
   "files": ["dist"],
   "scripts": {
     "test": "bun test --coverage",
+    "ts-check": "bunx --bun tsc --noEmit",
     "rollup": "bunx --bun rollup -c rollup.config.ts",
     "genExports": "bun run ./scripts/genExports.ts",
-    "doc": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+    "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
+    "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
+    "doc": "bun run doc:index && bun run doc:fetch-download",
     "lint": "biome lint --error-on-warnings ./src",
     "build": "bun run rollup"
   },

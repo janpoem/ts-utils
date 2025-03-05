@@ -24,6 +24,7 @@
 
 ## Functions
 
+- [calcProgress](functions/calcProgress.md)
 - [ceil10](functions/ceil10.md)
 - [createPathUtils](functions/createPathUtils.md)
 - [decimalAdjust](functions/decimalAdjust.md)
