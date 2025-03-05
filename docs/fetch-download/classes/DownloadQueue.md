@@ -6,7 +6,7 @@
 
 # Class: DownloadQueue
 
-Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L26)
+Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L26)
 
 ## Constructors
 
@@ -14,7 +14,34 @@ Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/
 
 > **new DownloadQueue**(`tasks`): [`DownloadQueue`](DownloadQueue.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:49](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L49)
+Defined in: [src/fetch-download/DownloadQueue.ts:79](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L79)
+
+创建 [DownloadQueue](DownloadQueue.md) 实例，允许多种 input 类型
+
+```ts
+// DownloadTask
+const task1 = new DownloadQueue([new DownloadTask('url')]);
+const task2 = new DownloadQueue([fetchDownload('url')]);
+
+// URL 输入
+const task3 = new DownloadQueue(['url']);
+const task4 = new DownloadQueue([new URL('url')]);
+
+// Request or DownloadRequest 结构
+const task5 = new DownloadQueue([new Request('url')]);
+const task6 = new DownloadQueue([{ url: 'url' }]);
+
+// Promise<Response>
+const abort = new AbortController();
+const task7 = new DownloadQueue([
+  fetch('url', { signal: abort.signal }),
+]);
+
+// Response
+const task8 = new DownloadTask([
+  await fetch('url'),
+]);
+```
 
 #### Parameters
 
@@ -34,9 +61,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:49](https://github.com/janpoem/
 
 > **get** **completeTs**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:153](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L153)
+Defined in: [src/fetch-download/DownloadQueue.ts:189](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L189)
 
-read 完成时间戳
+read 完成时间戳（所有下载任务都完成）
 
 - 如果下载未开始，返回 0
 - 如果下载已开始，但并未下载完成，则会返回当前时间的时间戳
@@ -53,9 +80,9 @@ read 完成时间戳
 
 > **get** **contentLength**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:92](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L92)
+Defined in: [src/fetch-download/DownloadQueue.ts:128](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L128)
 
-获取 Response Content-Length
+所有下载任务的 Content-Length 总和
 
 ##### Returns
 
@@ -69,9 +96,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:92](https://github.com/janpoem/
 
 > **get** **elapsedMs**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:167](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L167)
+Defined in: [src/fetch-download/DownloadQueue.ts:203](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L203)
 
-read 数据经过多少时间（毫秒）
+read 数据经过多少时间（毫秒，所有下载任务都完成）
 
 如果为实际完成，则返回当前时间的时间戳
 
@@ -89,7 +116,7 @@ read 数据经过多少时间（毫秒）
 
 > **get** **error**(): `unknown`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:143](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L143)
+Defined in: [src/fetch-download/DownloadQueue.ts:179](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L179)
 
 获取错误信息
 
@@ -105,7 +132,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:143](https://github.com/janpoem
 
 > **get** **id**(): `string`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:59](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L59)
+Defined in: [src/fetch-download/DownloadQueue.ts:89](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L89)
 
 [DownloadQueue](DownloadQueue.md) Id
 
@@ -121,7 +148,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:59](https://github.com/janpoem/
 
 > **get** **isReaded**(): `boolean`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:136](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L136)
+Defined in: [src/fetch-download/DownloadQueue.ts:172](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L172)
 
 是否已经 read 完毕
 
@@ -137,7 +164,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:136](https://github.com/janpoem
 
 > **get** **isStarted**(): `boolean`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:129](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L129)
+Defined in: [src/fetch-download/DownloadQueue.ts:165](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L165)
 
 是否开始 read
 
@@ -153,9 +180,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:129](https://github.com/janpoem
 
 > **get** **percent**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:122](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L122)
+Defined in: [src/fetch-download/DownloadQueue.ts:158](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L158)
 
-接收 Response body 进度百分比（0 - 100）
+所有下载任务的接收 Response body 进度百分比（0 - 100）
 
 ##### Returns
 
@@ -169,9 +196,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:122](https://github.com/janpoem
 
 > **get** **progress**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:110](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L110)
+Defined in: [src/fetch-download/DownloadQueue.ts:146](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L146)
 
-接收 Response body 进度小数（0 - 1）
+所有下载任务的接收 Response body 进度小数（0 - 1）
 
 ##### Returns
 
@@ -185,9 +212,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:110](https://github.com/janpoem
 
 > **get** **received**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:101](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L101)
+Defined in: [src/fetch-download/DownloadQueue.ts:137](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L137)
 
-已接收 Response body 大小
+所有下载任务的已接收 Response body 大小
 
 ##### Returns
 
@@ -201,9 +228,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:101](https://github.com/janpoem
 
 > **get** **size**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:83](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L83)
+Defined in: [src/fetch-download/DownloadQueue.ts:119](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L119)
 
-实际接收内容的大小
+所有下载任务的实际总大小
 
 ##### Returns
 
@@ -217,11 +244,20 @@ Defined in: [src/fetch-download/DownloadQueue.ts:83](https://github.com/janpoem/
 
 > **get** **speed**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:176](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L176)
+Defined in: [src/fetch-download/DownloadQueue.ts:221](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L221)
 
-接收速度，单位为字节/秒，需要自行转换
+接收速度（所有下载任务的平均值），单位为字节/秒，需要自行转换
 
 如果未开始，返回 0
+
+```ts
+import { filesize } from 'filesize';
+
+const task = await fetchDownload().read();
+
+console.log(`${filesize(task.speed, { bits: true })}/s`); // kbit/s
+console.log(`${filesize(task.speed)}/s`); // KB/s
+```
 
 ##### Returns
 
@@ -235,7 +271,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:176](https://github.com/janpoem
 
 > **get** **state**(): [`DownloadTaskState`](../enumerations/DownloadTaskState.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:76](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L76)
+Defined in: [src/fetch-download/DownloadQueue.ts:112](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L112)
 
 当前状态 [DownloadTaskState](../enumerations/DownloadTaskState.md)
 
@@ -253,7 +289,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:76](https://github.com/janpoem/
 
 > **get** **tasks**(): [`DownloadTask`](DownloadTask.md)[]
 
-Defined in: [src/fetch-download/DownloadQueue.ts:63](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L63)
+Defined in: [src/fetch-download/DownloadQueue.ts:96](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L96)
+
+所有下载任务
 
 ##### Returns
 
@@ -267,7 +305,9 @@ Defined in: [src/fetch-download/DownloadQueue.ts:63](https://github.com/janpoem/
 
 > **get** **tasksCount**(): `number`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:67](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L67)
+Defined in: [src/fetch-download/DownloadQueue.ts:103](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L103)
+
+所有下载任务的总数
 
 ##### Returns
 
@@ -279,7 +319,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:67](https://github.com/janpoem/
 
 > `protected` **\_initTasksQueue**(`opts`?): `Promise`\<[`DownloadTask`](DownloadTask.md)\>[]
 
-Defined in: [src/fetch-download/DownloadQueue.ts:183](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L183)
+Defined in: [src/fetch-download/DownloadQueue.ts:228](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L228)
 
 #### Parameters
 
@@ -297,7 +337,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:183](https://github.com/janpoem
 
 > **newErr**(`msg`): [`DownloadQueueError`](DownloadQueueError.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:237](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L237)
+Defined in: [src/fetch-download/DownloadQueue.ts:291](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L291)
 
 #### Parameters
 
@@ -315,7 +355,13 @@ Defined in: [src/fetch-download/DownloadQueue.ts:237](https://github.com/janpoem
 
 > **read**(`opts`?): `Promise`\<[`DownloadQueue`](DownloadQueue.md)\>
 
-Defined in: [src/fetch-download/DownloadQueue.ts:197](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L197)
+Defined in: [src/fetch-download/DownloadQueue.ts:251](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L251)
+
+Queue 读取方法（调用每一个 task 的 read）
+
+1. `onFetch`、`onHeaders`、`onProgress`、`onComplete`、`onError` 保留对应每一个 task 的事件
+2. `onFinish` 对应 Queue 全部 tasks 读取完毕
+3. `onQueueError` 对应 Queue 任意一个 task 读取过程中出错
 
 #### Parameters
 
@@ -333,7 +379,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:197](https://github.com/janpoem
 
 > **reduce**\<`T`\>(`fn`, `initValue`): `T`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:194](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L194)
+Defined in: [src/fetch-download/DownloadQueue.ts:239](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L239)
 
 #### Type Parameters
 

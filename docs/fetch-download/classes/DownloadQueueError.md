@@ -6,7 +6,7 @@
 
 # Class: DownloadQueueError
 
-Defined in: [src/fetch-download/DownloadQueue.ts:10](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L10)
+Defined in: [src/fetch-download/DownloadQueue.ts:10](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L10)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:10](https://github.com/janpoem/
 
 > **new DownloadQueueError**(`msg`, `queue`): [`DownloadQueueError`](DownloadQueueError.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:11](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L11)
+Defined in: [src/fetch-download/DownloadQueue.ts:11](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L11)
 
 #### Parameters
 
@@ -80,7 +80,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` **queue**: [`DownloadQueue`](DownloadQueue.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:13](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/DownloadQueue.ts#L13)
+Defined in: [src/fetch-download/DownloadQueue.ts:13](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L13)
 
 ***
 

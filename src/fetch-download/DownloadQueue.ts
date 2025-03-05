@@ -46,8 +46,38 @@ export class DownloadQueue {
 
   #completeTs = 0;
 
+  /**
+   * 创建 {@link DownloadQueue} 实例，允许多种 input 类型
+   *
+   * ```ts
+   * // DownloadTask
+   * const task1 = new DownloadQueue([new DownloadTask('url')]);
+   * const task2 = new DownloadQueue([fetchDownload('url')]);
+   *
+   * // URL 输入
+   * const task3 = new DownloadQueue(['url']);
+   * const task4 = new DownloadQueue([new URL('url')]);
+   *
+   * // Request or DownloadRequest 结构
+   * const task5 = new DownloadQueue([new Request('url')]);
+   * const task6 = new DownloadQueue([{ url: 'url' }]);
+   *
+   * // Promise<Response>
+   * const abort = new AbortController();
+   * const task7 = new DownloadQueue([
+   *   fetch('url', { signal: abort.signal }),
+   * ]);
+   *
+   * // Response
+   * const task8 = new DownloadTask([
+   *   await fetch('url'),
+   * ]);
+   * ```
+   *
+   * @param tasks
+   */
   constructor(tasks: DownloadQueueInput[]) {
-    this.#id = `DownloadTask_${DownloadQueue.#idIndex++}`;
+    this.#id = `DownloadQueue_${DownloadQueue.#idIndex++}`;
     this.#tasks = tasks.map((it) =>
       it instanceof DownloadTask ? it : new DownloadTask(it),
     );
@@ -60,10 +90,16 @@ export class DownloadQueue {
     return this.#id;
   }
 
+  /**
+   * 所有下载任务
+   */
   get tasks() {
     return this.#tasks;
   }
 
+  /**
+   * 所有下载任务的总数
+   */
   get tasksCount() {
     return this.#tasks.length;
   }
@@ -78,7 +114,7 @@ export class DownloadQueue {
   }
 
   /**
-   * 实际接收内容的大小
+   * 所有下载任务的实际总大小
    */
   get size() {
     return this.isReaded
@@ -87,7 +123,7 @@ export class DownloadQueue {
   }
 
   /**
-   * 获取 Response Content-Length
+   * 所有下载任务的 Content-Length 总和
    */
   get contentLength() {
     return this.isReaded
@@ -96,7 +132,7 @@ export class DownloadQueue {
   }
 
   /**
-   * 已接收 Response body 大小
+   * 所有下载任务的已接收 Response body 大小
    */
   get received() {
     return this.isReaded
@@ -105,7 +141,7 @@ export class DownloadQueue {
   }
 
   /**
-   * 接收 Response body 进度小数（0 - 1）
+   * 所有下载任务的接收 Response body 进度小数（0 - 1）
    */
   get progress() {
     return this.isReaded
@@ -117,7 +153,7 @@ export class DownloadQueue {
   }
 
   /**
-   * 接收 Response body 进度百分比（0 - 100）
+   * 所有下载任务的接收 Response body 进度百分比（0 - 100）
    */
   get percent() {
     return Math.floor(this.progress * 100);
@@ -145,7 +181,7 @@ export class DownloadQueue {
   }
 
   /**
-   * read 完成时间戳
+   * read 完成时间戳（所有下载任务都完成）
    *
    * - 如果下载未开始，返回 0
    * - 如果下载已开始，但并未下载完成，则会返回当前时间的时间戳
@@ -158,7 +194,7 @@ export class DownloadQueue {
   }
 
   /**
-   * read 数据经过多少时间（毫秒）
+   * read 数据经过多少时间（毫秒，所有下载任务都完成）
    *
    * 如果为实际完成，则返回当前时间的时间戳
    *
@@ -169,9 +205,18 @@ export class DownloadQueue {
   }
 
   /**
-   * 接收速度，单位为字节/秒，需要自行转换
+   * 接收速度（所有下载任务的平均值），单位为字节/秒，需要自行转换
    *
    * 如果未开始，返回 0
+   *
+   * ```ts
+   * import { filesize } from 'filesize';
+   *
+   * const task = await fetchDownload().read();
+   *
+   * console.log(`${filesize(task.speed, { bits: true })}/s`); // kbit/s
+   * console.log(`${filesize(task.speed)}/s`); // KB/s
+   * ```
    */
   get speed() {
     if (!this.isStarted) return 0;
@@ -194,6 +239,15 @@ export class DownloadQueue {
   reduce = <T>(fn: (acc: T, it: DownloadTask) => T, initValue: T) =>
     this.#tasks.reduce(fn, initValue);
 
+  /**
+   * Queue 读取方法（调用每一个 task 的 read）
+   *
+   * 1. `onFetch`、`onHeaders`、`onProgress`、`onComplete`、`onError` 保留对应每一个 task 的事件
+   * 2. `onFinish` 对应 Queue 全部 tasks 读取完毕
+   * 3. `onQueueError` 对应 Queue 任意一个 task 读取过程中出错
+   *
+   * @param opts
+   */
   read = (
     opts?: DownloadTaskProcessCallback | DownloadQueueProcessOptions,
   ): Promise<this> => {

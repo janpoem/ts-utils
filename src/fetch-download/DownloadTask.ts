@@ -268,6 +268,15 @@ export class DownloadTask {
    * 接收速度，单位为字节/秒，需要自行转换
    *
    * 如果未开始，返回 0
+   *
+   * ```ts
+   * import { filesize } from 'filesize';
+   *
+   * const task = await fetchDownload().read();
+   *
+   * console.log(`${filesize(task.speed, { bits: true })}/s`); // kbit/s
+   * console.log(`${filesize(task.speed)}/s`); // KB/s
+   * ```
    */
   get speed() {
     if (!this.isStarted) return 0;
