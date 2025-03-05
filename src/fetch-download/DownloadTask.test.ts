@@ -185,7 +185,7 @@ describe('DownloadTask', () => {
     );
     const reason = 'download cancel a';
 
-    expect(async () => {
+    try {
       await task.read({
         onProgress: () => {
           if (task.progress > 0) {
@@ -193,7 +193,11 @@ describe('DownloadTask', () => {
           }
         },
       });
-    }).toThrowError(reason);
+    } catch (error) {
+      expect(() => {
+        throw error;
+      }).toThrowError(reason);
+    }
 
     expect(task.state).toBe(DownloadTaskState.error);
     expect(task.progress).toBeGreaterThan(0);
@@ -208,7 +212,7 @@ describe('DownloadTask', () => {
     const task = new DownloadTask(mockStreamResp(text, abort.signal, 10));
     const reason = 'download cancel b';
 
-    expect(async () => {
+    try {
       await task.read({
         onProgress: () => {
           if (task.progress > 0) {
@@ -216,7 +220,11 @@ describe('DownloadTask', () => {
           }
         },
       });
-    }).toThrowError(reason);
+    } catch (error) {
+      expect(() => {
+        throw error;
+      }).toThrowError(reason);
+    }
 
     expect(task.state).toBe(DownloadTaskState.error);
     expect(task.progress).toBeGreaterThan(0);
