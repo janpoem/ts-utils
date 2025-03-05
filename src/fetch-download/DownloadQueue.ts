@@ -168,6 +168,18 @@ export class DownloadQueue {
     return this.isStarted ? this.completeTs - this.#startTs : 0;
   }
 
+  /**
+   * 接收速度，单位为字节/秒，需要自行转换
+   *
+   * 如果未开始，返回 0
+   */
+  get speed() {
+    if (!this.isStarted) return 0;
+    const ms = this.elapsedMs;
+    if (ms <= 0) return this.contentLength;
+    return Math.floor(this.contentLength / (ms / 1000));
+  }
+
   protected _initTasksQueue = (
     opts?: DownloadQueueProcessOptions,
   ): Promise<DownloadTask>[] => {

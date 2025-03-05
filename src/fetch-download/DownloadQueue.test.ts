@@ -46,7 +46,7 @@ describe('DownloadQueue', () => {
         const now = new Date().valueOf();
 
         expect(q.completeTs).toBeGreaterThanOrEqual(now);
-        expect(q.elapsedMs).toBeGreaterThanOrEqual(now - startTs);
+        expect(q.elapsedMs).toBeCloseTo(now - startTs, 10);
 
         progress = q.progress;
       },
@@ -62,6 +62,7 @@ describe('DownloadQueue', () => {
 
     expect(q.state).toBe(DownloadTaskState.complete);
     expect(q.completeTs).toBeGreaterThan(0);
+    expect(q.speed).toBeGreaterThan(0);
     expect(q.error).toBeUndefined();
 
     const message = `${q.id} error`;
@@ -85,15 +86,21 @@ describe('DownloadQueue', () => {
     const reason = `cancel ${new Date().valueOf()}`;
 
     expect(async () => {
-      await q.read(() => {
-        if (q.percent > 0) {
-          abort.abort(reason);
-        }
+      await q.read({
+        onProgress: () => {
+          if (q.percent > 0) {
+            abort.abort(reason);
+          }
+        },
+        onQueueError: () => {
+          expect(q.error).toBeDefined();
+        },
       });
     }).toThrowError(reason);
 
     expect(() => q.error).toThrowError(reason);
     expect(q.state).toBe(DownloadTaskState.error);
+    expect(q.speed).toBeGreaterThan(0);
     expect(q.size).toBe(totalSize);
     expect(q.received).toBeGreaterThan(0);
     expect(q.progress).toBeGreaterThan(0);
