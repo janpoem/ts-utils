@@ -8,7 +8,17 @@
 
 > **fetchDownload**\<`T`, `R`\>(`input`): `R`
 
-Defined in: [src/fetch-download/fetchDownload.ts:5](https://github.com/janpoem/ts-utils/blob/1ba63f4eed7fec22e5d5024d881e7ce38561da5d/src/fetch-download/fetchDownload.ts#L5)
+Defined in: [src/fetch-download/fetchDownload.ts:18](https://github.com/janpoem/ts-utils/blob/034fdce9c8e357e20394a193c81088a159ce6f86/src/fetch-download/fetchDownload.ts#L18)
+
+创建 [DownloadTask](../classes/DownloadTask.md) 或 [DownloadQueue](../classes/DownloadQueue.md) 的快捷方法
+
+```ts
+// DownloadTask
+const task = fetchDownload('url');
+
+// DownloadQueue
+const queue = fetchDownload(['url-a', 'url-b', 'url-c']);
+```
 
 ## Type Parameters
 

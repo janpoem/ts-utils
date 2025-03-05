@@ -57,11 +57,13 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 ，根据需求来加载。
 
 ```ts
-import { fetchDownload } from '@zenstone/ts-utils/fetch-download';
+import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
 
-const task = fetchDownload(fetch('url'));
+const task = fetchDownload(fetch('https://example.com/test.js'));
 
 await task.read(() => console.log(`${task.percent} %`));
+
+saveChunks(task.chunks, 'temp.js', task.mimeType);
 ```
 
 #### `@zenstone/ts-utils/error`
@@ -109,6 +111,7 @@ await task.read(() => console.log(`${task.percent} %`));
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
 
+- [saveChunks](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/saveChunks.md)
 - [fetchDownload](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/fetchDownload.md)
 - [DownloadTask](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTask.md)
 - [DownloadTaskError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTaskError.md)
