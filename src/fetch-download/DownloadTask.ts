@@ -401,7 +401,6 @@ export class DownloadTask {
     } catch (err) {
       this.#state = DownloadTaskState.error;
       this.#error = err;
-      await opts?.onError?.(this);
     }
 
     if (this.#received > 0) {

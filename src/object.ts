@@ -49,6 +49,52 @@ export type RecordObj = Record<string, unknown>;
  * }
  * ```
  *
+ * 实际使用的例子：
+ *
+ * ```ts
+ * export type NpmPackageInfo = {
+ *   _id: string;
+ *   name: string;
+ *   version: string;
+ *   dist: NpmPackageDist;
+ * };
+ *
+ * export type NpmPackageDist = {
+ *   shasum: string;
+ *   tarball: string;
+ * };
+ *
+ * export const isNpmPackageDist = (obj: unknown) =>
+ *   isInferObj<NpmPackageDist>(
+ *     obj,
+ *     (it) => notEmptyStr(it.shasum) && notEmptyStr(it.tarball),
+ *   );
+ *
+ * export const isNpmPackageInfo = (obj: unknown) =>
+ *   isInferObj<NpmPackageInfo>(
+ *     obj,
+ *     (it) =>
+ *       notEmptyStr(it._id) &&
+ *       notEmptyStr(it.name) &&
+ *       notEmptyStr(it.version) &&
+ *       isNpmPackageDist(it.dist),
+ *   );
+ *
+ * export const fetchNpmPackage = async (name: string, version?: string) => {
+ *   const ver = version || 'latest';
+ *   verifyPackageName(name);
+ *   const resp = await fetch(`${apiBaseUrl}/${name}/${ver}`);
+ *   const json = await resp.json(); // JSON 这时的类型是 any
+ *   if (typeof json === 'string') {
+ *     throw new NpmPackageError(json, name, ver);
+ *   }
+ *   if (isNpmPackageInfo(json)) { // 在这个 if 条件里，json 被推断为 NpmPackageInfo
+ *     return json;
+ *   }
+ *   throw new NpmPackageError('Invalid package info return', name, ver);
+ * };
+ * ```
+ *
  * @param obj 任意类型变量
  * @param fn 断言类型判断函数
  */
