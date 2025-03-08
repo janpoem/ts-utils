@@ -4,10 +4,12 @@
 
 # @zenstone/ts-utils
 
+[![version](https://img.shields.io/npm/v/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils) [![dt](https://img.shields.io/npm/dt/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils)
+
 TypeScript 工具函数库。主要集中近 2 年使用频率较高的工具函数。主要便于快速在
 Bun.js 和 TypeScript 项目中使用。
 
-使用 bun 开发。
+使用 Bun.js 开发。
 
 ## 安装
 
@@ -59,10 +61,12 @@ const msg = errMsg(new Error('test error')) || 'unknown error';
 ```ts
 import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
 
-const task = fetchDownload(fetch('https://example.com/test.js'));
+// download and print the progress
+const task = await fetchDownload(fetch('https://example.com/test.js')).read(
+  (task) => console.log(`${task.percent} %`)
+);
 
-await task.read(() => console.log(`${task.percent} %`));
-
+// save to local
 saveChunks(task.chunks, 'temp.js', task.mimeType);
 ```
 

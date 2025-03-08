@@ -8,7 +8,7 @@
 
 > **DownloadQueueProcessOptions**: [`DownloadTaskProcessOptions`](DownloadTaskProcessOptions.md) & `object`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/dd074ed257fa79d98e072518ca260e5de071ed30/src/fetch-download/DownloadQueue.ts#L21)
+Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadQueue.ts#L21)
 
 ## Type declaration
 

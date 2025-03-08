@@ -8,7 +8,7 @@
 
 > **isNumberVal**(`val`): `boolean`
 
-Defined in: [number.ts:17](https://github.com/janpoem/ts-utils/blob/b9219c6997c227d9b9eb09f22e1ab95d12d9260c/src/number.ts#L17)
+Defined in: [number.ts:17](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/number.ts#L17)
 
 判断是否包含有效的数值
 
