@@ -1,7 +1,7 @@
-import * as fs from 'node:fs';
-import { join, resolve } from 'node:path';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import * as fs from 'node:fs';
+import { join, resolve } from 'node:path';
 import type { RollupOptions } from 'rollup';
 import { dts } from 'rollup-plugin-dts';
 import { defineRollupSwcOption, swc } from 'rollup-plugin-swc3';
