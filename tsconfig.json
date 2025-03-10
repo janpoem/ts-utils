@@ -20,5 +20,7 @@
     "noPropertyAccessFromIndexSignature": false,
 
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -1,10 +1,5 @@
 import { calcProgress } from '../number';
-import {
-  DownloadTask,
-  type DownloadTaskProcessCallback,
-  type DownloadTaskProcessOptions,
-  DownloadTaskState,
-} from './DownloadTask';
+import { DownloadTask, DownloadTaskState } from './DownloadTask';
 import type { DownloadInput } from './types';
 
 export class DownloadQueueError extends Error {
@@ -18,9 +13,19 @@ export class DownloadQueueError extends Error {
 
 export type DownloadQueueInput = DownloadInput | Response | DownloadTask;
 
-export type DownloadQueueProcessOptions = DownloadTaskProcessOptions & {
-  onFinish?: (q: DownloadQueue) => void | Promise<void>;
-  onQueueError?: (q: DownloadQueue) => void | Promise<void>;
+export type DownloadQueueProcessCallback = (
+  queue: DownloadQueue,
+  task: DownloadTask,
+) => void | Promise<void>;
+
+export type DownloadQueueProcessOptions = {
+  onFetch?: DownloadQueueProcessCallback;
+  onHeaders?: DownloadQueueProcessCallback;
+  onProgress?: DownloadQueueProcessCallback;
+  onComplete?: DownloadQueueProcessCallback;
+  onError?: DownloadQueueProcessCallback;
+  onFinish?: (queue: DownloadQueue) => void | Promise<void>;
+  onQueueError?: (queue: DownloadQueue) => void | Promise<void>;
 };
 
 export class DownloadQueue {
@@ -230,7 +235,16 @@ export class DownloadQueue {
   ): Promise<DownloadTask>[] => {
     return this.#tasks.map((task) => {
       if (!task.isStarted) {
-        return task.read(opts);
+        const { onFetch, onHeaders, onProgress, onComplete, onError, ...rest } =
+          opts ?? {};
+        return task.read({
+          ...rest,
+          onFetch: (t) => onFetch?.(this, t),
+          onHeaders: (t) => onHeaders?.(this, t),
+          onProgress: (t) => onProgress?.(this, t),
+          onComplete: (t) => onComplete?.(this, t),
+          onError: (t) => onError?.(this, t),
+        });
       }
       return Promise.resolve(task);
     });
@@ -249,7 +263,7 @@ export class DownloadQueue {
    * @param opts
    */
   read = (
-    opts?: DownloadTaskProcessCallback | DownloadQueueProcessOptions,
+    opts?: DownloadQueueProcessCallback | DownloadQueueProcessOptions,
   ): Promise<this> => {
     if (typeof opts === 'function') {
       return this.read({ onProgress: opts });

@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",

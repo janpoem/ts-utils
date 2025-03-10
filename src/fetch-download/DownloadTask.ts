@@ -53,6 +53,8 @@ export class DownloadTask {
 
   #encoding: string | null = null;
 
+  #isCompressed?: boolean;
+
   #mimeType: string | null = null;
 
   #size = 0;
@@ -188,8 +190,21 @@ export class DownloadTask {
    * Response 是否经过压缩（基于 Content-Encoding 判定）
    */
   get isCompressed() {
-    return !!this.#encoding && compressedEncodings.includes(this.#encoding);
+    if (this.#isCompressed == null) {
+      return !!this.#encoding && compressedEncodings.includes(this.#encoding);
+    }
+    return this.#isCompressed;
   }
+
+  /**
+   * 强制指定 compressed ，针对一些特殊的场合使用
+   *
+   * @param isCompressed
+   */
+  setCompressed = (isCompressed?: boolean) => {
+    this.#isCompressed = isCompressed;
+    return this;
+  };
 
   /**
    * 已接收 Response body 大小
@@ -363,15 +378,18 @@ export class DownloadTask {
         this.#resp.headers.get('content-length') || 0
       );
       this.#mimeType = this.#resp.headers.get('content-type');
-      this.#encoding = this.#resp.headers.get('content-encoding');
+      this.#encoding =
+        this.#resp.headers.get('content-encoding') ||
+        this.#resp.headers.get('x-content-encoding'); // add x-content-encoding for cloudflare worker
 
-      if (
-        Number.isNaN(this.#contentLength) ||
-        !Number.isFinite(this.#contentLength) ||
-        this.#contentLength <= 0
-      ) {
-        throw this.newErr('Invalid response content length');
-      }
+      // allow content length be zero
+      // if (
+      //   Number.isNaN(this.#contentLength) ||
+      //   !Number.isFinite(this.#contentLength) ||
+      //   this.#contentLength <= 0
+      // ) {
+      //   throw this.newErr('Invalid response content length');
+      // }
       if (this.isCompressed) {
         this.#size = this.inferUncompressedSize(this.#contentLength);
       }
@@ -388,6 +406,8 @@ export class DownloadTask {
         if (done) {
           // 用实际接收的大小替代实际的 size
           this.#size = this.#received;
+          this.#progress = calcProgress(this.#received, this.#size);
+          await opts?.onProgress?.(this);
           this.#completeTs = new Date().valueOf();
           this.#state = DownloadTaskState.complete;
           break;
@@ -395,6 +415,11 @@ export class DownloadTask {
 
         chunkAry.push(value);
         this.#received += value.length;
+        if (this.#received > this.#size) {
+          this.#size = this.#received;
+        }
+
+        // 当 content-length === 0 时候，progress 一直都是 1
         this.#progress = calcProgress(this.#received, this.#size);
         await opts?.onProgress?.(this);
       }

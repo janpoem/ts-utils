@@ -75,7 +75,7 @@ describe('DownloadTask', () => {
       },
       onProgress: () => {
         expect(task.state).toBe(DownloadTaskState.reading);
-        expect(task.progress).toBeGreaterThan(progress);
+        expect(task.progress).toBeGreaterThanOrEqual(progress);
 
         // progress 每次读取都会递增
         // 所以下一次必然大于上一次的值
@@ -228,4 +228,30 @@ describe('DownloadTask', () => {
     expect(task.received).toBeLessThan(task.size);
     expect(task.isReaded).toBe(true);
   });
+
+  it('test zero content length', async () => {
+    const text = randomChars(1000);
+    const task = new DownloadTask(mockStreamResp(text, null, 10, false));
+
+    await task.read({
+      onProgress: (t) => {
+        expect(t.progress).toBe(1);
+        expect(t.percent).toBe(100);
+      },
+    });
+
+    expect(task.size).toBe(1000);
+    expect(task.progress).toBe(1);
+    expect(task.percent).toBe(100);
+    expect(task.size).toBe(task.received);
+  });
+
+  // it('cf-worker', async () => {
+  //   const task = fetchDownload(
+  //     'http://127.0.0.1:8787/libs/monaco-editor/0.52.2/editor.main.umd.js',
+  //   );
+  //   await task.read(() => {
+  //     console.log(task.percent);
+  //   });
+  // });
 });

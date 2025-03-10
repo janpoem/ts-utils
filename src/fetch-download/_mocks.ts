@@ -21,8 +21,9 @@ export const makeChunks = (value: string, chunksCount: number) => {
 
 export const mockStreamResp = (
   text: string,
-  signal?: AbortSignal,
+  signal: AbortSignal | undefined | null = undefined,
   chunkSize = 10,
+  withContentLength = true,
 ) =>
   new Promise<Response>((resolve) => {
     const chunks = makeChunks(text, chunkSize);
@@ -54,12 +55,11 @@ export const mockStreamResp = (
       },
     });
 
-    resolve(
-      new Response(stream, {
-        headers: {
-          'content-type': 'text/plain',
-          'content-length': `${text.length}`,
-        },
-      }),
-    );
+    const headers: [string, string][] = [['content-type', 'text/plain']];
+
+    if (withContentLength) {
+      headers.push(['content-length', `${text.length}`]);
+    }
+
+    resolve(new Response(stream, { headers }));
   });
