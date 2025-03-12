@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
@@ -93,6 +93,16 @@
         "default": "./dist/http/index.cjs",
         "types": "./dist/http/index.d.ts"
       }
+    },
+    "./remote": {
+      "import": {
+        "default": "./dist/remote/index.js",
+        "types": "./dist/remote/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/remote/index.cjs",
+        "types": "./dist/remote/index.d.ts"
+      }
     }
   },
   "files": ["dist"],
@@ -103,8 +113,9 @@
     "rollup": "bunx --bun rollup -c rollup.config.ts",
     "genExports": "bun run ./scripts/genExports.ts",
     "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
+    "doc:remote": "bun typedoc src/remote/index.ts --plugin typedoc-plugin-markdown --out ./docs/remote",
     "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
-    "doc": "bun run doc:index && bun run doc:fetch-download",
+    "doc": "bun run doc:index && bun run doc:fetch-download && bun run doc:remote",
     "build": "bun run rollup"
   },
   "devDependencies": {
@@ -117,7 +128,8 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "typedoc": "^0.27.8",
     "typedoc-plugin-markdown": "^4.4.2",
-    "glob": "^11.0.1"
+    "glob": "^11.0.1",
+    "@happy-dom/global-registrator": "^17.4.4"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
