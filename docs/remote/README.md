@@ -1,3 +1,7 @@
+**@zenstone/ts-utils**
+
+***
+
 # @zenstone/ts-utils
 
 [![version](https://img.shields.io/npm/v/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils) [![dt](https://img.shields.io/npm/dt/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils)
@@ -117,10 +121,3 @@ saveChunks(task.chunks, 'temp.js', task.mimeType);
 - [DownloadTaskError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTaskError.md)
 - [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
 - [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)
-
-### `@zenstone/ts-utils/remote`
-
-[文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/remote/globals.md)
-
-- [mountRemote](https://github.com/janpoem/ts-utils/blob/main/docs/remote/functions/mountRemote.md)
-- [unmountRemote](https://github.com/janpoem/ts-utils/blob/main/docs/remote/functions/unmountRemote.md)
