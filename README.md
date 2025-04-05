@@ -33,12 +33,12 @@ bun add @zenstone/ts-utils
 - `remote`
 - `fetch-download`
 
-#### `@zenstone/ts-utils/error`
+#### `error`
 
 - [isErrLike](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isErrLike.md)
 - [errMsg](https://github.com/janpoem/ts-utils/blob/main/docs/functions/errMsg.md)
 
-#### `@zenstone/ts-utils/number`
+#### `number`
 
 - [isNumber](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isNumber.md)
 - [isNumberVal](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isNumberVal.md)
@@ -52,29 +52,29 @@ bun add @zenstone/ts-utils
     - [floor10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/floor10.md)
 - [calcProgress](https://github.com/janpoem/ts-utils/blob/main/docs/functions/calcProgress.md)
 
-#### `@zenstone/ts-utils/object`
+#### `object`
 
 - [isInferObj](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isInferObj.md)
 
-#### `@zenstone/ts-utils/path`
+#### `path`
 
 - [createPathUtils](https://github.com/janpoem/ts-utils/blob/main/docs/functions/createPathUtils.md)
 - [purgeHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/purgeHttpPath.md)
 - [joinHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/joinHttpPath.md)
 
-#### `@zenstone/ts-utils/string`
+#### `string`
 
 - [isStr](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isStr.md)
 - [notEmptyStr](https://github.com/janpoem/ts-utils/blob/main/docs/functions/notEmptyStr.md)
 
-#### `@zenstone/ts-utils/http`
+#### `http`
 
 - [mergeHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeHeaders.md)
 - [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeRespInit.md)
 - [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
 - [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
 
-#### `@zenstone/ts-utils/fetch-download`
+#### `fetch-download`
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
 
@@ -85,7 +85,7 @@ bun add @zenstone/ts-utils
 - [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
 - [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)
 
-#### `@zenstone/ts-utils/remote`
+#### `remote`
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/remote/globals.md)
 
