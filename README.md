@@ -22,7 +22,7 @@ bun add @zenstone/ts-utils
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/globals.md)
 
-`@zenstone/ts-utils` 包含以下子模块。
+`@zenstone/ts-utils` 包含以下子模块（0.0.11 以后，全部整合，不再分子目录）。
 
 - `error`
 - `number`
@@ -30,41 +30,8 @@ bun add @zenstone/ts-utils
 - `path`
 - `string`
 - `http`
-
-```ts
-import { toNumber, mergeHeaders } from '@zenstone/ts-utils';
-
-const val = toNumber(Number.NaN);
-const headers = mergeHeaders(
-  { 'content-type': 'application/json' },
-  [
-    ['content-type', 'text/html'],
-  ],
-);
-```
-
-`error`、`number`、`object`、`path`、`string`、`http` 可以按需来引入
-
-```ts
-import { errMsg } from '@zenstone/ts-utils/error';
-
-const msg = errMsg(new Error('test error')) || 'unknown error';
-```
-
-`@zenstone/ts-utils/fetch-download` 是独立的子模块，未包含在 `@zenstone/ts-utils`
-，根据需求来加载。
-
-```ts
-import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
-
-// download and print the progress
-const task = await fetchDownload(fetch('https://example.com/test.js')).read(
-  (task) => console.log(`${task.percent} %`)
-);
-
-// save to local
-saveChunks(task.chunks, 'temp.js', task.mimeType);
-```
+- `remote`
+- `fetch-download`
 
 #### `@zenstone/ts-utils/error`
 
@@ -107,7 +74,7 @@ saveChunks(task.chunks, 'temp.js', task.mimeType);
 - [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
 - [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
 
-### `@zenstone/ts-utils/fetch-download`
+#### `@zenstone/ts-utils/fetch-download`
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
 
@@ -118,7 +85,7 @@ saveChunks(task.chunks, 'temp.js', task.mimeType);
 - [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
 - [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)
 
-### `@zenstone/ts-utils/remote`
+#### `@zenstone/ts-utils/remote`
 
 [文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/remote/globals.md)
 

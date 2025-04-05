@@ -1,7 +1,7 @@
-import { lstatSync, readFileSync, readdirSync } from 'node:fs';
-import { basename, dirname, extname, join, resolve } from 'node:path';
 import type { Transpiler } from 'bun';
 import { glob } from 'glob';
+import { lstatSync, readdirSync, readFileSync } from 'node:fs';
+import { basename, dirname, extname, join, resolve } from 'node:path';
 
 const transpilers: Partial<Record<string, Transpiler>> = {};
 
@@ -61,12 +61,13 @@ export const newEntry = (
       exportName,
       exportEntry,
       output: {
-        cjs: `${exportName}.cjs`,
-        mjs: `${exportName}.js`,
-        dts: `${exportName}.d.ts`,
+        cjs: `cjs/${exportName}.cjs`,
+        mjs: `esm/${exportName}.mjs`,
+        dts: `types/${exportName}.d.ts`,
       },
     };
-  } catch (err) {}
+  } catch (err) {
+  }
 };
 
 export const scanEntries = (dirPath: string): Entry[] => {
@@ -80,7 +81,8 @@ export const scanImports = (path: string) => {
     return getTranspiler(extname(path).toLowerCase()).scanImports(
       readFileSync(path),
     );
-  } catch (err) {}
+  } catch (err) {
+  }
   return [];
 };
 
@@ -134,7 +136,7 @@ export const scanInternalDeps = async (dirPath: string, entries: Entry[]) => {
       const iptEntry =
         iptModule == null
           ? // 如果在文件 modules 不匹配，则从 entries 里面找 entryDir 进行匹配
-            entries.find((it) => it.entryDir === iptPath)
+          entries.find((it) => it.entryDir === iptPath)
           : entries.find((it) => it.path === iptModule.path);
       if (iptEntry == null) continue;
 
