@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
@@ -23,8 +23,7 @@
         "default": "./dist/cjs/index.cjs",
         "types": "./dist/cjs/index.d.cts"
       }
-    },
-    "./package.json": "./package.json"
+    }
   },
   "files": ["dist"],
   "scripts": {
@@ -38,7 +37,8 @@
     "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
     "doc": "bun run doc:index && bun run doc:fetch-download && bun run doc:remote",
     "build": "bun run rollup",
-    "pub": "bun publish --access public"
+    "pub": "bun publish --access public",
+    "check-dist": "bun tests/check-dist.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

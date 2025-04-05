@@ -16,8 +16,8 @@ const rmdir = (dir: string, enable = true) => {
     buildStart() {
       if (enable && dir) {
         existsSync(outputDir) &&
-        statSync(outputDir).isDirectory() &&
-        rmSync(outputDir, { recursive: true });
+          statSync(outputDir).isDirectory() &&
+          rmSync(outputDir, { recursive: true });
       }
     },
   };
@@ -37,7 +37,7 @@ export default [
         format: 'cjs',
       },
       {
-        file: join(outputDir, 'esm/index.mjs'),
+        file: join(outputDir, 'esm/index.js'),
         format: 'es',
         exports: 'named',
       },
@@ -124,5 +124,3 @@ export default [
 // }
 //
 // export default config;
-
-
