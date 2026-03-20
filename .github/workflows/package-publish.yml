@@ -29,11 +29,11 @@ jobs:
       - name: TypeScript Check
         run: bun run ts-check
 
-      - name: Run tests
-        run: bun run test
-
       - name: Build sources
         run: bun run build
+
+      - name: Run tests
+        run: bun run test
 
       - name: Publish package to NPM
         run: bun publish --access public
