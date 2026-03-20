@@ -157,7 +157,14 @@ export const mountRemote = async <R = unknown>(opts: MountRemoteOptions<R>) => {
         onError?.(error, { id, type, url } as MountRemoteResult<R>);
         reject(error);
       });
-      document.head.appendChild(tag);
+      try {
+        document.head.appendChild(tag);
+      } catch (err) {
+        unmountRemote(id);
+        const error = new MountRemoteError(`Mount remote failed: ${url}`, err);
+        onError?.(error, { id, type, url } as MountRemoteResult<R>);
+        reject(error);
+      }
     }
   });
 };
