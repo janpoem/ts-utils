@@ -20,6 +20,7 @@
 - [DownloadFetchCallback](type-aliases/DownloadFetchCallback.md)
 - [DownloadInput](type-aliases/DownloadInput.md)
 - [DownloadQueueInput](type-aliases/DownloadQueueInput.md)
+- [DownloadQueueProcessCallback](type-aliases/DownloadQueueProcessCallback.md)
 - [DownloadQueueProcessOptions](type-aliases/DownloadQueueProcessOptions.md)
 - [DownloadRequest](type-aliases/DownloadRequest.md)
 - [DownloadTaskProcessCallback](type-aliases/DownloadTaskProcessCallback.md)

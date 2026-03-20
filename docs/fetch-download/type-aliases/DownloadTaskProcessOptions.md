@@ -6,28 +6,46 @@
 
 # Type Alias: DownloadTaskProcessOptions
 
-> **DownloadTaskProcessOptions**: `object`
+> **DownloadTaskProcessOptions** = `object`
 
-Defined in: [src/fetch-download/DownloadTask.ts:33](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L33)
+Defined in: [src/fetch-download/DownloadTask.ts:33](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L33)
 
-## Type declaration
+## Properties
 
 ### onComplete?
 
-> `optional` **onComplete**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+> `optional` **onComplete?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadTask.ts:37](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L37)
+
+***
 
 ### onError?
 
-> `optional` **onError**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+> `optional` **onError?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadTask.ts:38](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L38)
+
+***
 
 ### onFetch?
 
-> `optional` **onFetch**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+> `optional` **onFetch?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadTask.ts:34](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L34)
+
+***
 
 ### onHeaders?
 
-> `optional` **onHeaders**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+> `optional` **onHeaders?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadTask.ts:35](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L35)
+
+***
 
 ### onProgress?
 
-> `optional` **onProgress**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+> `optional` **onProgress?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadTask.ts:36](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L36)

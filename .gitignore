@@ -175,3 +175,6 @@ dist
 .DS_Store
 
 bun.lock
+
+# OpenCode config
+opencode.json

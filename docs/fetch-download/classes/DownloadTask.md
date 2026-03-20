@@ -6,17 +6,17 @@
 
 # Class: DownloadTask
 
-Defined in: [src/fetch-download/DownloadTask.ts:41](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L41)
+Defined in: [src/fetch-download/DownloadTask.ts:41](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L41)
 
 ## Constructors
 
-### new DownloadTask()
+### Constructor
 
-> **new DownloadTask**(`input`): [`DownloadTask`](DownloadTask.md)
+> **new DownloadTask**(`input`): `DownloadTask`
 
-Defined in: [src/fetch-download/DownloadTask.ts:108](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L108)
+Defined in: [src/fetch-download/DownloadTask.ts:110](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L110)
 
-创建 [DownloadTask](DownloadTask.md) 实例，允许多种 input 类型
+创建 DownloadTask 实例，允许多种 input 类型
 
 ```ts
 // URL 输入
@@ -41,11 +41,11 @@ const task6 = new DownloadTask(await fetch('url'));
 
 ##### input
 
-`Response` | [`DownloadInput`](../type-aliases/DownloadInput.md)
+`Response` \| [`DownloadInput`](../type-aliases/DownloadInput.md)
 
 #### Returns
 
-[`DownloadTask`](DownloadTask.md)
+`DownloadTask`
 
 ## Accessors
 
@@ -53,15 +53,15 @@ const task6 = new DownloadTask(await fetch('url'));
 
 #### Get Signature
 
-> **get** **chunks**(): `undefined` \| `Uint8Array`\<`ArrayBufferLike`\>
+> **get** **chunks**(): `Uint8Array`\<`ArrayBufferLike`\> \| `undefined`
 
-Defined in: [src/fetch-download/DownloadTask.ts:218](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L218)
+Defined in: [src/fetch-download/DownloadTask.ts:233](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L233)
 
 获取 Response body 的 chunks
 
 ##### Returns
 
-`undefined` \| `Uint8Array`\<`ArrayBufferLike`\>
+`Uint8Array`\<`ArrayBufferLike`\> \| `undefined`
 
 ***
 
@@ -71,7 +71,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:218](https://github.com/janpoem/
 
 > **get** **completeTs**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:249](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L249)
+Defined in: [src/fetch-download/DownloadTask.ts:264](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L264)
 
 read 完成时间戳
 
@@ -90,7 +90,7 @@ read 完成时间戳
 
 > **get** **contentLength**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:162](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L162)
+Defined in: [src/fetch-download/DownloadTask.ts:164](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L164)
 
 获取 Response Content-Length
 
@@ -106,7 +106,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:162](https://github.com/janpoem/
 
 > **get** **elapsedMs**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:263](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L263)
+Defined in: [src/fetch-download/DownloadTask.ts:278](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L278)
 
 read 数据经过多少时间（毫秒）
 
@@ -124,15 +124,15 @@ read 数据经过多少时间（毫秒）
 
 #### Get Signature
 
-> **get** **encoding**(): `null` \| `string`
+> **get** **encoding**(): `string` \| `null`
 
-Defined in: [src/fetch-download/DownloadTask.ts:169](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L169)
+Defined in: [src/fetch-download/DownloadTask.ts:171](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L171)
 
 获取 Response Content-Encoding
 
 ##### Returns
 
-`null` \| `string`
+`string` \| `null`
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:169](https://github.com/janpoem/
 
 > **get** **error**(): `unknown`
 
-Defined in: [src/fetch-download/DownloadTask.ts:239](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L239)
+Defined in: [src/fetch-download/DownloadTask.ts:254](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L254)
 
 获取错误信息
 
@@ -158,11 +158,11 @@ Defined in: [src/fetch-download/DownloadTask.ts:239](https://github.com/janpoem/
 
 > **get** **id**(): `string`
 
-Defined in: [src/fetch-download/DownloadTask.ts:141](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L141)
+Defined in: [src/fetch-download/DownloadTask.ts:143](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L143)
 
-[DownloadTask](DownloadTask.md) Id
+DownloadTask Id
 
-用于给 [DownloadTask](DownloadTask.md) 的 Key 使用
+用于给 DownloadTask 的 Key 使用
 
 ##### Returns
 
@@ -176,7 +176,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:141](https://github.com/janpoem/
 
 > **get** **isCompressed**(): `boolean`
 
-Defined in: [src/fetch-download/DownloadTask.ts:190](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L190)
+Defined in: [src/fetch-download/DownloadTask.ts:192](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L192)
 
 Response 是否经过压缩（基于 Content-Encoding 判定）
 
@@ -192,7 +192,7 @@ Response 是否经过压缩（基于 Content-Encoding 判定）
 
 > **get** **isReaded**(): `boolean`
 
-Defined in: [src/fetch-download/DownloadTask.ts:232](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L232)
+Defined in: [src/fetch-download/DownloadTask.ts:247](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L247)
 
 是否已经读取（完毕） Response body
 
@@ -208,7 +208,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:232](https://github.com/janpoem/
 
 > **get** **isStarted**(): `boolean`
 
-Defined in: [src/fetch-download/DownloadTask.ts:225](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L225)
+Defined in: [src/fetch-download/DownloadTask.ts:240](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L240)
 
 是否开始 read
 
@@ -222,15 +222,15 @@ Defined in: [src/fetch-download/DownloadTask.ts:225](https://github.com/janpoem/
 
 #### Get Signature
 
-> **get** **mimeType**(): `null` \| `string`
+> **get** **mimeType**(): `string` \| `null`
 
-Defined in: [src/fetch-download/DownloadTask.ts:176](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L176)
+Defined in: [src/fetch-download/DownloadTask.ts:178](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L178)
 
 获取 Response Content-Type
 
 ##### Returns
 
-`null` \| `string`
+`string` \| `null`
 
 ***
 
@@ -240,7 +240,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:176](https://github.com/janpoem/
 
 > **get** **percent**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:211](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L211)
+Defined in: [src/fetch-download/DownloadTask.ts:226](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L226)
 
 接收 Response body 进度百分比（0 - 100）
 
@@ -256,7 +256,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:211](https://github.com/janpoem/
 
 > **get** **progress**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:204](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L204)
+Defined in: [src/fetch-download/DownloadTask.ts:219](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L219)
 
 接收 Response body 进度小数（0 - 1）
 
@@ -272,7 +272,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:204](https://github.com/janpoem/
 
 > **get** **received**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:197](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L197)
+Defined in: [src/fetch-download/DownloadTask.ts:212](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L212)
 
 已接收 Response body 大小
 
@@ -286,15 +286,15 @@ Defined in: [src/fetch-download/DownloadTask.ts:197](https://github.com/janpoem/
 
 #### Get Signature
 
-> **get** **resp**(): `undefined` \| `Response`
+> **get** **resp**(): `Response` \| `undefined`
 
-Defined in: [src/fetch-download/DownloadTask.ts:148](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L148)
+Defined in: [src/fetch-download/DownloadTask.ts:150](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L150)
 
 获取 response
 
 ##### Returns
 
-`undefined` \| `Response`
+`Response` \| `undefined`
 
 ***
 
@@ -304,7 +304,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:148](https://github.com/janpoem/
 
 > **get** **size**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:183](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L183)
+Defined in: [src/fetch-download/DownloadTask.ts:185](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L185)
 
 实际接收内容的大小
 
@@ -320,7 +320,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:183](https://github.com/janpoem/
 
 > **get** **speed**(): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:281](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L281)
+Defined in: [src/fetch-download/DownloadTask.ts:296](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L296)
 
 接收速度，单位为字节/秒，需要自行转换
 
@@ -347,7 +347,7 @@ console.log(`${filesize(task.speed)}/s`); // KB/s
 
 > **get** **state**(): [`DownloadTaskState`](../enumerations/DownloadTaskState.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:155](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L155)
+Defined in: [src/fetch-download/DownloadTask.ts:157](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L157)
 
 当前状态 [DownloadTaskState](../enumerations/DownloadTaskState.md)
 
@@ -361,7 +361,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:155](https://github.com/janpoem/
 
 > `protected` **\_initFetch**(`input`): `void`
 
-Defined in: [src/fetch-download/DownloadTask.ts:117](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L117)
+Defined in: [src/fetch-download/DownloadTask.ts:119](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L119)
 
 #### Parameters
 
@@ -379,7 +379,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:117](https://github.com/janpoem/
 
 > **inferUncompressedSize**(`compressedSize`): `number`
 
-Defined in: [src/fetch-download/DownloadTask.ts:434](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L434)
+Defined in: [src/fetch-download/DownloadTask.ts:459](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L459)
 
 根据压缩后文件大小，推算出未压缩前的文件大小
 
@@ -404,7 +404,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:434](https://github.com/janpoem/
 
 > **newErr**(`msg`): [`DownloadTaskError`](DownloadTaskError.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:441](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L441)
+Defined in: [src/fetch-download/DownloadTask.ts:466](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L466)
 
 #### Parameters
 
@@ -420,15 +420,15 @@ Defined in: [src/fetch-download/DownloadTask.ts:441](https://github.com/janpoem/
 
 ### read()
 
-> **read**(`opts`?): `Promise`\<[`DownloadTask`](DownloadTask.md)\>
+> **read**(`opts?`): `Promise`\<`DownloadTask`\>
 
-Defined in: [src/fetch-download/DownloadTask.ts:319](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadTask.ts#L319)
+Defined in: [src/fetch-download/DownloadTask.ts:334](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L334)
 
 read response body（下载）
 
 主要的流程：
 
-1. 如果创建 [DownloadTask](DownloadTask.md) 实例时输入的非 Response 实例 [DownloadInput](../type-aliases/DownloadInput.md)
+1. 如果创建 DownloadTask 实例时输入的非 Response 实例 [DownloadInput](../type-aliases/DownloadInput.md)
 会创建一个函数去 fetch 输入（主要是 fetch headers，如果传入的是 Response 实例，则跳过这一步）。
     - `onFetch` 对应 fetch 前
 2. 解析 `Response.headers`，并提取 `content-length`、`content-type`、`content-encoding`，
@@ -456,8 +456,28 @@ await task.read({
 
 ##### opts?
 
-[`DownloadTaskProcessCallback`](../type-aliases/DownloadTaskProcessCallback.md) | [`DownloadTaskProcessOptions`](../type-aliases/DownloadTaskProcessOptions.md)
+[`DownloadTaskProcessCallback`](../type-aliases/DownloadTaskProcessCallback.md) \| [`DownloadTaskProcessOptions`](../type-aliases/DownloadTaskProcessOptions.md)
 
 #### Returns
 
-`Promise`\<[`DownloadTask`](DownloadTask.md)\>
+`Promise`\<`DownloadTask`\>
+
+***
+
+### setCompressed()
+
+> **setCompressed**(`isCompressed?`): `DownloadTask`
+
+Defined in: [src/fetch-download/DownloadTask.ts:204](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadTask.ts#L204)
+
+强制指定 compressed ，针对一些特殊的场合使用
+
+#### Parameters
+
+##### isCompressed?
+
+`boolean`
+
+#### Returns
+
+`DownloadTask`

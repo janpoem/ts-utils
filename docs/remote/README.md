@@ -20,104 +20,101 @@ npm install @zenstone/ts-utils
 bun add @zenstone/ts-utils
 ```
 
-## 文档
+## 使用
 
-### `@zenstone/ts-utils`
-
-[文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/globals.md)
-
-`@zenstone/ts-utils` 包含以下子模块。
-
-- `error`
-- `number`
-- `object`
-- `path`
-- `string`
-- `http`
+### 整体导入
 
 ```ts
-import { toNumber, mergeHeaders } from '@zenstone/ts-utils';
-
-const val = toNumber(Number.NaN);
-const headers = mergeHeaders(
-  { 'content-type': 'application/json' },
-  [
-    ['content-type', 'text/html'],
-  ],
-);
+import { retry, isStr, errMsg } from '@zenstone/ts-utils';
 ```
 
-`error`、`number`、`object`、`path`、`string`、`http` 可以按需来引入
+### 独立导入（推荐）
+
+ESM 支持子路径导入：
 
 ```ts
-import { errMsg } from '@zenstone/ts-utils/error';
-
-const msg = errMsg(new Error('test error')) || 'unknown error';
+import { retry, RetryExhaustedError, TimeoutError } from '@zenstone/ts-utils/async';
+import { isStr, errMsg, isNumber, isInferObj } from '@zenstone/ts-utils/guards';
+import { createPathUtils } from '@zenstone/ts-utils/path';
 ```
 
-`@zenstone/ts-utils/fetch-download` 是独立的子模块，未包含在 `@zenstone/ts-utils`
-，根据需求来加载。
+## 模块列表
 
-```ts
-import { fetchDownload, saveChunks } from '@zenstone/ts-utils/fetch-download';
+| 模块 | 说明 | 导入路径 |
+|------|------|----------|
+| `async` | 异步工具函数和错误类型 | `@zenstone/ts-utils/async` |
+| `guards` | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
+| `path` | 路径处理 | `@zenstone/ts-utils/path` |
+| `http` | HTTP 相关 | `@zenstone/ts-utils/http` |
+| `remote` | 远程模块加载 | `@zenstone/ts-utils/remote` |
+| `fetch-download` | 下载工具 | `@zenstone/ts-utils/fetch-download` |
 
-// download and print the progress
-const task = await fetchDownload(fetch('https://example.com/test.js')).read(
-  (task) => console.log(`${task.percent} %`)
-);
+## 模块详情
 
-// save to local
-saveChunks(task.chunks, 'temp.js', task.mimeType);
-```
+### `async`
 
-#### `@zenstone/ts-utils/error`
+异步工具模块，包含错误类型和异步控制函数。
 
-- [isErrLike](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isErrLike.md)
-- [errMsg](https://github.com/janpoem/ts-utils/blob/main/docs/functions/errMsg.md)
+**错误类型：**
+- `RetryExhaustedError` - 重试耗尽错误
+- `TimeoutError` - 超时错误
 
-#### `@zenstone/ts-utils/number`
+**函数：**
+- `retry` - 重试异步函数
+- `retryWithBackoff` - 带指数退避的重试
+- `timeout` - Promise 超时控制
+- `asyncMemoize` - 异步函数记忆化
+- `asyncQueue` - 异步并发控制队列
 
-- [isNumber](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isNumber.md)
-- [isNumberVal](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isNumberVal.md)
-- [toNumber](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toNumber.md)
-- [limitNumberMax](https://github.com/janpoem/ts-utils/blob/main/docs/functions/limitNumberMax.md)
-- [limitNumberMin](https://github.com/janpoem/ts-utils/blob/main/docs/functions/limitNumberMin.md)
-- [limitNumberMinMax](https://github.com/janpoem/ts-utils/blob/main/docs/functions/limitNumberMinMax.md)
-- [decimalAdjust](https://github.com/janpoem/ts-utils/blob/main/docs/functions/decimalAdjust.md)
-    - [round10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/round10.md)
-    - [ceil10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/ceil10.md)
-    - [floor10](https://github.com/janpoem/ts-utils/blob/main/docs/functions/floor10.md)
-- [calcProgress](https://github.com/janpoem/ts-utils/blob/main/docs/functions/calcProgress.md)
+### `guards`
 
-#### `@zenstone/ts-utils/object`
+Type Guards 和基础类型工具模块。
 
-- [isInferObj](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isInferObj.md)
+**字符串：**
+- `isStr` - 判断是否为字符串
+- `notEmptyStr` - 判断是否为非空字符串
 
-#### `@zenstone/ts-utils/path`
+**数字：**
+- `isNumber` - 判断是否为有效数字
+- `isNumberVal` - 判断是否包含有效数值
+- `toNumber` - 转换为数字
+- `limitNumberMin` / `limitNumberMax` / `limitNumberMinMax` - 限制数字范围
+- `decimalAdjust` / `round10` / `ceil10` / `floor10` - 数字精度调整
+- `calcProgress` - 计算进度值
 
-- [createPathUtils](https://github.com/janpoem/ts-utils/blob/main/docs/functions/createPathUtils.md)
-- [purgeHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/purgeHttpPath.md)
-- [joinHttpPath](https://github.com/janpoem/ts-utils/blob/main/docs/functions/joinHttpPath.md)
+**对象：**
+- `isInferObj` - 类型守卫工具
 
-#### `@zenstone/ts-utils/string`
+**错误：**
+- `isErrLike` - 判断是否为错误对象
+- `errMsg` - 提取错误消息
 
-- [isStr](https://github.com/janpoem/ts-utils/blob/main/docs/functions/isStr.md)
-- [notEmptyStr](https://github.com/janpoem/ts-utils/blob/main/docs/functions/notEmptyStr.md)
+**类型守卫：**
+- `isString` / `isStr` - 字符串
+- `isBool` - 布尔值
+- `isNull` / `isUndefined` / `isNil` / `isPresent` - 空值判断
+- `isPlainObj` - 普通对象
+- `isAry` - 数组
+- `isPromise` - Promise
+- `and` - 组合守卫（AND）
+- `or` - 组合守卫（OR）
+- `not` - 守卫取反
 
-#### `@zenstone/ts-utils/http`
+### `path`
 
-- [mergeHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeHeaders.md)
-- [mergeRespInit](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeRespInit.md)
-- [toAryHeaders](https://github.com/janpoem/ts-utils/blob/main/docs/functions/toAryHeaders.md)
-- [mergeAbortSignals](https://github.com/janpoem/ts-utils/blob/main/docs/functions/mergeAbortSignals.md)
+- `createPathUtils` - 路径工具工厂
+- `purgeHttpPath` / `joinHttpPath` - HTTP 路径处理
 
-### `@zenstone/ts-utils/fetch-download`
+### `http`
 
-[文档入口](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/globals.md)
+- `mergeHeaders` / `mergeRespInit` / `toAryHeaders` / `mergeAbortSignals`
 
-- [saveChunks](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/saveChunks.md)
-- [fetchDownload](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/functions/fetchDownload.md)
-- [DownloadTask](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTask.md)
-- [DownloadTaskError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadTaskError.md)
-- [DownloadQueue](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueue.md)
-- [DownloadQueueError](https://github.com/janpoem/ts-utils/blob/main/docs/fetch-download/classes/DownloadQueueError.md)
+### `fetch-download`
+
+- `saveChunks` / `fetchDownload`
+- `DownloadTask` / `DownloadTaskError`
+- `DownloadQueue` / `DownloadQueueError`
+
+### `remote`
+
+- `mountRemote` / `unmountRemote`

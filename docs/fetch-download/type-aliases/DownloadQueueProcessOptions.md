@@ -6,19 +6,45 @@
 
 # Type Alias: DownloadQueueProcessOptions
 
-> **DownloadQueueProcessOptions**: [`DownloadTaskProcessOptions`](DownloadTaskProcessOptions.md) & `object`
+> **DownloadQueueProcessOptions** = `object`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/DownloadQueue.ts#L21)
+Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L21)
 
-## Type declaration
+## Properties
 
-### onFinish()?
+### onComplete?
 
-> `optional` **onFinish**: (`q`) => `void` \| `Promise`\<`void`\>
+> `optional` **onComplete?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadQueue.ts:25](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L25)
+
+***
+
+### onError?
+
+> `optional` **onError?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L26)
+
+***
+
+### onFetch?
+
+> `optional` **onFetch?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadQueue.ts:22](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L22)
+
+***
+
+### onFinish?
+
+> `optional` **onFinish?**: (`queue`) => `void` \| `Promise`\<`void`\>
+
+Defined in: [src/fetch-download/DownloadQueue.ts:27](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L27)
 
 #### Parameters
 
-##### q
+##### queue
 
 [`DownloadQueue`](../classes/DownloadQueue.md)
 
@@ -26,13 +52,33 @@ Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/
 
 `void` \| `Promise`\<`void`\>
 
-### onQueueError()?
+***
 
-> `optional` **onQueueError**: (`q`) => `void` \| `Promise`\<`void`\>
+### onHeaders?
+
+> `optional` **onHeaders?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadQueue.ts:23](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L23)
+
+***
+
+### onProgress?
+
+> `optional` **onProgress?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
+
+Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L24)
+
+***
+
+### onQueueError?
+
+> `optional` **onQueueError?**: (`queue`) => `void` \| `Promise`\<`void`\>
+
+Defined in: [src/fetch-download/DownloadQueue.ts:28](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L28)
 
 #### Parameters
 
-##### q
+##### queue
 
 [`DownloadQueue`](../classes/DownloadQueue.md)
 

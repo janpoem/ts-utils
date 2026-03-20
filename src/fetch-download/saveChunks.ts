@@ -22,7 +22,9 @@ export const saveChunks = (
   if (window == null || document == null) {
     throw new Error('This method needs to be run in the browser');
   }
-  const blob = new Blob([chunks], { type: mimeType || defaultMimeType });
+  const blob = new Blob([chunks as BlobPart], {
+    type: mimeType || defaultMimeType,
+  });
   const link = document.createElement('a');
   link.href = window.URL.createObjectURL(blob);
   link.download = typeof filename === 'function' ? filename() : filename;

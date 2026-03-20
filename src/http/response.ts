@@ -1,4 +1,4 @@
-import { isNumber } from '../number';
+import { isNumber } from '../guards';
 import { mergeHeaders } from './headers';
 
 export type HttpStatusCode = number;

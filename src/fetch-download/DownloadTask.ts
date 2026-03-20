@@ -1,6 +1,6 @@
-import { calcProgress } from '../number';
-import { isInferObj } from '../object';
-import { notEmptyStr } from '../string';
+import { calcProgress } from '../guards';
+import { isInferObj } from '../guards';
+import { notEmptyStr } from '../guards';
 import type {
   DownloadFetchCallback,
   DownloadInput,
