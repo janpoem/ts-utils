@@ -1,7 +1,9 @@
 const pkg = require('../package.json');
-const { resolve, basename } = require('node:path');
+const { resolve, dirname, basename } = require('node:path');
+const { readFileSync } = require('node:fs');
 const mod = require(resolve(__dirname, '../', pkg.main));
-const keys = require('./keys.json');
+const keysPath = resolve(__dirname, 'keys.json');
+const keys = JSON.parse(readFileSync(keysPath, 'utf-8'));
 const assert = require('node:assert');
 
 console.log(basename(__filename));
