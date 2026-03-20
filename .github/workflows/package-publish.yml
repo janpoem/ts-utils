@@ -5,14 +5,13 @@ name: Package publish
 
 on:
   push:
-    branches: [ "main" ]
+    tags:
+      - 'v*'
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    if: startsWith(github.event.head_commit.message, 'build:')
 
     steps:
       - name: Checkout
