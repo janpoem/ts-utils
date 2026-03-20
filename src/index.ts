@@ -1,8 +1,6 @@
-export * from './error';
-export * from './number';
-export * from './object';
+export * from './async';
+export * from './guards';
 export * from './path';
-export * from './string';
 
 export * from './http';
 export * from './remote';

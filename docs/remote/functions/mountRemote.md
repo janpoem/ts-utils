@@ -8,7 +8,7 @@
 
 > **mountRemote**\<`R`\>(`opts`): `Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`R`\>\>
 
-Defined in: [src/remote/mountRemote.ts:84](https://github.com/janpoem/ts-utils/blob/b61bddc532949fab14342589ffa2d587c10fb6e1/src/remote/mountRemote.ts#L84)
+Defined in: [src/remote/mountRemote.ts:84](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L84)
 
 挂载远程的资源
 
@@ -29,7 +29,9 @@ await mountRemote({
 
 ## Type Parameters
 
-• **R** = `unknown`
+### R
+
+`R` = `unknown`
 
 ## Parameters
 

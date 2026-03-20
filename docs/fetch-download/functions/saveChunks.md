@@ -6,9 +6,9 @@
 
 # Function: saveChunks()
 
-> **saveChunks**(`chunks`, `filename`, `mimeType`?): `void`
+> **saveChunks**(`chunks`, `filename`, `mimeType?`): `void`
 
-Defined in: [src/fetch-download/saveChunks.ts:17](https://github.com/janpoem/ts-utils/blob/5695f5d0e3c2197ae4233c3f441833765430d482/src/fetch-download/saveChunks.ts#L17)
+Defined in: [src/fetch-download/saveChunks.ts:17](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/saveChunks.ts#L17)
 
 将 chunks 保存到本机，该方法只可在浏览器中执行
 
@@ -27,11 +27,11 @@ saveChunks(task.chunks, 'test.js');
 
 ### filename
 
-`string` | () => `string`
+`string` \| (() => `string`)
 
 ### mimeType?
 
-`null` | `string`
+`string` \| `null`
 
 ## Returns
 

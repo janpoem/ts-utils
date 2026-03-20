@@ -1,4 +1,4 @@
-import { calcProgress } from '../number';
+import { calcProgress } from '../guards';
 import { DownloadTask, DownloadTaskState } from './DownloadTask';
 import type { DownloadInput } from './types';
 

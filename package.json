@@ -1,57 +1,127 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
-  "keywords": ["typescript", "utility", "functions", "utils"],
+  "keywords": [
+    "typescript",
+    "utility",
+    "functions",
+    "utils"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/janpoem/ts-utils"
   },
   "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
+  "module": "dist/esm/index.mjs",
   "types": "dist/esm/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/esm/index.js",
+        "default": "./dist/esm/index.mjs",
         "types": "./dist/esm/index.d.ts"
       },
       "require": {
         "default": "./dist/cjs/index.cjs",
         "types": "./dist/cjs/index.d.cts"
       }
+    },
+    "./async": {
+      "import": {
+        "default": "./dist/esm/async/index.mjs",
+        "types": "./dist/esm/async/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/async/index.cjs",
+        "types": "./dist/cjs/async/index.d.cts"
+      }
+    },
+    "./guards": {
+      "import": {
+        "default": "./dist/esm/guards/index.mjs",
+        "types": "./dist/esm/guards/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/guards/index.cjs",
+        "types": "./dist/cjs/guards/index.d.cts"
+      }
+    },
+    "./path": {
+      "import": {
+        "default": "./dist/esm/path.mjs",
+        "types": "./dist/esm/path.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/path.cjs",
+        "types": "./dist/cjs/path.d.cts"
+      }
+    },
+    "./http": {
+      "import": {
+        "default": "./dist/esm/http/index.mjs",
+        "types": "./dist/esm/http/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/http/index.cjs",
+        "types": "./dist/cjs/http/index.d.cts"
+      }
+    },
+    "./remote": {
+      "import": {
+        "default": "./dist/esm/remote/index.mjs",
+        "types": "./dist/esm/remote/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/remote/index.cjs",
+        "types": "./dist/cjs/remote/index.d.cts"
+      }
+    },
+    "./fetch-download": {
+      "import": {
+        "default": "./dist/esm/fetch-download/index.mjs",
+        "types": "./dist/esm/fetch-download/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/fetch-download/index.cjs",
+        "types": "./dist/cjs/fetch-download/index.d.cts"
+      }
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "biome lint --error-on-warnings ./src",
     "ts-check": "bunx --bun tsc --noEmit",
     "test": "bun test --coverage",
     "rollup": "bunx --bun rollup -c rollup.config.ts",
     "genExports": "bun run ./scripts/genExports.ts",
-    "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
+    "doc:async": "bun typedoc src/async/index.ts --plugin typedoc-plugin-markdown --out ./docs/async",
+    "doc:guards": "bun typedoc src/guards/index.ts --plugin typedoc-plugin-markdown --out ./docs/guards",
+    "doc:path": "bun typedoc src/path.ts --plugin typedoc-plugin-markdown --out ./docs/path",
+    "doc:http": "bun typedoc src/http/index.ts --plugin typedoc-plugin-markdown --out ./docs/http",
     "doc:remote": "bun typedoc src/remote/index.ts --plugin typedoc-plugin-markdown --out ./docs/remote",
-    "doc:index": "bun typedoc src/index.ts --plugin typedoc-plugin-markdown --out ./docs",
-    "doc": "bun run doc:index && bun run doc:fetch-download && bun run doc:remote",
+    "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
+    "doc": "bun run doc:async && bun run doc:guards && bun run doc:path && bun run doc:http && bun run doc:remote && bun run doc:fetch-download",
     "build": "bun run rollup",
     "pub": "bun publish --access public",
     "check-dist": "bun tests/check-dist.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "@biomejs/biome": "^1.9.4",
-    "rollup": "^4.34.8",
-    "rollup-plugin-swc3": "^0.12.1",
-    "rollup-plugin-dts": "^6.1.1",
+    "@happy-dom/global-registrator": "^17.4.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
-    "typedoc": "^0.27.8",
-    "typedoc-plugin-markdown": "^4.4.2",
+    "@types/bun": "latest",
     "glob": "^11.0.1",
-    "@happy-dom/global-registrator": "^17.4.4"
+    "rollup": "^4.34.8",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-swc3": "^0.12.1",
+    "typedoc": "^0.28.17",
+    "typedoc-plugin-markdown": "^4.11.0"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

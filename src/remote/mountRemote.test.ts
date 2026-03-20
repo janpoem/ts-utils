@@ -1,9 +1,9 @@
-import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'bun:test';
+import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import {
-  mountRemote,
   MountRemoteError,
   type MountRemoteHandle,
+  mountRemote,
   unmountRemote,
 } from './mountRemote';
 
@@ -30,8 +30,6 @@ describe('MountRemote', () => {
     bootstrap:
       'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
     img: 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg',
-    notExists:
-      'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.aa.js',
   };
 
   const deleteJq = () => {
@@ -143,12 +141,21 @@ describe('MountRemote', () => {
   it('onload error', async () => {
     const id = 'not_exists';
     const type = 'js';
+    const originalFetch = globalThis.fetch;
+    const originalConsoleError = console.error;
+    const consoleErrorMock = () => {};
+    globalThis.fetch = async () => {
+      return new Response(null, { status: 404, statusText: 'Not Found' });
+    };
+    console.error = consoleErrorMock;
     expect(async () => {
       await mountRemote({
-        url: urls.notExists,
+        url: 'https://example.com/not-exists.js',
         id,
         type,
       });
     }).toThrowError('Mount remote failed:');
+    globalThis.fetch = originalFetch;
+    console.error = originalConsoleError;
   });
 });

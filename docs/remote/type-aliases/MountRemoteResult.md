@@ -6,11 +6,11 @@
 
 # Type Alias: MountRemoteResult\<R\>
 
-> **MountRemoteResult**\<`R`\>: `object` & `R`
+> **MountRemoteResult**\<`R`\> = `object` & `R`
 
-Defined in: [src/remote/mountRemote.ts:12](https://github.com/janpoem/ts-utils/blob/b61bddc532949fab14342589ffa2d587c10fb6e1/src/remote/mountRemote.ts#L12)
+Defined in: [src/remote/mountRemote.ts:12](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L12)
 
-## Type declaration
+## Type Declaration
 
 ### id
 
@@ -26,4 +26,6 @@ Defined in: [src/remote/mountRemote.ts:12](https://github.com/janpoem/ts-utils/b
 
 ## Type Parameters
 
-• **R** = `unknown`
+### R
+
+`R` = `unknown`
