@@ -144,9 +144,9 @@ describe('MountRemote', () => {
     const originalFetch = globalThis.fetch;
     const originalConsoleError = console.error;
     const consoleErrorMock = () => {};
-    globalThis.fetch = async () => {
+    globalThis.fetch = (async () => {
       return new Response(null, { status: 404, statusText: 'Not Found' });
-    };
+    }) as unknown as typeof fetch;
     console.error = consoleErrorMock;
     expect(async () => {
       await mountRemote({
