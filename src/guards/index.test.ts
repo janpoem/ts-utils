@@ -23,7 +23,6 @@ import {
   // String
   isStr,
   // Type Guards
-  isString,
   isUndefined,
   limitNumberMax,
   limitNumberMin,
@@ -215,18 +214,6 @@ describe('guards/index.ts - Error', () => {
 });
 
 describe('guards/index.ts - Type Guards', () => {
-  describe('isString', () => {
-    test('should return true for string', () => {
-      expect(isString('hello')).toBe(true);
-      expect(isString('')).toBe(true);
-    });
-
-    test('should return false for non-string', () => {
-      expect(isString(123)).toBe(false);
-      expect(isString(null)).toBe(false);
-    });
-  });
-
   describe('isBool', () => {
     test('should return true for boolean', () => {
       expect(isBool(true)).toBe(true);
@@ -313,7 +300,7 @@ describe('guards/index.ts - Type Guards', () => {
     test('should support type guard', () => {
       const mixed: unknown[] = ['a', 1, 'b', 2];
       const strings = mixed.filter((item): item is string =>
-        isAry(item, isString) ? true : isString(item),
+        isAry(item, isStr) ? true : isStr(item),
       );
       expect(strings).toEqual(['a', 'b']);
     });
@@ -354,7 +341,7 @@ describe('guards/index.ts - Combinators', () => {
     });
 
     test('should return false if any guard fails', () => {
-      const guard = and(isString, (val): val is string => val.length > 3);
+      const guard = and(isStr, (val): val is string => val.length > 3);
       expect(guard('hello')).toBe(true);
       expect(guard('hi')).toBe(false);
       expect(guard(123)).toBe(false);
@@ -364,7 +351,7 @@ describe('guards/index.ts - Combinators', () => {
   describe('or', () => {
     test('should combine guards with OR logic', () => {
       const isStrOrNum = or(
-        isString,
+        isStr,
         (val: unknown): val is number => typeof val === 'number',
       );
       expect(isStrOrNum('hello')).toBe(true);
@@ -376,7 +363,7 @@ describe('guards/index.ts - Combinators', () => {
   describe('not', () => {
     test('should negate guard', () => {
       const isNotNull = not(isNull);
-      const isNotStr = not(isString);
+      const isNotStr = not(isStr);
 
       expect(isNotNull('hello')).toBe(true);
       expect(isNotNull(null)).toBe(false);

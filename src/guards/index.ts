@@ -276,21 +276,6 @@ export const errMsg = (err: unknown): string => {
 // ============================================================================
 
 /**
- * 检查值是否为字符串
- *
- * @param val 任意值
- *
- * @example
- * ```ts
- * if (isStr(value)) {
- *   console.log(value.toUpperCase());
- * }
- * ```
- */
-export const isString = (val: unknown): val is string =>
-  typeof val === 'string';
-
-/**
  * 检查值是否为布尔值
  *
  * @param val 任意值
