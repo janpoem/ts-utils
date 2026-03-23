@@ -8,4 +8,4 @@
 
 > **ResponseInitInput** = `ResponseInit` \| [`HttpStatusCode`](HttpStatusCode.md) \| `null` \| `undefined`
 
-Defined in: [response.ts:6](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/http/response.ts#L6)
+Defined in: [response.ts:6](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/http/response.ts#L6)

@@ -8,7 +8,7 @@
 
 > **AryHeaderItem** = \[`string`, `string`\]
 
-Defined in: [headers.ts:8](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/http/headers.ts#L8)
+Defined in: [headers.ts:8](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/http/headers.ts#L8)
 
 单个 Http Header 的数组类型
 

@@ -8,7 +8,7 @@
 
 > **MountRemoteOptions**\<`R`\> = `object`
 
-Defined in: [src/remote/mountRemote.ts:23](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L23)
+Defined in: [src/remote/mountRemote.ts:23](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L23)
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: [src/remote/mountRemote.ts:23](https://github.com/janpoem/ts-utils/b
 
 > `optional` **attrs?**: `Record`\<`string`, `string`\>
 
-Defined in: [src/remote/mountRemote.ts:39](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L39)
+Defined in: [src/remote/mountRemote.ts:39](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L39)
 
 远程资源加载的标签需要额外写入的标签属性
 
@@ -32,7 +32,7 @@ Defined in: [src/remote/mountRemote.ts:39](https://github.com/janpoem/ts-utils/b
 
 > `optional` **handle?**: [`MountRemoteHandle`](MountRemoteHandle.md)\<`R`\>
 
-Defined in: [src/remote/mountRemote.ts:45](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L45)
+Defined in: [src/remote/mountRemote.ts:45](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L45)
 
 自定义的远程资源加载方式，用于实现更多加载机制，诸如 rjs, blob, image 等
 
@@ -44,7 +44,7 @@ Defined in: [src/remote/mountRemote.ts:45](https://github.com/janpoem/ts-utils/b
 
 > **id**: `string` \| (() => `string`)
 
-Defined in: [src/remote/mountRemote.ts:31](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L31)
+Defined in: [src/remote/mountRemote.ts:31](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L31)
 
 远程资源加载后的 ID，必填
 
@@ -54,7 +54,7 @@ Defined in: [src/remote/mountRemote.ts:31](https://github.com/janpoem/ts-utils/b
 
 > `optional` **onError?**: (`error`, `res?`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/remote/mountRemote.ts:58](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L58)
+Defined in: [src/remote/mountRemote.ts:58](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L58)
 
 加载出错时
 
@@ -78,7 +78,7 @@ Defined in: [src/remote/mountRemote.ts:58](https://github.com/janpoem/ts-utils/b
 
 > `optional` **onLoad?**: (`res`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/remote/mountRemote.ts:51](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L51)
+Defined in: [src/remote/mountRemote.ts:51](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L51)
 
 加载成功时
 
@@ -98,7 +98,7 @@ Defined in: [src/remote/mountRemote.ts:51](https://github.com/janpoem/ts-utils/b
 
 > **type**: [`MountRemoteType`](MountRemoteType.md) \| (() => [`MountRemoteType`](MountRemoteType.md))
 
-Defined in: [src/remote/mountRemote.ts:35](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L35)
+Defined in: [src/remote/mountRemote.ts:35](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L35)
 
 远程资源类型，必填
 
@@ -108,6 +108,6 @@ Defined in: [src/remote/mountRemote.ts:35](https://github.com/janpoem/ts-utils/b
 
 > **url**: `string`
 
-Defined in: [src/remote/mountRemote.ts:27](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/remote/mountRemote.ts#L27)
+Defined in: [src/remote/mountRemote.ts:27](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L27)
 
 远程资源的 URL，必填

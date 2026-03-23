@@ -3,8 +3,54 @@
  */
 
 // ============================================================================
+// Types
+// ============================================================================
+
+// biome-ignore lint/suspicious/noExplicitAny: generic function type requires any
+export type AnyFn = (...args: any[]) => any;
+
+/**
+ * 重试回调参数
+ */
+export type RetryFnParams = {
+  /** 当前尝试次数（从 1 开始） */
+  attempt: number;
+  /** 触发重试的错误（首次执行时为 undefined） */
+  error: unknown;
+  /** 只读的重试选项 */
+  readonly options: RetryOptions;
+};
+
+/**
+ * 重试选项
+ */
+export type RetryOptions = {
+  /** 最大尝试次数，默认 3 */
+  attempts?: number;
+  /** 重试间隔（毫秒），支持固定值或基于 RetryFnParams 的动态计算 */
+  delay?: number | ((params: RetryFnParams) => number);
+  /** 重试前的回调，可用于日志记录 */
+  onRetry?: (params: RetryFnParams) => void;
+};
+
+/**
+ * retryFn 的回调函数类型
+ */
+export type RetryCallbackFn<T, Args extends unknown[]> = (
+  params: RetryFnParams,
+  ...args: Args
+) => T;
+
+// ============================================================================
 // Errors
 // ============================================================================
+
+const formatError = (err: unknown): string => {
+  if (err == null) return 'Unknown error';
+  if (err instanceof Error) return err.message;
+  if (typeof err === 'string') return err;
+  return String(err);
+};
 
 /**
  * 重试耗尽错误
@@ -12,18 +58,18 @@
  * 当异步操作在达到最大重试次数后仍然失败时抛出
  */
 export class RetryExhaustedError extends Error {
-  /**
-   * @param originalError 原始错误
-   * @param attempts 尝试次数
-   */
-  constructor(
-    public readonly originalError: unknown,
-    public readonly attempts: number,
-  ) {
+  public readonly attempt: number;
+  public readonly error: unknown;
+  public readonly options: RetryOptions;
+
+  constructor(params: RetryFnParams) {
     super(
-      `Retry exhausted after ${attempts} attempts: ${formatError(originalError)}`,
+      `Retry exhausted after ${params.attempt} attempts: ${formatError(params.error)}`,
     );
     this.name = 'RetryExhaustedError';
+    this.attempt = params.attempt;
+    this.error = params.error;
+    this.options = params.options;
   }
 }
 
@@ -42,311 +88,177 @@ export class TimeoutError extends Error {
   }
 }
 
-const formatError = (err: unknown): string => {
-  if (err == null) return 'Unknown error';
-  if (err instanceof Error) return err.message;
-  if (typeof err === 'string') return err;
-  return String(err);
-};
-
 // ============================================================================
 // Async Utilities
 // ============================================================================
 
 /**
- * 异步函数类型
+ * 内部重试执行器
  */
-type AsyncFn<T = unknown> = (...args: unknown[]) => Promise<T>;
-
-/**
- * 重试选项
- */
-export type RetryOptions = {
-  /** 最大尝试次数，默认 3 */
-  attempts?: number;
-  /** 重试间隔（毫秒），默认 100 */
-  delay?: number;
-  /** 重试前的回调，可用于日志记录 */
-  onRetry?: (err: unknown, attempt: number) => void;
-};
-
-/**
- * 带退避的重试选项
- */
-export type RetryWithBackoffOptions = {
-  /** 最大尝试次数，默认 3 */
-  attempts?: number;
-  /** 初始延迟（毫秒），默认 1000 */
-  initialDelay?: number;
-  /** 退避因子，默认 2 */
-  factor?: number;
-  /** 最大延迟（毫秒），默认 30000 */
-  maxDelay?: number;
-  /** 重试前的回调，可用于日志记录 */
-  onRetry?: (err: unknown, attempt: number, delay: number) => void;
-};
-
-/**
- * 重试异步函数
- *
- * @param fn 异步函数
- * @param options 重试选项
- * @returns 返回原始函数的 Promise 结果
- *
- * @example
- * ```ts
- * const result = await retry(
- *   () => fetch('/api/data').then(r => r.json()),
- *   { attempts: 3, delay: 1000 }
- * );
- * ```
- */
-export const retry = <T>(
-  fn: AsyncFn<T>,
-  options: RetryOptions = {},
-): Promise<T> => {
+const executeWithRetry = async <T>(
+  fn: (attempt: number, error: unknown) => T,
+  options: RetryOptions,
+): Promise<Awaited<T>> => {
   const { attempts = 3, delay = 100, onRetry } = options;
-  return retryWithBackoff(fn, {
-    attempts,
-    initialDelay: delay,
-    factor: 1,
-    maxDelay: delay,
-    onRetry: (err, attempt) => onRetry?.(err, attempt),
-  });
-};
 
-/**
- * 带指数退避的重试异步函数
- *
- * @param fn 异步函数
- * @param options 重试选项
- * @returns 返回原始函数的 Promise 结果
- *
- * @example
- * ```ts
- * const result = await retryWithBackoff(
- *   () => fetch('/api/data').then(r => r.json()),
- *   { attempts: 5, initialDelay: 1000, factor: 2, maxDelay: 30000 }
- * );
- * ```
- */
-export const retryWithBackoff = <T>(
-  fn: AsyncFn<T>,
-  options: RetryWithBackoffOptions = {},
-): Promise<T> => {
-  const {
-    attempts = 3,
-    initialDelay = 1000,
-    factor = 2,
-    maxDelay = 30000,
-    onRetry,
-  } = options;
-
-  const execute = async (attempt: number): Promise<T> => {
+  const execute = async (
+    attempt: number,
+    lastError: unknown,
+  ): Promise<Awaited<T>> => {
     try {
-      return await fn();
+      return await fn(attempt, lastError);
     } catch (err) {
+      const params: RetryFnParams = {
+        attempt,
+        error: err,
+        options,
+      };
+
       if (attempt >= attempts) {
-        throw new RetryExhaustedError(err, attempts);
+        throw new RetryExhaustedError(params);
       }
 
-      const delay = Math.min(initialDelay * factor ** (attempt - 1), maxDelay);
-      onRetry?.(err, attempt, delay);
+      const delayMs = typeof delay === 'function' ? delay(params) : delay;
+      onRetry?.(params);
 
-      await sleep(delay);
-      return execute(attempt + 1);
+      await sleep(delayMs);
+      return execute(attempt + 1, err);
     }
   };
 
-  return execute(1);
+  return execute(1, undefined);
 };
 
 /**
- * 带超时的 Promise
+ * 透明包装异步/同步函数，返回自动重试的版本
  *
- * @param promise 要包装的 Promise
- * @param ms 超时毫秒数
- * @returns 原 Promise 结果或超时错误
+ * 返回的函数保持原函数的参数签名，返回值统一为 Promise
+ *
+ * @param fn 要包装的函数（同步或异步）
+ * @param options 重试选项
+ * @returns 包装后的函数
  *
  * @example
  * ```ts
- * const result = await timeout(fetch('/api/data'), 5000);
- * ```
- */
-export const timeout = <T>(promise: Promise<T>, ms: number): Promise<T> => {
-  return Promise.race([
-    promise,
-    new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new TimeoutError(ms)), ms),
-    ),
-  ]);
-};
-
-/**
- * 异步函数缓存选项
- */
-export type AsyncMemoizeOptions = {
-  /** 缓存生存时间（毫秒），默认不过期 */
-  ttl?: number;
-  /** 缓存 key 生成器，默认使用第一个参数 */
-  keyGenerator?: (...args: unknown[]) => string;
-  /** 最大缓存条目数，默认 100 */
-  maxSize?: number;
-};
-
-/**
- * 异步函数记忆化
- *
- * @param fn 异步函数
- * @param options 缓存选项
- * @returns 记忆化后的函数
- *
- * @example
- * ```ts
- * const fetchUser = asyncMemoize(
+ * const fetchUserWithRetry = retry(
  *   (id: string) => fetch(`/api/user/${id}`).then(r => r.json()),
- *   { ttl: 60000 }
+ *   { attempts: 3, delay: 1000 },
  * );
  *
- * // 第一次调用，会执行 fetch
- * const user1 = await fetchUser('123');
+ * const user = await fetchUserWithRetry('123');
+ * ```
  *
- * // 60秒内再次调用，直接返回缓存结果
- * const user2 = await fetchUser('123');
+ * @example 指数退避
+ * ```ts
+ * const fetchWithBackoff = retry(fetchData, {
+ *   attempts: 5,
+ *   delay: ({ attempt }) => Math.min(1000 * 2 ** (attempt - 1), 30000),
+ * });
  * ```
  */
-export const asyncMemoize = <T>(
-  fn: AsyncFn<T>,
-  options: AsyncMemoizeOptions = {},
-): ((...args: unknown[]) => Promise<T>) & {
-  clear: () => void;
-  delete: (...args: unknown[]) => boolean;
-} => {
-  const {
-    ttl,
-    keyGenerator = (args: unknown[]) => JSON.stringify(args),
-    maxSize = 100,
-  } = options;
-
-  const cache = new Map<string, { value: T; expiresAt: number }>();
-
-  const memoized = async (...args: unknown[]): Promise<T> => {
-    const key = keyGenerator(args);
-    const cached = cache.get(key);
-
-    if (cached) {
-      if (ttl == null || cached.expiresAt > Date.now()) {
-        return cached.value;
-      }
-      cache.delete(key);
-    }
-
-    const value = await fn(...args);
-    const expiresAt = ttl != null ? Date.now() + ttl : Number.POSITIVE_INFINITY;
-
-    if (cache.size >= maxSize) {
-      const firstKey = cache.keys().next().value;
-      if (firstKey) cache.delete(firstKey);
-    }
-
-    cache.set(key, { value, expiresAt });
-    return value;
-  };
-
-  memoized.clear = () => cache.clear();
-  memoized.delete = (...args: unknown[]) => cache.delete(keyGenerator(args));
-
-  return memoized;
+export const retry = <F extends AnyFn>(
+  fn: F,
+  options: RetryOptions = {},
+): ((...args: Parameters<F>) => Promise<Awaited<ReturnType<F>>>) => {
+  return (...args: Parameters<F>) =>
+    executeWithRetry((_attempt, _error) => fn(...args), options);
 };
 
 /**
- * 异步队列选项
- */
-export type AsyncQueueOptions = {
-  /** 最大并发数，默认 1（串行） */
-  concurrency?: number;
-  /** 队列满时的回调 */
-  onQueueFull?: (size: number) => void;
-  /** 队列有空位时的回调 */
-  onQueueDrain?: () => void;
-};
-
-/**
- * 异步任务
- */
-type QueuedTask<T> = {
-  fn: AsyncFn<T>;
-  resolve: (value: T) => void;
-  reject: (error: unknown) => void;
-};
-
-/**
- * 异步并发控制队列
+ * 创建感知重试状态的函数
  *
- * @param options 队列选项
- * @returns 队列控制器
+ * fn 的第一个参数为 RetryFnParams，包含 attempt 和 options，
+ * 允许根据重试次数做差异化处理。返回的函数剥掉 RetryFnParams，
+ * 只暴露业务参数。
+ *
+ * @param fn 接收 RetryFnParams 的回调函数
+ * @param options 重试选项
+ * @returns 只保留业务参数的包装函数
  *
  * @example
  * ```ts
- * const queue = asyncQueue({ concurrency: 3 });
+ * const fetchWithFallback = retryFn(
+ *   ({ attempt }, id: string) => {
+ *     const url = attempt === 1 ? '/api/primary' : '/api/fallback';
+ *     return fetch(`${url}/${id}`).then(r => r.json());
+ *   },
+ *   { attempts: 3 },
+ * );
  *
- * // 所有任务会按照最大并发数 3 执行
- * const task1 = queue.add(() => fetch('/api/1').then(r => r.json()));
- * const task2 = queue.add(() => fetch('/api/2').then(r => r.json()));
- * const task3 = queue.add(() => fetch('/api/3').then(r => r.json()));
+ * const data = await fetchWithFallback('123');
  * ```
  */
-export const asyncQueue = <T = unknown>(options: AsyncQueueOptions = {}) => {
-  const { concurrency = 1, onQueueFull, onQueueDrain } = options;
-
-  const queue: QueuedTask<T>[] = [];
-  let running = 0;
-
-  const processNext = () => {
-    if (running >= concurrency || queue.length === 0) {
-      if (running === 0 && queue.length === 0) {
-        onQueueDrain?.();
-      }
-      return;
-    }
-
-    running++;
-    const task = queue.shift();
-    if (!task) return;
-
-    task
-      .fn()
-      .then(task.resolve)
-      .catch(task.reject)
-      .finally(() => {
-        running--;
-        processNext();
-      });
-  };
-
-  const add = (fn: AsyncFn<T>): Promise<T> => {
-    return new Promise<T>((resolve, reject) => {
-      if (queue.length >= 1000) {
-        onQueueFull?.(queue.length);
-      }
-      queue.push({ fn, resolve, reject });
-      processNext();
-    });
-  };
-
-  const clear = () => {
-    queue.length = 0;
-  };
-
-  const size = () => queue.length;
-
-  const getConcurrency = () => running;
-
-  return { add, clear, size, getConcurrency };
+export const retryFn = <T, Args extends unknown[]>(
+  fn: RetryCallbackFn<T, Args>,
+  options: RetryOptions = {},
+): ((...args: Args) => Promise<Awaited<T>>) => {
+  const frozenOptions = Object.freeze({ ...options });
+  return (...args: Args) =>
+    executeWithRetry(
+      (attempt, error) =>
+        fn({ attempt, error, options: frozenOptions }, ...args),
+      options,
+    );
 };
 
 /**
- * 睡眠指定毫秒数
+ * 包装函数，添加超时控制
+ *
+ * 返回的函数保持原函数的参数签名，返回值统一为 Promise。
+ * 如果执行超过指定时间，将抛出 TimeoutError。
+ *
+ * @param fn 要包装的函数（同步或异步）
+ * @param ms 超时毫秒数
+ * @returns 包装后的函数
+ *
+ * @example
+ * ```ts
+ * const fetchWithTimeout = timeout(
+ *   (url: string) => fetch(url).then(r => r.json()),
+ *   5000,
+ * );
+ *
+ * const data = await fetchWithTimeout('/api/data');
+ * ```
  */
-const sleep = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export const timeout = <F extends AnyFn>(
+  fn: F,
+  ms: number,
+): ((...args: Parameters<F>) => Promise<Awaited<ReturnType<F>>>) => {
+  return (...args: Parameters<F>) => {
+    return Promise.race([
+      Promise.resolve(fn(...args)),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new TimeoutError(ms)), ms),
+      ),
+    ]);
+  };
+};
+
+
+/**
+ * 延迟指定毫秒数，可选延迟后执行函数
+ *
+ * @param ms 延迟毫秒数
+ * @param fn 延迟后执行的函数（可选）
+ * @returns 无 fn 时返回 Promise<void>，有 fn 时返回 Promise<Awaited<ReturnType<F>>>
+ *
+ * @example
+ * ```ts
+ * // 纯等待
+ * await sleep(1000);
+ *
+ * // 延迟后执行
+ * const data = await sleep(1000, () => fetchData());
+ * ```
+ */
+export function sleep(ms: number): Promise<void>;
+export function sleep<F extends AnyFn>(
+  ms: number,
+  fn: F,
+): Promise<Awaited<ReturnType<F>>>;
+export function sleep(ms: number, fn?: AnyFn): Promise<unknown> {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(fn ? fn() : undefined), ms),
+  );
+}

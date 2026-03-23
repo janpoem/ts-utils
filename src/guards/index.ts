@@ -340,7 +340,7 @@ export const isPresent = <T>(val: T | null | undefined): val is T =>
  * }
  * ```
  */
-export const isPlainObj = (val: unknown): val is Record<string, unknown> =>
+export const isPlainObj = <T extends Record<string, unknown> = Record<string, unknown>>(val: unknown): val is T =>
   typeof val === 'object' &&
   val !== null &&
   !Array.isArray(val) &&
@@ -351,27 +351,63 @@ export const isPlainObj = (val: unknown): val is Record<string, unknown> =>
  * 检查值是否为数组
  *
  * @param val 任意值
+ */
+export const isAry = <T = unknown>(val: unknown): val is T[] => Array.isArray(val);
+
+/**
+ * 检查值是否为非空数组，支持可选的元素类型守卫
+ *
+ * @param val 任意值
  * @param guard 可选的元素类型守卫
  *
  * @example
  * ```ts
- * if (isAry(value)) {
- *   console.log(value.length);
+ * if (notEmptyAry(value)) {
+ *   console.log(value[0]); // value is unknown[]
  * }
  *
- * const mixed = [1, 'a', 2, 'b'];
- * if (isAry(mixed, isStr)) {
- *   // mixed is narrowed to string[]
+ * if (notEmptyAry(value, isStr)) {
+ *   console.log(value[0].toUpperCase()); // value is string[]
  * }
  * ```
  */
-export const isAry = <T>(
+export function notEmptyAry<T = unknown>(val: unknown): val is T[];
+export function notEmptyAry<T>(
   val: unknown,
-  guard?: (item: unknown) => item is T,
-): val is T[] => {
-  if (!Array.isArray(val)) return false;
+  guard: (item: unknown) => item is T,
+): val is T[];
+export function notEmptyAry<T = unknown>(
+  val: unknown,
+  guard?: (item: unknown) => boolean,
+): val is T[] {
+  if (!Array.isArray(val) || val.length === 0) return false;
   if (guard === undefined) return true;
-  return (val as unknown[]).every((item) => guard(item));
+  return val.every(guard);
+}
+
+/**
+ * 柯里化的数组类型守卫
+ *
+ * @param guard 元素类型守卫
+ * @returns 数组类型守卫函数
+ *
+ * @example
+ * ```ts
+ * const isStrAry = aryGuard(isStr);
+ *
+ * if (isStrAry(value)) {
+ *   // value is string[]
+ * }
+ *
+ * // 配合 and 使用
+ * const isNonEmptyStrAry = and(isStrAry, (arr) => arr.length > 0);
+ * ```
+ */
+export const aryGuard = <T>(
+  guard: (item: unknown) => item is T,
+): TypeGuard<T[]> => {
+  return (val: unknown): val is T[] =>
+    Array.isArray(val) && val.every(guard);
 };
 
 /**
@@ -386,12 +422,12 @@ export const isAry = <T>(
  * }
  * ```
  */
-export const isPromise = (val: unknown): val is Promise<unknown> =>
+export const isPromise = <T = unknown>(val: unknown): val is Promise<T> =>
   val instanceof Promise ||
   (typeof val === 'object' &&
     val !== null &&
-    typeof (val as Promise<unknown>)?.then === 'function' &&
-    typeof (val as Promise<unknown>)?.catch === 'function');
+    typeof (val as Promise<T>)?.then === 'function' &&
+    typeof (val as Promise<T>)?.catch === 'function');
 
 /**
  * 类型守卫函数类型
@@ -401,15 +437,15 @@ export type TypeGuard<T = unknown> = (val: unknown) => val is T;
 /**
  * 组合守卫（AND）
  *
- * 所有守卫都必须通过才返回 true
+ * 第一个守卫收窄类型到 T，后续守卫在 T 上做进一步筛选
  *
- * @param guards 一个或多个守卫函数
+ * @param guards 第一个为类型守卫，后续为断言函数
  * @returns 组合后的守卫函数
  *
  * @example
  * ```ts
- * const isStrAry = isAry(isStr);
- * const isNonEmptyStrAry = and(isAry(isStr), (arr) => arr.length > 0);
+ * const isStrAry = aryGuard(isStr);
+ * const isNonEmptyStrAry = and(isStrAry, (arr) => arr.length > 0);
  * ```
  */
 export const and = <T>(
@@ -424,9 +460,14 @@ export const and = <T>(
 };
 
 /**
+ * 从 TypeGuard 提取被守卫的类型
+ */
+export type InferGuard<G> = G extends TypeGuard<infer T> ? T : never;
+
+/**
  * 组合守卫（OR）
  *
- * 任意一个守卫通过即返回 true
+ * 任意一个守卫通过即返回 true，自动推断联合类型
  *
  * @param guards 一个或多个守卫函数
  * @returns 组合后的守卫函数
@@ -435,12 +476,15 @@ export const and = <T>(
  * ```ts
  * const isStrOrNum = or(isStr, isNumber);
  * if (isStrOrNum(value)) {
- *   console.log(typeof value);
+ *   // value: string | number
  * }
  * ```
  */
-export const or = <T>(...guards: TypeGuard[]): TypeGuard<T> => {
-  return (val: unknown): val is T => {
+// biome-ignore lint/suspicious/noExplicitAny: TypeGuard<any> needed for generic inference
+export const or = <G extends [TypeGuard<any>, ...TypeGuard<any>[]]>(
+  ...guards: G
+): TypeGuard<InferGuard<G[number]>> => {
+  return (val: unknown): val is InferGuard<G[number]> => {
     for (const guard of guards) {
       if (guard(val)) return true;
     }
@@ -451,17 +495,20 @@ export const or = <T>(...guards: TypeGuard[]): TypeGuard<T> => {
 /**
  * 守卫取反（NOT）
  *
+ * 返回运行时取反函数。由于 TS 类型系统不支持否定类型，
+ * 返回值为 `(val: unknown) => boolean`，不作为类型守卫使用。
+ *
  * @param guard 要取反的守卫函数
- * @returns 取反后的守卫函数
+ * @returns 取反后的判断函数
  *
  * @example
  * ```ts
  * const isNotNull = not(isNull);
  * if (isNotNull(value)) {
- *   console.log(value);
+ *   // 运行时正确，但不会收窄类型
  * }
  * ```
  */
-export const not = <T>(guard: TypeGuard<T>): TypeGuard<Exclude<unknown, T>> => {
-  return (val: unknown): val is Exclude<unknown, T> => !guard(val);
+export const not = (guard: TypeGuard): ((val: unknown) => boolean) => {
+  return (val: unknown) => !guard(val);
 };

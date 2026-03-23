@@ -2,7 +2,7 @@ import { existsSync, rmSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import type { RollupOptions } from 'rollup';
+import type {RenderedChunk, RollupOptions} from 'rollup';
 import { dts } from 'rollup-plugin-dts';
 import { defineRollupSwcOption, swc } from 'rollup-plugin-swc3';
 import { scanEntries, scanInternalDeps } from './scripts/module';
@@ -52,7 +52,7 @@ const cjsRequirePlugin = (): ReturnType<typeof createRequirePlugin> => {
   function createRequirePlugin() {
     return {
       name: 'cjs-require-fix',
-      renderChunk(code, chunk) {
+      renderChunk(code: string, chunk: RenderedChunk) {
         if (!chunk.fileName.endsWith('.cjs')) return null;
 
         return code.replace(
@@ -85,7 +85,7 @@ const esmImportPlugin = (): ReturnType<typeof createEsmPlugin> => {
   function createEsmPlugin() {
     return {
       name: 'esm-import-fix',
-      renderChunk(code, chunk) {
+      renderChunk(code: string, chunk: RenderedChunk) {
         if (!chunk.fileName.endsWith('.mjs')) return null;
 
         return code.replace(
@@ -193,7 +193,8 @@ export default [
     input: entry.path,
     output: [
       {
-        file: join(outputDir, entry.output.dts),
+        // file: join(outputDir, entry.output.dts),
+        file: join(outputDir, entry.output.mjs.replace('.mjs', '.d.ts')),
         format: 'es',
       },
     ],
