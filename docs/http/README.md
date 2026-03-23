@@ -42,79 +42,114 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 | 模块 | 说明 | 导入路径 |
 |------|------|----------|
-| `async` | 异步工具函数和错误类型 | `@zenstone/ts-utils/async` |
-| `guards` | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
-| `path` | 路径处理 | `@zenstone/ts-utils/path` |
-| `http` | HTTP 相关 | `@zenstone/ts-utils/http` |
-| `remote` | 远程模块加载 | `@zenstone/ts-utils/remote` |
-| `fetch-download` | 下载工具 | `@zenstone/ts-utils/fetch-download` |
+| [`async`](_media/globals.md) | 异步工具函数 | `@zenstone/ts-utils/async` |
+| [`guards`](_media/globals-1.md) | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
+| [`path`](_media/globals-2.md) | 路径处理 | `@zenstone/ts-utils/path` |
+| [`http`](_media/globals-3.md) | HTTP 相关工具 | `@zenstone/ts-utils/http` |
+| [`remote`](_media/globals-4.md) | 远程模块加载 | `@zenstone/ts-utils/remote` |
+| [`fetch-download`](_media/globals-5.md) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
 
 ## 模块详情
 
-### `async`
+### [`async`](_media/globals.md)
 
-异步工具模块，包含错误类型和异步控制函数。
+异步工具函数
 
-**错误类型：**
-- `RetryExhaustedError` - 重试耗尽错误
-- `TimeoutError` - 超时错误
+**Classes:**
 
-**函数：**
-- `retry` - 重试异步函数
-- `retryWithBackoff` - 带指数退避的重试
-- `timeout` - Promise 超时控制
-- `asyncMemoize` - 异步函数记忆化
-- `asyncQueue` - 异步并发控制队列
+- [`RetryExhaustedError`](_media/RetryExhaustedError.md)
+- [`TimeoutError`](_media/TimeoutError.md)
 
-### `guards`
+**Functions:**
 
-Type Guards 和基础类型工具模块。
+- [`retry`](_media/retry.md)
+- [`retryFn`](_media/retryFn.md)
+- [`sleep`](_media/sleep.md)
+- [`timeout`](_media/timeout.md)
 
-**字符串：**
-- `isStr` - 判断是否为字符串
-- `notEmptyStr` - 判断是否为非空字符串
+### [`guards`](_media/globals-1.md)
 
-**数字：**
-- `isNumber` - 判断是否为有效数字
-- `isNumberVal` - 判断是否包含有效数值
-- `toNumber` - 转换为数字
-- `limitNumberMin` / `limitNumberMax` / `limitNumberMinMax` - 限制数字范围
-- `decimalAdjust` / `round10` / `ceil10` / `floor10` - 数字精度调整
-- `calcProgress` - 计算进度值
+Type Guards 和基础类型工具
 
-**对象：**
-- `isInferObj` - 类型守卫工具
+**Functions:**
 
-**错误：**
-- `isErrLike` - 判断是否为错误对象
-- `errMsg` - 提取错误消息
+- [`and`](_media/and.md)
+- [`aryGuard`](_media/aryGuard.md)
+- [`calcProgress`](_media/calcProgress.md)
+- [`ceil10`](_media/ceil10.md)
+- [`decimalAdjust`](_media/decimalAdjust.md)
+- [`errMsg`](_media/errMsg.md)
+- [`floor10`](_media/floor10.md)
+- [`isAry`](_media/isAry.md)
+- [`isBool`](_media/isBool.md)
+- [`isErrLike`](_media/isErrLike.md)
+- [`isInferObj`](_media/isInferObj.md)
+- [`isNil`](_media/isNil.md)
+- [`isNull`](_media/isNull.md)
+- [`isNumber`](_media/isNumber.md)
+- [`isNumberVal`](_media/isNumberVal.md)
+- [`isPlainObj`](_media/isPlainObj.md)
+- [`isPresent`](_media/isPresent.md)
+- [`isPromise`](_media/isPromise.md)
+- [`isStr`](_media/isStr.md)
+- [`isUndefined`](_media/isUndefined.md)
+- [`limitNumberMax`](_media/limitNumberMax.md)
+- [`limitNumberMin`](_media/limitNumberMin.md)
+- [`limitNumberMinMax`](_media/limitNumberMinMax.md)
+- [`not`](_media/not.md)
+- [`notEmptyAry`](_media/notEmptyAry.md)
+- [`notEmptyStr`](_media/notEmptyStr.md)
+- [`or`](_media/or.md)
+- [`round10`](_media/round10.md)
+- [`toNumber`](_media/toNumber.md)
 
-**类型守卫：**
-- `isString` / `isStr` - 字符串
-- `isBool` - 布尔值
-- `isNull` / `isUndefined` / `isNil` / `isPresent` - 空值判断
-- `isPlainObj` - 普通对象
-- `isAry` - 数组
-- `isPromise` - Promise
-- `and` - 组合守卫（AND）
-- `or` - 组合守卫（OR）
-- `not` - 守卫取反
+### [`path`](_media/globals-2.md)
 
-### `path`
+路径处理
 
-- `createPathUtils` - 路径工具工厂
-- `purgeHttpPath` / `joinHttpPath` - HTTP 路径处理
+**Functions:**
 
-### `http`
+- [`createPathUtils`](_media/createPathUtils.md)
+- [`UnixDS`](docs/path/functions/UnixDS.md)
+- [`WinDS`](docs/path/functions/WinDS.md)
 
-- `mergeHeaders` / `mergeRespInit` / `toAryHeaders` / `mergeAbortSignals`
+### [`http`](_media/globals-3.md)
 
-### `fetch-download`
+HTTP 相关工具
 
-- `saveChunks` / `fetchDownload`
-- `DownloadTask` / `DownloadTaskError`
-- `DownloadQueue` / `DownloadQueueError`
+**Functions:**
 
-### `remote`
+- [`mergeAbortSignals`](_media/mergeAbortSignals.md)
+- [`mergeHeaders`](_media/mergeHeaders.md)
+- [`mergeRespInit`](_media/mergeRespInit.md)
+- [`toAryHeaders`](_media/toAryHeaders.md)
 
-- `mountRemote` / `unmountRemote`
+### [`remote`](_media/globals-4.md)
+
+远程模块加载
+
+**Classes:**
+
+- [`MountRemoteError`](_media/MountRemoteError.md)
+
+**Functions:**
+
+- [`mountRemote`](_media/mountRemote.md)
+- [`unmountRemote`](_media/unmountRemote.md)
+
+### [`fetch-download`](_media/globals-5.md)
+
+下载工具
+
+**Classes:**
+
+- [`DownloadQueue`](_media/DownloadQueue.md)
+- [`DownloadQueueError`](_media/DownloadQueueError.md)
+- [`DownloadTask`](_media/DownloadTask.md)
+- [`DownloadTaskError`](_media/DownloadTaskError.md)
+- [`DownloadTaskState`](_media/DownloadTaskState.md)
+
+**Functions:**
+
+- [`fetchDownload`](_media/fetchDownload.md)
+- [`saveChunks`](_media/saveChunks.md)

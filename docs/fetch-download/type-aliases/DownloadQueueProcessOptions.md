@@ -8,7 +8,7 @@
 
 > **DownloadQueueProcessOptions** = `object`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L21)
+Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L21)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:21](https://github.com/janpoem/
 
 > `optional` **onComplete?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:25](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L25)
+Defined in: [src/fetch-download/DownloadQueue.ts:25](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L25)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:25](https://github.com/janpoem/
 
 > `optional` **onError?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L26)
+Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L26)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:26](https://github.com/janpoem/
 
 > `optional` **onFetch?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:22](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L22)
+Defined in: [src/fetch-download/DownloadQueue.ts:22](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L22)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:22](https://github.com/janpoem/
 
 > `optional` **onFinish?**: (`queue`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/fetch-download/DownloadQueue.ts:27](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L27)
+Defined in: [src/fetch-download/DownloadQueue.ts:27](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L27)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:27](https://github.com/janpoem/
 
 > `optional` **onHeaders?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:23](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L23)
+Defined in: [src/fetch-download/DownloadQueue.ts:23](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L23)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:23](https://github.com/janpoem/
 
 > `optional` **onProgress?**: [`DownloadQueueProcessCallback`](DownloadQueueProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L24)
+Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L24)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:24](https://github.com/janpoem/
 
 > `optional` **onQueueError?**: (`queue`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/fetch-download/DownloadQueue.ts:28](https://github.com/janpoem/ts-utils/blob/609cab258976feb4eb74bcad1a8b6a0cbc4381ba/src/fetch-download/DownloadQueue.ts#L28)
+Defined in: [src/fetch-download/DownloadQueue.ts:28](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/fetch-download/DownloadQueue.ts#L28)
 
 #### Parameters
 
