@@ -1,4 +1,4 @@
-name: Version bump and tag
+name: Version bump, tag and publish
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
           - major
 
 jobs:
-  bump-version:
+  bump-and-publish:
     runs-on: ubuntu-latest
 
     permissions:
@@ -40,9 +40,9 @@ jobs:
         run: |
           CURRENT="${{ steps.version.outputs.current }}"
           TYPE="${{ inputs.version_type }}"
-          
+
           IFS='.' read -r major minor patch <<< "$CURRENT"
-          
+
           case $TYPE in
             major)
               major=$((major + 1))
@@ -57,7 +57,7 @@ jobs:
               patch=$((patch + 1))
               ;;
           esac
-          
+
           NEW_VERSION="$major.$minor.$patch"
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$NEW_VERSION" >> $GITHUB_OUTPUT
@@ -70,6 +70,16 @@ jobs:
             require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
 
+      - name: Verify version updated
+        run: |
+          ACTUAL=$(node -p "require('./package.json').version")
+          EXPECTED="${{ steps.bumped-version.outputs.version }}"
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::Version mismatch! package.json has $ACTUAL but expected $EXPECTED"
+            exit 1
+          fi
+          echo "Version verified: $ACTUAL"
+
       - name: Commit and tag
         run: |
           git config user.name "GitHub Actions"
@@ -79,3 +89,33 @@ jobs:
           git tag ${{ steps.bumped-version.outputs.tag }}
           git push
           git push --tags
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint check
+        run: bun run lint
+
+      - name: TypeScript check
+        run: bun run ts-check
+
+      - name: Build
+        run: bun run build
+
+      - name: Run tests
+        run: bun test
+
+      - name: Verify version before publish
+        run: |
+          ACTUAL=$(node -p "require('./package.json').version")
+          EXPECTED="${{ steps.bumped-version.outputs.version }}"
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::Version mismatch before publish! $ACTUAL != $EXPECTED"
+            exit 1
+          fi
+          echo "Publishing version $ACTUAL"
+
+      - name: Publish package to NPM
+        run: bun publish --access public
+        env:
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
