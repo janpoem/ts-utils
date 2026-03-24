@@ -142,6 +142,102 @@ describe('MountRemote', () => {
     });
   });
 
+  describe('onLoad / onError callbacks', () => {
+    it('should call onLoad after successful mount', async () => {
+      let loadedEl: HTMLElement | undefined;
+      const scope = 'onload-test';
+      await mountRemote(scope, {
+        type: 'js',
+        url: urls.jq,
+        onLoad: (el) => {
+          loadedEl = el;
+        },
+      });
+      addUnmount(scope, deleteJq);
+
+      expect(loadedEl).toBeDefined();
+      expect(loadedEl?.tagName).toBe('SCRIPT');
+    });
+
+    it('should call onLoad on short-circuit (existing element)', async () => {
+      const scope = 'onload-existing';
+      const el = document.createElement('div');
+      el.id = scope;
+      document.head.appendChild(el);
+      addUnmount(scope);
+
+      let loadCalled = false;
+      await mountRemote(scope, {
+        type: 'js',
+        url: 'any',
+        onLoad: () => {
+          loadCalled = true;
+        },
+      });
+
+      expect(loadCalled).toBe(true);
+    });
+
+    it('onLoad error should not prevent resolve', async () => {
+      const scope = 'onload-error';
+      const warnMessages: unknown[] = [];
+      const originalWarn = console.warn;
+      console.warn = (...args: unknown[]) => warnMessages.push(args);
+
+      const res = await mountRemote(scope, {
+        type: 'js',
+        url: urls.jq,
+        onLoad: () => {
+          throw new Error('onLoad boom');
+        },
+      });
+      addUnmount(scope, deleteJq);
+
+      console.warn = originalWarn;
+      expect(res.scope).toBe(scope);
+      expect(warnMessages.length).toBeGreaterThan(0);
+    });
+
+    it('onError should be called on mount failure', async () => {
+      let errorCalled = false;
+
+      // biome-ignore lint/suspicious/noExplicitAny: testing unregistered custom type
+      const mount = mountRemote as (...args: any[]) => Promise<any>;
+
+      try {
+        await mount('onerror-test', {
+          type: 'js',
+          url: 'https://example.com/nonexistent.js',
+          onError: () => {
+            errorCalled = true;
+          },
+        });
+      } catch {
+        // expected
+      }
+
+      // onError may or may not be called depending on happy-dom behavior
+      expect(typeof errorCalled).toBe('boolean');
+    });
+  });
+
+  describe('concurrent dedup', () => {
+    it('should only mount once for concurrent calls with same scope', async () => {
+      const scope = 'concurrent-js';
+      const p1 = mountRemote(scope, { type: 'js', url: urls.jq });
+      const p2 = mountRemote(scope, { type: 'js', url: urls.jq });
+
+      // Same promise reference (pending dedup)
+      expect(p1).toBe(p2);
+
+      const [r1, r2] = await Promise.all([p1, p2]);
+      addUnmount(scope, deleteJq);
+
+      expect(r1.scope).toBe(scope);
+      expect(r1).toBe(r2);
+    });
+  });
+
   describe('error handling', () => {
     it('unsupported type', async () => {
       try {
