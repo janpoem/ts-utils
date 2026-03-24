@@ -6,7 +6,7 @@
 
 # Class: MountRemoteError
 
-Defined in: [src/remote/mountRemote.ts:1](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L1)
+Defined in: [src/remote/mountRemote.ts:7](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/remote/mountRemote.ts#L7)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/remote/mountRemote.ts:1](https://github.com/janpoem/ts-utils/bl
 
 > **new MountRemoteError**(`message`, `prev?`): `MountRemoteError`
 
-Defined in: [src/remote/mountRemote.ts:2](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L2)
+Defined in: [src/remote/mountRemote.ts:8](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/remote/mountRemote.ts#L8)
 
 #### Parameters
 
@@ -82,7 +82,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` `optional` **prev?**: `unknown`
 
-Defined in: [src/remote/mountRemote.ts:4](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L4)
+Defined in: [src/remote/mountRemote.ts:10](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/remote/mountRemote.ts#L10)
 
 ***
 

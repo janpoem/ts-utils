@@ -6,10 +6,16 @@
 
 [![version](https://img.shields.io/npm/v/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils) [![dt](https://img.shields.io/npm/dt/@zenstone/ts-utils?style=for-the-badge)](https://www.npmjs.com/package/@zenstone/ts-utils)
 
-TypeScript 工具函数库。主要集中近 2 年使用频率较高的工具函数。主要便于快速在
-Bun.js 和 TypeScript 项目中使用。
+从实际项目中沉淀的 TypeScript 工具库。不追求大而全，只收录真正在生产中反复使用的函数。
 
-使用 Bun.js 开发。
+核心设计原则：
+
+- **类型推断优先** — 泛型从原函数推断，不需要手动指定。`retry(fn)` 返回的函数自动保持 `fn` 的参数和返回值类型。
+- **高阶函数模式** — `retry`、`timeout` 等都是 `fn => fn` 的包装器，返回增强后的函数而非立即执行。
+- **`unknown` 守住边界** — 对外暴露的类型一律 `unknown`，迫使使用者显式收窄；`any` 只出现在泛型约束的基底声明中。
+- **不过度抽象** — 没有 DI、没有装饰器、没有配置体系。三行能解决的事不封装成类。
+
+使用 Bun.js 开发，兼容 Node.js 运行时。
 
 ## 安装
 
@@ -57,11 +63,15 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 **Classes:**
 
+- [`PendingScopeConflictError`](_media/PendingScopeConflictError.md)
 - [`RetryExhaustedError`](_media/RetryExhaustedError.md)
 - [`TimeoutError`](_media/TimeoutError.md)
 
 **Functions:**
 
+- [`clearPendingRegistry`](_media/clearPendingRegistry.md)
+- [`pending`](_media/pending.md)
+- [`pendingFn`](_media/pendingFn.md)
 - [`retry`](_media/retry.md)
 - [`retryFn`](_media/retryFn.md)
 - [`sleep`](_media/sleep.md)
@@ -134,8 +144,10 @@ HTTP 相关工具
 
 **Functions:**
 
+- [`createDomHandler`](_media/createDomHandler.md)
 - [`mountRemote`](_media/mountRemote.md)
-- [`unmountRemote`](_media/unmountRemote.md)
+- [`registerMountHandler`](_media/registerMountHandler.md)
+- [`unmountDomRemote`](_media/unmountDomRemote.md)
 
 ### [`fetch-download`](_media/globals-5.md)
 

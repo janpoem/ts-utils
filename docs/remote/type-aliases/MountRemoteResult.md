@@ -4,28 +4,24 @@
 
 [@zenstone/ts-utils](../globals.md) / MountRemoteResult
 
-# Type Alias: MountRemoteResult\<R\>
+# Type Alias: MountRemoteResult\<Result\>
 
-> **MountRemoteResult**\<`R`\> = `object` & `R`
+> **MountRemoteResult**\<`Result`\> = `object` & `Result`
 
-Defined in: [src/remote/mountRemote.ts:12](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L12)
+Defined in: [src/remote/mountRemote.ts:21](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L21)
 
 ## Type Declaration
 
-### id
+### scope
 
-> **id**: `string`
+> **scope**: `string`
 
 ### type
 
 > **type**: `string`
 
-### url
-
-> **url**: `string`
-
 ## Type Parameters
 
-### R
+### Result
 
-`R` = `unknown`
+`Result` *extends* `Record`\<`string`, `unknown`\> = `Record`\<`string`, `unknown`\>

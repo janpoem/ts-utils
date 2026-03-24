@@ -6,7 +6,7 @@
 
 # Class: RetryExhaustedError
 
-Defined in: [src/async/index.ts:60](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L60)
+Defined in: [src/async/index.ts:69](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L69)
 
 重试耗尽错误
 
@@ -22,7 +22,7 @@ Defined in: [src/async/index.ts:60](https://github.com/janpoem/ts-utils/blob/738
 
 > **new RetryExhaustedError**(`params`): `RetryExhaustedError`
 
-Defined in: [src/async/index.ts:65](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L65)
+Defined in: [src/async/index.ts:74](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L74)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [src/async/index.ts:65](https://github.com/janpoem/ts-utils/blob/738
 
 > `readonly` **attempt**: `number`
 
-Defined in: [src/async/index.ts:61](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L61)
+Defined in: [src/async/index.ts:70](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L70)
 
 ***
 
@@ -66,7 +66,7 @@ The cause of the error.
 
 > `readonly` **error**: `unknown`
 
-Defined in: [src/async/index.ts:62](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L62)
+Defined in: [src/async/index.ts:71](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L71)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` **options**: [`RetryOptions`](../type-aliases/RetryOptions.md)
 
-Defined in: [src/async/index.ts:63](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L63)
+Defined in: [src/async/index.ts:72](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L72)
 
 ***
 

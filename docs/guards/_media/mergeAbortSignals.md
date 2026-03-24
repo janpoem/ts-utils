@@ -8,7 +8,7 @@
 
 > **mergeAbortSignals**(...`signals`): `AbortSignal` \| `undefined`
 
-Defined in: [request.ts:13](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/http/request.ts#L13)
+Defined in: [request.ts:13](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/http/request.ts#L13)
 
 合并多个 AbortSignals
 

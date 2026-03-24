@@ -2,6 +2,15 @@
  * 异步工具模块
  */
 
+export {
+  clearPendingRegistry,
+  pending,
+  pendingFn,
+  PendingScopeConflictError,
+  type PendingFnParams,
+  type PendingCallbackFn,
+} from './pending';
+
 // ============================================================================
 // Types
 // ============================================================================

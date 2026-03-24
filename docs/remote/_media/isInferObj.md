@@ -8,7 +8,7 @@
 
 > **isInferObj**\<`T`\>(`obj`, `fn?`): `obj is T`
 
-Defined in: [index.ts:228](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/guards/index.ts#L228)
+Defined in: [index.ts:228](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/guards/index.ts#L228)
 
 检查 obj 是否为 Object，结果为真时，推导 obj 为 T 类型
 

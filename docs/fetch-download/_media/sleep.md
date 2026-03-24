@@ -10,7 +10,7 @@
 
 > **sleep**(`ms`): `Promise`\<`void`\>
 
-Defined in: [src/async/index.ts:255](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L255)
+Defined in: [src/async/index.ts:264](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L264)
 
 延迟指定毫秒数，可选延迟后执行函数
 
@@ -42,7 +42,7 @@ const data = await sleep(1000, () => fetchData());
 
 > **sleep**\<`F`\>(`ms`, `fn`): `Promise`\<`Awaited`\<`ReturnType`\<`F`\>\>\>
 
-Defined in: [src/async/index.ts:256](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L256)
+Defined in: [src/async/index.ts:265](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L265)
 
 延迟指定毫秒数，可选延迟后执行函数
 
