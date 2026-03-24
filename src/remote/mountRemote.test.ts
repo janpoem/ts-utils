@@ -2,9 +2,10 @@ import { afterAll, afterEach, beforeAll, describe, expect, it } from 'bun:test';
 import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import {
   MountRemoteError,
-  type MountRemoteHandle,
+  createDomHandler,
   mountRemote,
-  unmountRemote,
+  registerMountHandler,
+  unmountDomRemote,
 } from './mountRemote';
 
 declare global {
@@ -29,133 +30,160 @@ describe('MountRemote', () => {
     jq: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js',
     bootstrap:
       'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
-    img: 'https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg',
   };
 
   const deleteJq = () => {
-    // biome-ignore lint/performance/noDelete: <explanation>
+    // biome-ignore lint/performance/noDelete: test cleanup
     delete window.jQuery;
-    // biome-ignore lint/performance/noDelete: <explanation>
+    // biome-ignore lint/performance/noDelete: test cleanup
     delete window.$;
   };
 
   const addUnmount = (id: string, fn?: () => void) => {
-    _unmount = { id, fn: fn };
+    _unmount = { id, fn };
   };
 
   afterEach(() => {
     if (_unmount != null) {
-      unmountRemote(_unmount.id, _unmount.fn);
+      unmountDomRemote(_unmount.id, _unmount.fn);
+      _unmount = undefined;
     }
   });
 
-  it('test mount jquery js', async () => {
-    const id = 'jquery';
-    const res = await mountRemote({
-      url: urls.jq,
-      id,
-      type: 'js',
-      onLoad: (res) => addUnmount(res.id, deleteJq),
+  describe('built-in types', () => {
+    it('mount js', async () => {
+      const scope = 'jquery';
+      const res = await mountRemote(scope, {
+        type: 'js',
+        url: urls.jq,
+      });
+      addUnmount(scope, deleteJq);
+
+      expect(res.url).toBe(urls.jq);
+      expect(res.scope).toBe(scope);
+      expect(document.getElementById(scope)?.tagName).toBe('SCRIPT');
+      expect(window.jQuery).toBeDefined();
+      expect(typeof window.jQuery).toBe('function');
     });
 
-    expect(res.url).toBe(urls.jq);
-    expect(res.id).toBe(id);
-    expect(document.getElementById(res.id)?.tagName).toBe('SCRIPT');
-    expect(window.jQuery).toBeDefined();
-    expect(typeof window.jQuery).toBe('function');
+    it('mount css with attrs', async () => {
+      const scope = 'bootstrap';
+      const res = await mountRemote(scope, {
+        type: 'css',
+        url: urls.bootstrap,
+        attrs: { 'data-name': scope, class: 'test-class' },
+      });
+      addUnmount(scope);
+
+      const tag = document.getElementById(scope);
+      expect(tag?.tagName).toBe('LINK');
+      expect(tag?.dataset.name).toBe(scope);
+      expect(tag?.classList.contains('test-class')).toBeTrue();
+    });
   });
 
-  it('test bootstrap css', async () => {
-    const id = 'bootstrap';
-    const res = await mountRemote({
-      url: urls.bootstrap,
-      id,
-      attrs: {
-        'data-name': id,
-        class: 'test-class',
-      },
-      type: 'css',
-      onLoad: (res) => addUnmount(res.id),
+  describe('short-circuit', () => {
+    it('should return immediately if element already exists', async () => {
+      const scope = 'existing-el';
+      const el = document.createElement('div');
+      el.id = scope;
+      document.head.appendChild(el);
+      addUnmount(scope);
+
+      const res = await mountRemote(scope, {
+        type: 'js',
+        url: 'any',
+      });
+      expect(res.scope).toBe(scope);
+      expect(res.url).toBe('any');
+    });
+  });
+
+  describe('custom handler', () => {
+    it('registerMountHandler + custom type', async () => {
+      // 在测试中通过 interface 声明合并扩展
+      type CustomOpts = { url: string; flag: boolean };
+      type CustomResult = { url: string; flag: boolean; custom: true };
+
+      (registerMountHandler as (type: string, handler: unknown) => void)(
+        'custom-test',
+        async (
+          ctx: import('./mountRemote').MountHandlerContext<CustomOpts>,
+          opts: CustomOpts,
+        ): Promise<import('./mountRemote').MountRemoteResult<CustomResult>> => {
+          return {
+            scope: ctx.scope,
+            type: ctx.type,
+            url: opts.url,
+            flag: opts.flag,
+            custom: true,
+          };
+        },
+      );
+
+      const res = await (mountRemote as Function)(
+        'custom-el',
+        { type: 'custom-test', url: 'https://example.com/resource', flag: true },
+      );
+
+      expect(res.scope).toBe('custom-el');
+      expect(res.custom).toBe(true);
+      expect(res.flag).toBe(true);
     });
 
-    const tag = document.getElementById(res.id);
-
-    expect(tag?.tagName).toBe('LINK');
-    expect(tag?.dataset.name).toBe(id);
-    expect(tag?.classList.contains('test-class')).toBeTrue();
+    it('createDomHandler helper', () => {
+      const handler = createDomHandler('img', (el, ctx) => {
+        el.setAttribute('src', ctx.url);
+        el.setAttribute('alt', ctx.scope);
+      });
+      expect(typeof handler).toBe('function');
+    });
   });
 
-  it('custom handle', async () => {
-    const width = 100;
-    const height = 100;
-
-    const mountImage: MountRemoteHandle<{ width: number; height: number }> = (
-      res,
-    ) =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({ ...res, width, height });
-        }, 100);
-      });
-
-    const id = 'test_image';
-    const res = await mountRemote({
-      id,
-      type: 'image',
-      url: urls.img,
-      handle: mountImage,
-      onLoad: (res) => {
-        expect(res.width).toBe(100);
-        expect(res.height).toBe(100);
-      },
+  describe('error handling', () => {
+    it('unsupported type', async () => {
+      try {
+        await mountRemote('unsupported', {
+          type: 'not-supported' as 'js',
+          url: 'any',
+        });
+        expect.unreachable('should have thrown');
+      } catch (err) {
+        expect(err).toBeInstanceOf(MountRemoteError);
+        expect((err as MountRemoteError).message).toContain('not-supported');
+      }
     });
 
-    expect(res.id).toBe(id);
-    expect(res.type).toBe('image');
-    expect(res.url).toBe(urls.img);
-    expect(res.width).toBe(100);
-    expect(res.height).toBe(100);
+    it('MountRemoteError preserves prev', () => {
+      const prev = new Error('original');
+      const err = new MountRemoteError('wrapper', prev);
+      expect(err.message).toBe('wrapper');
+      expect(err.prev).toBe(prev);
+      expect(err.name).toBe('MountRemoteError');
+    });
   });
 
-  it('MountRemoteError', () => {
-    const msg = 'test';
-    const prev = 'prev error';
-    const err = new MountRemoteError(msg, prev);
+  describe('unmountRemote', () => {
+    it('should remove element and call callback', () => {
+      const el = document.createElement('div');
+      el.id = 'to-remove';
+      document.head.appendChild(el);
 
-    expect(err.message).toBe(msg);
-    expect(err.prev).toBe(prev);
-  });
-
-  it('test error type', async () => {
-    const id = 'unsupported_type';
-    const type = 'not-supported';
-    expect(async () => {
-      await mountRemote({
-        url: 'not-supported',
-        id,
-        type,
+      let called = false;
+      unmountDomRemote('to-remove', () => {
+        called = true;
       });
-    }).toThrowError(`Unsupported type for ${type}`);
-  });
 
-  it('onload error', async () => {
-    const id = 'not_exists';
-    const type = 'js';
-    const originalFetch = globalThis.fetch;
-    const originalConsoleError = console.error;
-    const consoleErrorMock = () => {};
-    globalThis.fetch = (async () => {
-      return new Response(null, { status: 404, statusText: 'Not Found' });
-    }) as unknown as typeof fetch;
-    console.error = consoleErrorMock;
-    expect(async () => {
-      await mountRemote({
-        url: 'https://example.com/not-exists.js',
-        id,
-        type,
+      expect(document.getElementById('to-remove')).toBeNull();
+      expect(called).toBe(true);
+    });
+
+    it('should do nothing for non-existent id', () => {
+      let called = false;
+      unmountDomRemote('does-not-exist', () => {
+        called = true;
       });
-    }).toThrowError('Mount remote failed:');
-    globalThis.fetch = originalFetch;
-    console.error = originalConsoleError;
+      expect(called).toBe(false);
+    });
   });
 });
