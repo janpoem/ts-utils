@@ -8,7 +8,7 @@
 
 > **limitNumberMax**(`val`, `max`, `dft?`): `number`
 
-Defined in: [index.ts:89](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/guards/index.ts#L89)
+Defined in: [index.ts:89](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/guards/index.ts#L89)
 
 限制 val 在最大值范围内
 

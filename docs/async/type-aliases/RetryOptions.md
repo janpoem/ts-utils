@@ -8,7 +8,7 @@
 
 > **RetryOptions** = `object`
 
-Defined in: [src/async/index.ts:27](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L27)
+Defined in: [src/async/index.ts:36](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L36)
 
 重试选项
 
@@ -18,7 +18,7 @@ Defined in: [src/async/index.ts:27](https://github.com/janpoem/ts-utils/blob/738
 
 > `optional` **attempts?**: `number`
 
-Defined in: [src/async/index.ts:29](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L29)
+Defined in: [src/async/index.ts:38](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L38)
 
 最大尝试次数，默认 3
 
@@ -28,7 +28,7 @@ Defined in: [src/async/index.ts:29](https://github.com/janpoem/ts-utils/blob/738
 
 > `optional` **delay?**: `number` \| ((`params`) => `number`)
 
-Defined in: [src/async/index.ts:31](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L31)
+Defined in: [src/async/index.ts:40](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L40)
 
 重试间隔（毫秒），支持固定值或基于 RetryFnParams 的动态计算
 
@@ -38,7 +38,7 @@ Defined in: [src/async/index.ts:31](https://github.com/janpoem/ts-utils/blob/738
 
 > `optional` **onRetry?**: (`params`) => `void`
 
-Defined in: [src/async/index.ts:33](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L33)
+Defined in: [src/async/index.ts:42](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L42)
 
 重试前的回调，可用于日志记录
 

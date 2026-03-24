@@ -8,7 +8,7 @@
 
 > **RetryFnParams** = `object`
 
-Defined in: [src/async/index.ts:15](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L15)
+Defined in: [src/async/index.ts:24](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L24)
 
 重试回调参数
 
@@ -18,7 +18,7 @@ Defined in: [src/async/index.ts:15](https://github.com/janpoem/ts-utils/blob/738
 
 > **attempt**: `number`
 
-Defined in: [src/async/index.ts:17](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L17)
+Defined in: [src/async/index.ts:26](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L26)
 
 当前尝试次数（从 1 开始）
 
@@ -28,7 +28,7 @@ Defined in: [src/async/index.ts:17](https://github.com/janpoem/ts-utils/blob/738
 
 > **error**: `unknown`
 
-Defined in: [src/async/index.ts:19](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L19)
+Defined in: [src/async/index.ts:28](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L28)
 
 触发重试的错误（首次执行时为 undefined）
 
@@ -38,6 +38,6 @@ Defined in: [src/async/index.ts:19](https://github.com/janpoem/ts-utils/blob/738
 
 > `readonly` **options**: [`RetryOptions`](RetryOptions.md)
 
-Defined in: [src/async/index.ts:21](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/async/index.ts#L21)
+Defined in: [src/async/index.ts:30](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/async/index.ts#L30)
 
 只读的重试选项

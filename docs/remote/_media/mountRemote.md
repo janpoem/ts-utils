@@ -6,39 +6,55 @@
 
 # Function: mountRemote()
 
-> **mountRemote**\<`R`\>(`opts`): `Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`R`\>\>
+> **mountRemote**\<`K`\>(`scope`, `options`): `Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`Record`\<`string`, `unknown`\>\>\>
 
-Defined in: [src/remote/mountRemote.ts:84](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/remote/mountRemote.ts#L84)
+Defined in: [src/remote/mountRemote.ts:302](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L302)
 
-挂载远程的资源
+挂载远程资源
 
-内置实现了 `js` 和 `css` 两种资源，主要在当前 html 中加入 `script` 和 `link` 标签实现。
+基于 scope 做 inflight 去重：并发调用同 scope 只执行一次，结果共享。
+Options 类型由 `type` 字段决定，通过 [MountHandlerMap](../interfaces/MountHandlerMap.md) 接口扩展。
 
-更多的资源加载，可以使用 `handle` 来实现。`handle` 函数可以返回 [MountRemoteResult](../type-aliases/MountRemoteResult.md) 的扩展结构以扩充返回的结果
-
-```ts
-await mountRemote({
-  url: 'xxx.js',
-  id: 'xxx_js',
-  type: 'js',
-  onLoad: () => {
-    // 加载成功时执行
-  }
-});
-```
+内置支持 `js`、`mjs`、`css` 三种类型，其他类型需通过
+[registerMountHandler](registerMountHandler.md) 注册处理器。
 
 ## Type Parameters
 
-### R
+### K
 
-`R` = `unknown`
+`K` *extends* keyof [`MountHandlerMap`](../interfaces/MountHandlerMap.md)
 
 ## Parameters
 
-### opts
+### scope
 
-[`MountRemoteOptions`](../type-aliases/MountRemoteOptions.md)\<`R`\>
+`string`
+
+去重标识，同时用作 DOM 元素 id（对于 DOM handler）
+
+### options
+
+`object` & `Parameters`\<[`MountHandlerMap`](../interfaces/MountHandlerMap.md)\[`K`\]\>\[`1`\]
+
+挂载选项，类型由 `type` 决定
 
 ## Returns
 
-`Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`R`\>\>
+`Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`Record`\<`string`, `unknown`\>\>\>
+
+## Examples
+
+```ts
+await mountRemote('jquery', {
+  type: 'js',
+  url: 'https://cdn.example.com/jquery.min.js',
+});
+```
+
+```ts
+await Promise.all([
+  mountRemote('lib', { type: 'js', url }),
+  mountRemote('lib', { type: 'js', url }),
+]);
+// 只加载一次
+```

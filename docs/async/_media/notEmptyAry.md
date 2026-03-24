@@ -10,7 +10,7 @@
 
 > **notEmptyAry**\<`T`\>(`val`): `val is T[]`
 
-Defined in: [index.ts:374](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/guards/index.ts#L374)
+Defined in: [index.ts:374](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/guards/index.ts#L374)
 
 检查值是否为非空数组，支持可选的元素类型守卫
 
@@ -48,7 +48,7 @@ if (notEmptyAry(value, isStr)) {
 
 > **notEmptyAry**\<`T`\>(`val`, `guard`): `val is T[]`
 
-Defined in: [index.ts:375](https://github.com/janpoem/ts-utils/blob/738489a3f4830c04acd7944aaed6b04e6b346155/src/guards/index.ts#L375)
+Defined in: [index.ts:375](https://github.com/janpoem/ts-utils/blob/e1c9059704283c01ba11cb71f495bc809435613d/src/guards/index.ts#L375)
 
 检查值是否为非空数组，支持可选的元素类型守卫
 

@@ -8,14 +8,21 @@
 
 - [MountRemoteError](classes/MountRemoteError.md)
 
+## Interfaces
+
+- [MountHandlerMap](interfaces/MountHandlerMap.md)
+
 ## Type Aliases
 
-- [MountRemoteHandle](type-aliases/MountRemoteHandle.md)
-- [MountRemoteOptions](type-aliases/MountRemoteOptions.md)
+- [MountDomOptions](type-aliases/MountDomOptions.md)
+- [MountDomResult](type-aliases/MountDomResult.md)
+- [MountHandlerContext](type-aliases/MountHandlerContext.md)
+- [MountHandlerFn](type-aliases/MountHandlerFn.md)
 - [MountRemoteResult](type-aliases/MountRemoteResult.md)
-- [MountRemoteType](type-aliases/MountRemoteType.md)
 
 ## Functions
 
+- [createDomHandler](functions/createDomHandler.md)
 - [mountRemote](functions/mountRemote.md)
-- [unmountRemote](functions/unmountRemote.md)
+- [registerMountHandler](functions/registerMountHandler.md)
+- [unmountDomRemote](functions/unmountDomRemote.md)
