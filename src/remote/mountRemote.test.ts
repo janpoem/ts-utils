@@ -121,7 +121,9 @@ describe('MountRemote', () => {
         },
       );
 
-      const res = await (mountRemote as Function)(
+      // biome-ignore lint/suspicious/noExplicitAny: testing unregistered custom type
+      const mount = mountRemote as (...args: any[]) => Promise<any>;
+      const res = await mount(
         'custom-el',
         { type: 'custom-test', url: 'https://example.com/resource', flag: true },
       );
