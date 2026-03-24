@@ -78,10 +78,10 @@ const scanExports = (
     }
   }
 
-  // 递归跟踪 export * from './xxx'
+  // 递归跟踪 export * from './xxx' 和 export { ... } from './xxx'
   const dir = dirname(filePath);
   for (const m of content.matchAll(
-    /^export\s+\*\s+from\s+['"](\.\/[^'"]+)['"]/gm,
+    /^export\s+(?:\*|\{[^}]+\})\s+from\s+['"](\.\/[^'"]+)['"]/gm,
   )) {
     const refPath = resolve(dir, m[1]);
     const subItems = scanExports(refPath, seen);

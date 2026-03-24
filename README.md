@@ -59,11 +59,15 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 **Classes:**
 
+- [`PendingScopeConflictError`](docs/async/classes/PendingScopeConflictError.md)
 - [`RetryExhaustedError`](docs/async/classes/RetryExhaustedError.md)
 - [`TimeoutError`](docs/async/classes/TimeoutError.md)
 
 **Functions:**
 
+- [`clearPendingRegistry`](docs/async/functions/clearPendingRegistry.md)
+- [`pending`](docs/async/functions/pending.md)
+- [`pendingFn`](docs/async/functions/pendingFn.md)
 - [`retry`](docs/async/functions/retry.md)
 - [`retryFn`](docs/async/functions/retryFn.md)
 - [`sleep`](docs/async/functions/sleep.md)
@@ -136,8 +140,10 @@ HTTP 相关工具
 
 **Functions:**
 
+- [`createDomHandler`](docs/remote/functions/createDomHandler.md)
 - [`mountRemote`](docs/remote/functions/mountRemote.md)
-- [`unmountRemote`](docs/remote/functions/unmountRemote.md)
+- [`registerMountHandler`](docs/remote/functions/registerMountHandler.md)
+- [`unmountDomRemote`](docs/remote/functions/unmountDomRemote.md)
 
 ### [`fetch-download`](docs/fetch-download/globals.md)
 
