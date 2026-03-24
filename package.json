@@ -96,7 +96,7 @@
   "scripts": {
     "lint": "biome lint --error-on-warnings ./src",
     "ts-check": "bunx --bun tsc --noEmit",
-    "test": "bun test --coverage",
+    "test": "bun test src/ --coverage ",
     "rollup": "bunx --bun rollup -c rollup.config.ts",
     "rollup:watch": "bunx --bun rollup -c rollup.config.ts --watch --watch.include '/src/**/*'",
     "genExports": "bun run ./scripts/genExports.ts",
