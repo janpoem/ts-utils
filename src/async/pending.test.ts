@@ -1,8 +1,14 @@
 import { afterEach, describe, expect, test } from 'bun:test';
-import { PendingScopeConflictError, pending } from './pending';
+import {
+  type PendingFnParams,
+  PendingScopeConflictError,
+  clearPendingRegistry,
+  pending,
+  pendingFn,
+} from './pending';
 
 afterEach(() => {
-  pending.clearRegistry();
+  clearPendingRegistry();
 });
 
 describe('pending', () => {
@@ -30,7 +36,7 @@ describe('pending', () => {
 
     test('clearRegistry should allow reusing scopes', () => {
       pending('reuse', async () => 'first');
-      pending.clearRegistry();
+      clearPendingRegistry();
       expect(() => pending('reuse', async () => 'second')).not.toThrow();
     });
   });
@@ -202,6 +208,165 @@ describe('pending', () => {
 
       const result = await fn(42, 'hello');
       expect(result).toEqual({ a: 42, b: 'hello' });
+    });
+  });
+});
+
+describe('pendingFn', () => {
+  describe('scope registration', () => {
+    test('should throw on duplicate static scope', () => {
+      pendingFn('pfn-dup', (params) => params.scope);
+      expect(() => pendingFn('pfn-dup', (params) => params.scope)).toThrow(
+        PendingScopeConflictError,
+      );
+    });
+
+    test('should conflict with pending using same static scope', () => {
+      pending('shared-scope', async () => 'a');
+      expect(() =>
+        pendingFn('shared-scope', (params) => params.scope),
+      ).toThrow(PendingScopeConflictError);
+    });
+  });
+
+  describe('params injection', () => {
+    test('should pass scope to fn', async () => {
+      let receivedScope = '';
+      const fn = pendingFn('pfn-scope', ({ scope }) => {
+        receivedScope = scope;
+        return 'ok';
+      });
+
+      await fn();
+      expect(receivedScope).toBe('pfn-scope');
+    });
+
+    test('should pass dynamic scope to fn', async () => {
+      let receivedScope = '';
+      const fn = pendingFn(
+        (id: string) => `pfn:${id}`,
+        ({ scope }, _id: string) => {
+          receivedScope = scope;
+          return 'ok';
+        },
+      );
+
+      await fn('abc');
+      expect(receivedScope).toBe('pfn:abc');
+    });
+
+    test('should track pending count in real-time', async () => {
+      const counts: number[] = [];
+
+      const fn = pendingFn('pfn-count', async ({ getPendingCount }) => {
+        // 记录初始状态
+        counts.push(getPendingCount());
+        // 等待让其他 callers 进来
+        await Bun.sleep(50);
+        // 记录累积后的状态
+        counts.push(getPendingCount());
+        return 'done';
+      });
+
+      const results = await Promise.all([fn(), fn(), fn()]);
+
+      // 初始时 0 个等待者
+      expect(counts[0]).toBe(0);
+      // 等待期间 2 个额外 callers 进来
+      expect(counts[1]).toBe(2);
+      // 所有结果相同
+      expect(results).toEqual(['done', 'done', 'done']);
+    });
+  });
+
+  describe('dedup behavior', () => {
+    test('should execute fn only once for concurrent calls', async () => {
+      let execCount = 0;
+      const fn = pendingFn('pfn-dedup', async () => {
+        execCount++;
+        await Bun.sleep(50);
+        return 'result';
+      });
+
+      const [a, b, c] = await Promise.all([fn(), fn(), fn()]);
+      expect(execCount).toBe(1);
+      expect(a).toBe('result');
+      expect(b).toBe('result');
+      expect(c).toBe('result');
+    });
+
+    test('should reject all callers on error', async () => {
+      let execCount = 0;
+      const fn = pendingFn('pfn-reject', async () => {
+        execCount++;
+        await Bun.sleep(30);
+        throw new Error('boom');
+      });
+
+      const results = await Promise.allSettled([fn(), fn()]);
+      expect(execCount).toBe(1);
+      for (const r of results) {
+        expect(r.status).toBe('rejected');
+      }
+    });
+
+    test('should start new cycle after completion', async () => {
+      let execCount = 0;
+      const fn = pendingFn('pfn-cycle', async ({ scope }) => {
+        execCount++;
+        return `${scope}:${execCount}`;
+      });
+
+      const first = await fn();
+      expect(first).toBe('pfn-cycle:1');
+
+      const second = await fn();
+      expect(second).toBe('pfn-cycle:2');
+    });
+  });
+
+  describe('strip PendingFnParams from signature', () => {
+    test('should only expose business args', async () => {
+      const fn = pendingFn(
+        (a: number, b: string) => `key:${a}:${b}`,
+        (_params, a: number, b: string) => ({ a, b }),
+      );
+
+      const result = await fn(42, 'hello');
+      expect(result).toEqual({ a: 42, b: 'hello' });
+    });
+  });
+
+  describe('short-circuit pattern', () => {
+    test('should support early return based on scope', async () => {
+      const cache = new Map<string, string>();
+      let execCount = 0;
+
+      const fn = pendingFn(
+        (key: string) => `cache:${key}`,
+        async ({ scope }, key: string) => {
+          // 短路检查
+          const cached = cache.get(scope);
+          if (cached) return cached;
+
+          // 实际执行
+          execCount++;
+          await Bun.sleep(30);
+          const value = `value-${key}`;
+          cache.set(scope, value);
+          return value;
+        },
+      );
+
+      // 第一次：执行
+      const a = await fn('x');
+      expect(a).toBe('value-x');
+      expect(execCount).toBe(1);
+
+      // 第二次：短路返回缓存（fn 执行了但走了 cache 分支）
+      const b = await fn('x');
+      expect(b).toBe('value-x');
+      expect(execCount).toBe(1);
     });
   });
 });

@@ -6,6 +6,13 @@ import type { AnyFn } from './index';
 const scopeRegistry = new Set<string>();
 
 /**
+ * 清除全局 scope 注册表（用于测试）
+ */
+export const clearPendingRegistry = () => {
+  scopeRegistry.clear();
+};
+
+/**
  * Scope 冲突错误
  */
 export class PendingScopeConflictError extends Error {
@@ -14,6 +21,108 @@ export class PendingScopeConflictError extends Error {
     this.name = 'PendingScopeConflictError';
   }
 }
+
+/**
+ * pendingFn 回调函数接收的参数
+ */
+export type PendingFnParams = {
+  /** 解析后的 scope key */
+  scope: string;
+  /** 获取当前等待中的 caller 数量（实时值） */
+  getPendingCount: () => number;
+};
+
+/**
+ * pendingFn 的回调函数类型
+ */
+export type PendingCallbackFn<T, Args extends unknown[]> = (
+  params: PendingFnParams,
+  ...args: Args
+) => T;
+
+/**
+ * inflight entry，追踪 promise 和等待者数量
+ */
+type InflightEntry<T> = {
+  promise: Promise<T>;
+  counter: { value: number };
+};
+
+/**
+ * 注册静态 scope，重复则抛出 PendingScopeConflictError
+ */
+// biome-ignore lint/suspicious/noExplicitAny: accept any scope function signature
+const registerScope = (scope: string | ((...args: any[]) => string)) => {
+  if (typeof scope === 'string') {
+    if (scopeRegistry.has(scope)) {
+      throw new PendingScopeConflictError(scope);
+    }
+    scopeRegistry.add(scope);
+  }
+};
+
+/**
+ * 感知 pending 状态的 inflight 去重
+ *
+ * fn 的第一个参数为 PendingFnParams，包含 scope 和 getPendingCount，
+ * 允许根据 pending 状态做自定义处理（如短路检查、日志等）。
+ * 返回的函数剥掉 PendingFnParams，只暴露业务参数。
+ *
+ * @param scope 静态 scope 字符串，或基于参数动态生成 scope 的函数
+ * @param fn 接收 PendingFnParams 的回调函数
+ * @returns 只保留业务参数的包装函数
+ *
+ * @example
+ * ```ts
+ * const mountScript = pendingFn(
+ *   (url: string) => `script:${url}`,
+ *   ({ scope, getPendingCount }, url: string) => {
+ *     // 短路：已挂载
+ *     const existing = document.getElementById(scope);
+ *     if (existing) return { element: existing };
+ *
+ *     // 实际挂载，执行期间 getPendingCount() 可获取等待数
+ *     return loadScript(url);
+ *   },
+ * );
+ *
+ * // 并发调用，只执行一次挂载
+ * await Promise.all([mountScript('/lib.js'), mountScript('/lib.js')]);
+ * ```
+ */
+export const pendingFn = <T, Args extends unknown[]>(
+  scope: string | ((...args: Args) => string),
+  fn: PendingCallbackFn<T, Args>,
+): ((...args: Args) => Promise<Awaited<T>>) => {
+  registerScope(scope);
+
+  const inflight = new Map<string, InflightEntry<Awaited<T>>>();
+
+  return (...args: Args) => {
+    const key = typeof scope === 'function' ? scope(...args) : scope;
+
+    const existing = inflight.get(key);
+    if (existing) {
+      existing.counter.value++;
+      return existing.promise;
+    }
+
+    const counter = { value: 0 };
+    const params: PendingFnParams = {
+      scope: key,
+      getPendingCount: () => counter.value,
+    };
+
+    const promise = new Promise<Awaited<T>>((resolve) => {
+      resolve(fn(params, ...args) as Awaited<T> | PromiseLike<Awaited<T>>);
+    }).finally(() => {
+      inflight.delete(key);
+    });
+
+    inflight.set(key, { promise, counter });
+    return promise;
+  };
+};
 
 /**
  * 基于 scope 的 inflight 去重
@@ -50,35 +159,5 @@ export const pending = <F extends AnyFn>(
   scope: string | ((...args: Parameters<F>) => string),
   fn: F,
 ): ((...args: Parameters<F>) => Promise<Awaited<ReturnType<F>>>) => {
-  if (typeof scope === 'string') {
-    if (scopeRegistry.has(scope)) {
-      throw new PendingScopeConflictError(scope);
-    }
-    scopeRegistry.add(scope);
-  }
-
-  const inflight = new Map<string, Promise<Awaited<ReturnType<F>>>>();
-
-  return (...args: Parameters<F>) => {
-    const key = typeof scope === 'function' ? scope(...args) : scope;
-
-    const existing = inflight.get(key);
-    if (existing) return existing;
-
-    const promise = new Promise<Awaited<ReturnType<F>>>((resolve) => {
-      resolve(fn(...args));
-    }).finally(() => {
-      inflight.delete(key);
-    });
-
-    inflight.set(key, promise);
-    return promise;
-  };
-};
-
-/**
- * 清除全局 scope 注册表（用于测试）
- */
-pending.clearRegistry = () => {
-  scopeRegistry.clear();
+  return pendingFn(scope, (_params, ...args) => fn(...args));
 };
