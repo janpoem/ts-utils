@@ -40,8 +40,15 @@ export type MountHandlerContext<
 export type MountDomOptions = {
   url: string;
   attrs?: Record<string, string>;
-  onLoad?: (el: HTMLElement, res: MountRemoteResult<MountDomResult>) => void | Promise<void>;
-  onError?: (err: unknown, ctx: MountHandlerContext<MountDomOptions>, opts: MountDomOptions) => void;
+  onLoad?: (
+    el: HTMLElement,
+    res: MountRemoteResult<MountDomResult>,
+  ) => void | Promise<void>;
+  onError?: (
+    err: unknown,
+    ctx: MountHandlerContext<MountDomOptions>,
+    opts: MountDomOptions,
+  ) => void;
 };
 
 /**
@@ -134,10 +141,7 @@ export const registerMountHandler = <K extends keyof MountHandlerMap>(
  */
 export const createDomHandler = (
   tagName: string,
-  setup: (
-    el: HTMLElement,
-    ctx: MountHandlerContext<MountDomOptions>,
-  ) => void,
+  setup: (el: HTMLElement, ctx: MountHandlerContext<MountDomOptions>) => void,
 ): MountHandlerFn<MountDomOptions, MountDomResult> => {
   const safeOnLoad = async (
     el: HTMLElement,
@@ -175,45 +179,43 @@ export const createDomHandler = (
       return res;
     }
 
-    return new Promise<MountRemoteResult<MountDomResult>>(
-      (resolve, reject) => {
-        const el = document.createElement(tagName);
-        setup(el, ctx);
+    return new Promise<MountRemoteResult<MountDomResult>>((resolve, reject) => {
+      const el = document.createElement(tagName);
+      setup(el, ctx);
 
-        if (opts.attrs) {
-          for (const [key, value] of Object.entries(opts.attrs)) {
-            if (key) el.setAttribute(key, value);
-          }
+      if (opts.attrs) {
+        for (const [key, value] of Object.entries(opts.attrs)) {
+          if (key) el.setAttribute(key, value);
         }
-        el.setAttribute('id', id);
+      }
+      el.setAttribute('id', id);
 
-        el.addEventListener('load', async () => {
-          const res = { type, scope, ...opts, id, el };
-          await safeOnLoad(el, res, opts);
-          resolve(res);
-        });
-        el.addEventListener('error', () => {
-          el.remove();
-          const error = new MountRemoteError(
-            `Mount remote ${scope} failed: ${ctx.url}`,
-          );
-          safeOnError(error, ctx, opts);
-          reject(error);
-        });
+      el.addEventListener('load', async () => {
+        const res = { type, scope, ...opts, id, el };
+        await safeOnLoad(el, res, opts);
+        resolve(res);
+      });
+      el.addEventListener('error', () => {
+        el.remove();
+        const error = new MountRemoteError(
+          `Mount remote ${scope} failed: ${ctx.url}`,
+        );
+        safeOnError(error, ctx, opts);
+        reject(error);
+      });
 
-        try {
-          document.head.appendChild(el);
-        } catch (err) {
-          el.remove();
-          const error = new MountRemoteError(
-            `Mount remote ${scope} failed: ${ctx.url}`,
-            err,
-          );
-          safeOnError(error, ctx, opts);
-          reject(error);
-        }
-      },
-    );
+      try {
+        document.head.appendChild(el);
+      } catch (err) {
+        el.remove();
+        const error = new MountRemoteError(
+          `Mount remote ${scope} failed: ${ctx.url}`,
+          err,
+        );
+        safeOnError(error, ctx, opts);
+        reject(error);
+      }
+    });
   };
 };
 

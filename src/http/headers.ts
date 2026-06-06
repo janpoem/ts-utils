@@ -38,7 +38,6 @@ export type HeadersInitInput = HeadersInit | undefined | null;
 export const toAryHeaders = (headers?: HeadersInitInput): AryHeaderItem[] => {
   if (headers == null) return [];
   if (headers instanceof Headers) {
-    // @ts-ignore
     return Array.from(headers.entries());
   }
   if (Array.isArray(headers)) return headers;

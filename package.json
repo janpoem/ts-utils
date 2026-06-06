@@ -88,6 +88,26 @@
         "default": "./dist/cjs/fetch-download/index.cjs",
         "types": "./dist/cjs/fetch-download/index.d.cts"
       }
+    },
+    "./misc": {
+      "import": {
+        "default": "./dist/esm/misc/index.mjs",
+        "types": "./dist/esm/misc/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/misc/index.cjs",
+        "types": "./dist/cjs/misc/index.d.cts"
+      }
+    },
+    "./events": {
+      "import": {
+        "default": "./dist/esm/events/index.mjs",
+        "types": "./dist/esm/events/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/events/index.cjs",
+        "types": "./dist/cjs/events/index.d.cts"
+      }
     }
   },
   "files": [
@@ -101,19 +121,13 @@
     "rollup:watch": "bunx --bun rollup -c rollup.config.ts --watch --watch.include '/src/**/*'",
     "genExports": "bun run ./scripts/genExports.ts",
     "genReadme": "bun run ./scripts/genReadme.ts",
-    "doc:async": "bun typedoc src/async/index.ts --plugin typedoc-plugin-markdown --out ./docs/async",
-    "doc:guards": "bun typedoc src/guards/index.ts --plugin typedoc-plugin-markdown --out ./docs/guards",
-    "doc:path": "bun typedoc src/path.ts --plugin typedoc-plugin-markdown --out ./docs/path",
-    "doc:http": "bun typedoc src/http/index.ts --plugin typedoc-plugin-markdown --out ./docs/http",
-    "doc:remote": "bun typedoc src/remote/index.ts --plugin typedoc-plugin-markdown --out ./docs/remote",
-    "doc:fetch-download": "bun typedoc src/fetch-download/index.ts --plugin typedoc-plugin-markdown --out ./docs/fetch-download",
-    "doc": "bun run doc:async && bun run doc:guards && bun run doc:path && bun run doc:http && bun run doc:remote && bun run doc:fetch-download",
+    "doc": "bun typedoc --options typedoc.json --cleanOutputDir",
     "build": "bun run rollup",
     "pub": "bun publish --access public",
     "check-dist": "bun tests/check-dist.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.4.16",
     "@happy-dom/global-registrator": "^17.4.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",

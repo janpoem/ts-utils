@@ -30,7 +30,7 @@ export const mockStreamResp = (
     let interval: NodeJS.Timer;
     let isBreak = false;
     const stream = new ReadableStream({
-      start(controller) {},
+      start(_controller) {},
       pull(controller) {
         if (signal?.aborted) {
           isBreak = true;

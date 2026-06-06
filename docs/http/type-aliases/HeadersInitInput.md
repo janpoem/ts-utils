@@ -1,11 +1,11 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / HeadersInitInput
+[@zenstone/ts-utils](../../modules.md) / [http](../README.md) / HeadersInitInput
 
 # Type Alias: HeadersInitInput
 
 > **HeadersInitInput** = `HeadersInit` \| `undefined` \| `null`
 
-Defined in: [headers.ts:10](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/http/headers.ts#L10)
+Defined in: [src/http/headers.ts:10](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/http/headers.ts#L10)

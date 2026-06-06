@@ -31,7 +31,7 @@ describe('DownloadQueue', () => {
     expect(q.completeTs).toBe(0);
     expect(q.elapsedMs).toBe(0);
 
-    const startTs = new Date().valueOf();
+    const _startTs = Date.now();
     let progress = 0;
 
     await q.read({
@@ -43,7 +43,7 @@ describe('DownloadQueue', () => {
         expect(q.contentLength).toBeGreaterThan(0);
         expect(q.progress).toBeGreaterThanOrEqual(progress);
 
-        const now = new Date().valueOf();
+        const now = Date.now();
 
         expect(q.completeTs).toBeGreaterThanOrEqual(now);
         // 不同的测试环境，这个测试可能会有不同的结果
@@ -84,7 +84,7 @@ describe('DownloadQueue', () => {
       return mockFetch({ size, signal: i === 1 ? abort.signal : undefined });
     });
     const q = fetchDownload(tasks);
-    const reason = `cancel ${new Date().valueOf()}`;
+    const reason = `cancel ${Date.now()}`;
 
     expect(async () => {
       await q.read({

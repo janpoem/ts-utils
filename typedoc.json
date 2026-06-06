@@ -1,0 +1,17 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "@zenstone/ts-utils",
+  "entryPoints": [
+    "src/async/index.ts",
+    "src/guards/index.ts",
+    "src/path.ts",
+    "src/http/index.ts",
+    "src/remote/index.ts",
+    "src/fetch-download/index.ts",
+    "src/events/index.ts",
+    "src/misc/index.ts"
+  ],
+  "entryPointStrategy": "resolve",
+  "plugin": ["typedoc-plugin-markdown"],
+  "out": "docs"
+}

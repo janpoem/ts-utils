@@ -340,7 +340,11 @@ export const isPresent = <T>(val: T | null | undefined): val is T =>
  * }
  * ```
  */
-export const isPlainObj = <T extends Record<string, unknown> = Record<string, unknown>>(val: unknown): val is T =>
+export const isPlainObj = <
+  T extends Record<string, unknown> = Record<string, unknown>,
+>(
+  val: unknown,
+): val is T =>
   typeof val === 'object' &&
   val !== null &&
   !Array.isArray(val) &&
@@ -352,7 +356,8 @@ export const isPlainObj = <T extends Record<string, unknown> = Record<string, un
  *
  * @param val 任意值
  */
-export const isAry = <T = unknown>(val: unknown): val is T[] => Array.isArray(val);
+export const isAry = <T = unknown>(val: unknown): val is T[] =>
+  Array.isArray(val);
 
 /**
  * 检查值是否为非空数组，支持可选的元素类型守卫
@@ -406,8 +411,7 @@ export function notEmptyAry<T = unknown>(
 export const aryGuard = <T>(
   guard: (item: unknown) => item is T,
 ): TypeGuard<T[]> => {
-  return (val: unknown): val is T[] =>
-    Array.isArray(val) && val.every(guard);
+  return (val: unknown): val is T[] => Array.isArray(val) && val.every(guard);
 };
 
 /**

@@ -1,14 +1,14 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / MountDomOptions
+[@zenstone/ts-utils](../../modules.md) / [remote](../README.md) / MountDomOptions
 
 # Type Alias: MountDomOptions
 
 > **MountDomOptions** = `object`
 
-Defined in: [src/remote/mountRemote.ts:40](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L40)
+Defined in: [src/remote/mountRemote.ts:40](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L40)
 
 DOM 类型 handler 的通用选项
 
@@ -18,7 +18,7 @@ DOM 类型 handler 的通用选项
 
 > `optional` **attrs?**: `Record`\<`string`, `string`\>
 
-Defined in: [src/remote/mountRemote.ts:42](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L42)
+Defined in: [src/remote/mountRemote.ts:42](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L42)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/remote/mountRemote.ts:42](https://github.com/janpoem/ts-utils/b
 
 > `optional` **onError?**: (`err`, `ctx`, `opts`) => `void`
 
-Defined in: [src/remote/mountRemote.ts:44](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L44)
+Defined in: [src/remote/mountRemote.ts:47](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L47)
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: [src/remote/mountRemote.ts:44](https://github.com/janpoem/ts-utils/b
 
 > `optional` **onLoad?**: (`el`, `res`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [src/remote/mountRemote.ts:43](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L43)
+Defined in: [src/remote/mountRemote.ts:43](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L43)
 
 #### Parameters
 
@@ -74,4 +74,4 @@ Defined in: [src/remote/mountRemote.ts:43](https://github.com/janpoem/ts-utils/b
 
 > **url**: `string`
 
-Defined in: [src/remote/mountRemote.ts:41](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L41)
+Defined in: [src/remote/mountRemote.ts:41](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L41)

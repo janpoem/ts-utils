@@ -1,11 +1,11 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / DownloadUrl
+[@zenstone/ts-utils](../../modules.md) / [fetch-download](../README.md) / DownloadUrl
 
 # Type Alias: DownloadUrl
 
 > **DownloadUrl** = `string` \| `URL`
 
-Defined in: [src/fetch-download/types.ts:1](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/fetch-download/types.ts#L1)
+Defined in: [src/fetch-download/types.ts:1](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/fetch-download/types.ts#L1)

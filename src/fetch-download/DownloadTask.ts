@@ -1,6 +1,4 @@
-import { calcProgress } from '../guards';
-import { isInferObj } from '../guards';
-import { notEmptyStr } from '../guards';
+import { calcProgress, isInferObj, notEmptyStr } from '../guards';
 import type {
   DownloadFetchCallback,
   DownloadInput,
@@ -66,13 +64,6 @@ export class DownloadTask {
   #progress = 0;
 
   #error: unknown;
-
-  /**
-   * fetch 开始时间
-   *
-   * @private
-   */
-  #fetchTs = 0;
 
   /**
    * read 开始时间，仅针对 stream.read 开始时间
@@ -263,7 +254,7 @@ export class DownloadTask {
    */
   get completeTs() {
     if (this.isStarted) {
-      return this.#completeTs > 0 ? this.#completeTs : new Date().valueOf();
+      return this.#completeTs > 0 ? this.#completeTs : Date.now();
     }
     return 0;
   }
@@ -356,7 +347,6 @@ export class DownloadTask {
         }
         await opts?.onFetch?.(this);
         this.#state = DownloadTaskState.fetching;
-        this.#fetchTs = new Date().valueOf();
         this.#resp = await this.#fetch();
       }
 
@@ -399,7 +389,7 @@ export class DownloadTask {
       this.#state = DownloadTaskState.reading;
       this.#chunks = undefined;
       this.#received = 0;
-      this.#startTs = new Date().valueOf();
+      this.#startTs = Date.now();
 
       while (true) {
         const { done, value } = await reader.read();
@@ -408,7 +398,7 @@ export class DownloadTask {
           this.#size = this.#received;
           this.#progress = calcProgress(this.#received, this.#size);
           await opts?.onProgress?.(this);
-          this.#completeTs = new Date().valueOf();
+          this.#completeTs = Date.now();
           this.#state = DownloadTaskState.complete;
           break;
         }
