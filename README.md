@@ -44,16 +44,18 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 | 模块 | 说明 | 导入路径 |
 |------|------|----------|
-| [`async`](docs/async/globals.md) | 异步工具函数 | `@zenstone/ts-utils/async` |
-| [`guards`](docs/guards/globals.md) | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
-| [`path`](docs/path/globals.md) | 路径处理 | `@zenstone/ts-utils/path` |
-| [`http`](docs/http/globals.md) | HTTP 相关工具 | `@zenstone/ts-utils/http` |
-| [`remote`](docs/remote/globals.md) | 远程模块加载 | `@zenstone/ts-utils/remote` |
-| [`fetch-download`](docs/fetch-download/globals.md) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
+| [`async`](docs/async/README.md) | 异步工具函数 | `@zenstone/ts-utils/async` |
+| [`guards`](docs/guards/README.md) | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
+| [`path`](docs/path/README.md) | 路径处理 | `@zenstone/ts-utils/path` |
+| [`http`](docs/http/README.md) | HTTP 相关工具 | `@zenstone/ts-utils/http` |
+| [`remote`](docs/remote/README.md) | 远程模块加载 | `@zenstone/ts-utils/remote` |
+| [`fetch-download`](docs/fetch-download/README.md) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
+| [`misc`](docs/misc/README.md) | 杂项工具（timer、singleton、configurable 等） | `@zenstone/ts-utils/misc` |
+| [`events`](docs/events/README.md) | 事件发布订阅 | `@zenstone/ts-utils/events` |
 
 ## 模块详情
 
-### [`async`](docs/async/globals.md)
+### [`async`](docs/async/README.md)
 
 异步工具函数
 
@@ -73,7 +75,7 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 - [`sleep`](docs/async/functions/sleep.md)
 - [`timeout`](docs/async/functions/timeout.md)
 
-### [`guards`](docs/guards/globals.md)
+### [`guards`](docs/guards/README.md)
 
 Type Guards 和基础类型工具
 
@@ -109,7 +111,7 @@ Type Guards 和基础类型工具
 - [`round10`](docs/guards/functions/round10.md)
 - [`toNumber`](docs/guards/functions/toNumber.md)
 
-### [`path`](docs/path/globals.md)
+### [`path`](docs/path/README.md)
 
 路径处理
 
@@ -119,7 +121,7 @@ Type Guards 和基础类型工具
 - [`UnixDS`](docs/path/functions/UnixDS.md)
 - [`WinDS`](docs/path/functions/WinDS.md)
 
-### [`http`](docs/http/globals.md)
+### [`http`](docs/http/README.md)
 
 HTTP 相关工具
 
@@ -130,7 +132,7 @@ HTTP 相关工具
 - [`mergeRespInit`](docs/http/functions/mergeRespInit.md)
 - [`toAryHeaders`](docs/http/functions/toAryHeaders.md)
 
-### [`remote`](docs/remote/globals.md)
+### [`remote`](docs/remote/README.md)
 
 远程模块加载
 
@@ -145,7 +147,7 @@ HTTP 相关工具
 - [`registerMountHandler`](docs/remote/functions/registerMountHandler.md)
 - [`unmountDomRemote`](docs/remote/functions/unmountDomRemote.md)
 
-### [`fetch-download`](docs/fetch-download/globals.md)
+### [`fetch-download`](docs/fetch-download/README.md)
 
 下载工具
 
@@ -161,3 +163,30 @@ HTTP 相关工具
 
 - [`fetchDownload`](docs/fetch-download/functions/fetchDownload.md)
 - [`saveChunks`](docs/fetch-download/functions/saveChunks.md)
+
+### [`misc`](docs/misc/README.md)
+
+杂项工具（timer、singleton、configurable 等）
+
+**Functions:**
+
+- [`clearTicker`](docs/misc/functions/clearTicker.md)
+- [`clearTimer`](docs/misc/functions/clearTimer.md)
+- [`cloneObj`](docs/misc/functions/cloneObj.md)
+- [`configurable`](docs/misc/functions/configurable.md)
+- [`singleton`](docs/misc/functions/singleton.md)
+- [`ticker`](docs/misc/functions/ticker.md)
+- [`timer`](docs/misc/functions/timer.md)
+
+### [`events`](docs/events/README.md)
+
+事件发布订阅
+
+**Functions:**
+
+- [`createDelegator`](docs/events/functions/createDelegator.md)
+- [`createEmitter`](docs/events/functions/createEmitter.md)
+- [`initEventsEmitter`](docs/events/functions/initEventsEmitter.md)
+- [`isEventsDelegator`](docs/events/functions/isEventsDelegator.md)
+- [`isEventsEmitter`](docs/events/functions/isEventsEmitter.md)
+- [`linkEvents`](docs/events/functions/linkEvents.md)

@@ -1,14 +1,14 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / MountHandlerFn
+[@zenstone/ts-utils](../../modules.md) / [remote](../README.md) / MountHandlerFn
 
 # Type Alias: MountHandlerFn\<Options, Result\>
 
 > **MountHandlerFn**\<`Options`, `Result`\> = (`ctx`, `opts`) => `Promise`\<[`MountRemoteResult`](MountRemoteResult.md)\<`Result`\>\> \| [`MountRemoteResult`](MountRemoteResult.md)\<`Result`\>
 
-Defined in: [src/remote/mountRemote.ts:58](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/remote/mountRemote.ts#L58)
+Defined in: [src/remote/mountRemote.ts:65](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L65)
 
 类型安全的 handler 函数
 

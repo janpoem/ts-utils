@@ -1,14 +1,14 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / AryHeaderItem
+[@zenstone/ts-utils](../../modules.md) / [http](../README.md) / AryHeaderItem
 
 # Type Alias: AryHeaderItem
 
 > **AryHeaderItem** = \[`string`, `string`\]
 
-Defined in: [headers.ts:8](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/http/headers.ts#L8)
+Defined in: [src/http/headers.ts:8](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/http/headers.ts#L8)
 
 单个 Http Header 的数组类型
 

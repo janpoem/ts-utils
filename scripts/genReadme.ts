@@ -12,6 +12,8 @@ const MODULE_DESCRIPTIONS: Record<string, string> = {
   http: 'HTTP 相关工具',
   remote: '远程模块加载',
   'fetch-download': '下载工具',
+  misc: '杂项工具（timer、singleton、configurable 等）',
+  events: '事件发布订阅',
 };
 
 type ExportItem = {
@@ -147,7 +149,7 @@ const generateReadme = () => {
       name: moduleName,
       description: MODULE_DESCRIPTIONS[moduleName] ?? moduleName,
       importPath: `@zenstone/ts-utils/${moduleName}`,
-      globalsLink: `docs/${moduleName}/globals.md`,
+      globalsLink: `docs/${moduleName}/README.md`,
       classes,
       functions,
     });

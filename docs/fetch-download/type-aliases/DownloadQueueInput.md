@@ -1,11 +1,11 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / DownloadQueueInput
+[@zenstone/ts-utils](../../modules.md) / [fetch-download](../README.md) / DownloadQueueInput
 
 # Type Alias: DownloadQueueInput
 
 > **DownloadQueueInput** = [`DownloadInput`](DownloadInput.md) \| `Response` \| [`DownloadTask`](../classes/DownloadTask.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:14](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/fetch-download/DownloadQueue.ts#L14)
+Defined in: [src/fetch-download/DownloadQueue.ts:14](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/fetch-download/DownloadQueue.ts#L14)

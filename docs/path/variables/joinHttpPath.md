@@ -1,14 +1,14 @@
-[**@zenstone/ts-utils**](../README.md)
+[**@zenstone/ts-utils**](../../README.md)
 
 ***
 
-[@zenstone/ts-utils](../globals.md) / joinHttpPath
+[@zenstone/ts-utils](../../modules.md) / [path](../README.md) / joinHttpPath
 
 # Variable: joinHttpPath
 
 > **joinHttpPath**: (...`paths`) => `string`
 
-Defined in: [path.ts:116](https://github.com/janpoem/ts-utils/blob/a9ae0d5ab8db50d99f88de922674a4455e94f5fc/src/path.ts#L116)
+Defined in: [src/path.ts:116](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/path.ts#L116)
 
 连接多个路径，当 '..' 超过最大路径时（顶部）时，会保留下来。
 
