@@ -4,11 +4,11 @@
 
 export {
   clearPendingRegistry,
+  type PendingCallbackFn,
+  type PendingFnParams,
+  PendingScopeConflictError,
   pending,
   pendingFn,
-  PendingScopeConflictError,
-  type PendingFnParams,
-  type PendingCallbackFn,
 } from './pending';
 
 // ============================================================================
@@ -243,7 +243,6 @@ export const timeout = <F extends AnyFn>(
     ]);
   };
 };
-
 
 /**
  * 延迟指定毫秒数，可选延迟后执行函数

@@ -1,8 +1,8 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'bun:test';
 import { GlobalRegistrator } from '@happy-dom/global-registrator';
 import {
-  MountRemoteError,
   createDomHandler,
+  MountRemoteError,
   mountRemote,
   registerMountHandler,
   unmountDomRemote,
@@ -26,16 +26,15 @@ afterAll((done) => {
 describe('MountRemote', () => {
   let _unmount: { id: string; fn?: () => void } | undefined;
 
+  // data: URIs avoid real network requests — happy-dom handles them via DataURIParser
+  // without spawning a child process (which is how it handles https: URLs synchronously)
   const urls = {
-    jq: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js',
-    bootstrap:
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+    jq: 'data:text/javascript,window.jQuery=function(){};window.$=window.jQuery;',
+    bootstrap: 'data:text/css,body{margin:0}',
   };
 
   const deleteJq = () => {
-    // biome-ignore lint/performance/noDelete: test cleanup
     delete window.jQuery;
-    // biome-ignore lint/performance/noDelete: test cleanup
     delete window.$;
   };
 
@@ -68,7 +67,7 @@ describe('MountRemote', () => {
 
     it('mount css with attrs', async () => {
       const scope = 'bootstrap';
-      const res = await mountRemote(scope, {
+      const _res = await mountRemote(scope, {
         type: 'css',
         url: urls.bootstrap,
         attrs: { 'data-name': scope, class: 'test-class' },
@@ -123,10 +122,11 @@ describe('MountRemote', () => {
 
       // biome-ignore lint/suspicious/noExplicitAny: testing unregistered custom type
       const mount = mountRemote as (...args: any[]) => Promise<any>;
-      const res = await mount(
-        'custom-el',
-        { type: 'custom-test', url: 'https://example.com/resource', flag: true },
-      );
+      const res = await mount('custom-el', {
+        type: 'custom-test',
+        url: 'https://example.com/resource',
+        flag: true,
+      });
 
       expect(res.scope).toBe('custom-el');
       expect(res.custom).toBe(true);
@@ -201,23 +201,23 @@ describe('MountRemote', () => {
     it('onError should be called on mount failure', async () => {
       let errorCalled = false;
 
+      // Use a file: URI pointing to a nonexistent path — fails immediately without network
       // biome-ignore lint/suspicious/noExplicitAny: testing unregistered custom type
       const mount = mountRemote as (...args: any[]) => Promise<any>;
 
       try {
         await mount('onerror-test', {
           type: 'js',
-          url: 'https://example.com/nonexistent.js',
+          url: 'file:///nonexistent_ts_utils_test_file_12345.js',
           onError: () => {
             errorCalled = true;
           },
         });
       } catch {
-        // expected
+        // expected — MountRemoteError from failed load
       }
 
-      // onError may or may not be called depending on happy-dom behavior
-      expect(typeof errorCalled).toBe('boolean');
+      expect(errorCalled).toBe(true);
     });
   });
 

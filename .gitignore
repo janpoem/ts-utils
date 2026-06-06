@@ -178,3 +178,6 @@ bun.lock
 
 # OpenCode config
 opencode.json
+
+.claude
+skills-lock.json

@@ -96,7 +96,6 @@ accept`;
     test('should return a new Headers object with empty headers', () => {
       const mergedHeaders = mergeHeaders(null);
       expect(mergedHeaders).toBeInstanceOf(Headers);
-      // @ts-ignore
       expect(mergedHeaders.entries().next().done).toBe(true);
     });
   });

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { type ResponseInitInput, mergeRespInit } from './response';
+import { mergeRespInit, type ResponseInitInput } from './response';
 
 describe('mergeRespInit', () => {
   test('should return a new ResponseInit object with multiple ResponseInit inputs', () => {

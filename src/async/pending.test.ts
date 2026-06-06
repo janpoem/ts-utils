@@ -1,8 +1,7 @@
 import { afterEach, describe, expect, test } from 'bun:test';
 import {
-  type PendingFnParams,
-  PendingScopeConflictError,
   clearPendingRegistry,
+  PendingScopeConflictError,
   pending,
   pendingFn,
 } from './pending';
@@ -30,7 +29,10 @@ describe('pending', () => {
     test('should not conflict between static and dynamic scopes', () => {
       pending('user', async () => 'static');
       expect(() => {
-        pending((id: string) => `user:${id}`, async (id: string) => id);
+        pending(
+          (id: string) => `user:${id}`,
+          async (id: string) => id,
+        );
       }).not.toThrow();
     });
 
@@ -201,10 +203,7 @@ describe('pending', () => {
 
   describe('preserves function signature', () => {
     test('should preserve parameters and return type', async () => {
-      const fn = pending(
-        'typed',
-        async (a: number, b: string) => ({ a, b }),
-      );
+      const fn = pending('typed', async (a: number, b: string) => ({ a, b }));
 
       const result = await fn(42, 'hello');
       expect(result).toEqual({ a: 42, b: 'hello' });
@@ -223,9 +222,9 @@ describe('pendingFn', () => {
 
     test('should conflict with pending using same static scope', () => {
       pending('shared-scope', async () => 'a');
-      expect(() =>
-        pendingFn('shared-scope', (params) => params.scope),
-      ).toThrow(PendingScopeConflictError);
+      expect(() => pendingFn('shared-scope', (params) => params.scope)).toThrow(
+        PendingScopeConflictError,
+      );
     });
   });
 

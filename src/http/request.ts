@@ -16,6 +16,6 @@ export const mergeAbortSignals = (
   const items = signals.filter(Boolean) as AbortSignal[];
   const size = items.length;
   if (size === 1) return items[0];
-  // @ts-ignore AbortSignal.any
+  // @ts-expect-error AbortSignal.any
   if (size > 1) return AbortSignal.any(signals);
 };

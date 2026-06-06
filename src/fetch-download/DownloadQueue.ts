@@ -193,7 +193,7 @@ export class DownloadQueue {
    */
   get completeTs() {
     if (this.isStarted) {
-      return this.#completeTs > 0 ? this.#completeTs : new Date().valueOf();
+      return this.#completeTs > 0 ? this.#completeTs : Date.now();
     }
     return 0;
   }
@@ -271,7 +271,7 @@ export class DownloadQueue {
 
     return new Promise((resolve, reject) => {
       this.#state = DownloadTaskState.reading;
-      this.#startTs = new Date().valueOf();
+      this.#startTs = Date.now();
       Promise.all(this._initTasksQueue(opts))
         .then(async () => {
           const count = this.#tasks.length;
@@ -288,13 +288,13 @@ export class DownloadQueue {
             );
           this.#progress = calcProgress(this.#progress, count);
           this.#state = DownloadTaskState.complete;
-          this.#completeTs = new Date().valueOf();
+          this.#completeTs = Date.now();
           await opts?.onFinish?.(this);
           resolve(this);
         })
         .catch(async (reason) => {
           this.#state = DownloadTaskState.error;
-          this.#completeTs = new Date().valueOf();
+          this.#completeTs = Date.now();
           this.#error = reason;
           await opts?.onQueueError?.(this);
           reject(reason);

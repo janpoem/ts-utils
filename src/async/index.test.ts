@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'bun:test';
 import {
-  type RetryFnParams,
   RetryExhaustedError,
-  TimeoutError,
+  type RetryFnParams,
   retry,
   retryFn,
   sleep,
+  TimeoutError,
   timeout,
 } from './index';
 
@@ -224,13 +224,10 @@ describe('async/index.ts', () => {
     });
 
     test('should return result if completed within timeout', async () => {
-      const wrapped = timeout(
-        async () => {
-          await Bun.sleep(10);
-          return 'done';
-        },
-        1000,
-      );
+      const wrapped = timeout(async () => {
+        await Bun.sleep(10);
+        return 'done';
+      }, 1000);
       const result = await wrapped();
       expect(result).toBe('done');
     });
@@ -284,5 +281,4 @@ describe('async/index.ts', () => {
       expect(result).toEqual({ id: 1 });
     });
   });
-
 });

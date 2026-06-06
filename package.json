@@ -88,6 +88,26 @@
         "default": "./dist/cjs/fetch-download/index.cjs",
         "types": "./dist/cjs/fetch-download/index.d.cts"
       }
+    },
+    "./misc": {
+      "import": {
+        "default": "./dist/esm/misc/index.mjs",
+        "types": "./dist/esm/misc/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/misc/index.cjs",
+        "types": "./dist/cjs/misc/index.d.cts"
+      }
+    },
+    "./events": {
+      "import": {
+        "default": "./dist/esm/events/index.mjs",
+        "types": "./dist/esm/events/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/events/index.cjs",
+        "types": "./dist/cjs/events/index.d.cts"
+      }
     }
   },
   "files": [
@@ -113,11 +133,12 @@
     "check-dist": "bun tests/check-dist.ts"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.4.16",
     "@happy-dom/global-registrator": "^17.4.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@types/bun": "latest",
+    "emittery": "^2.0.0",
     "glob": "^11.0.1",
     "rollup": "^4.34.8",
     "rollup-plugin-dts": "^6.1.1",
