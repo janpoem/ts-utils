@@ -8,7 +8,7 @@
 
 > **EventCallbackDeclaration**\<`T`\> = [`EventCallbackFn`](EventCallbackFn.md)\<`T`\> \| [`EventCallbackFn`](EventCallbackFn.md)\<`T`\>[]
 
-Defined in: [src/events/index.ts:22](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/events/index.ts#L22)
+Defined in: [src/events/index.ts:22](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L22)
 
 单个事件的回调声明：单个函数或函数数组
 

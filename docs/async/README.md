@@ -10,7 +10,13 @@
 
 - [PendingScopeConflictError](classes/PendingScopeConflictError.md)
 - [RetryExhaustedError](classes/RetryExhaustedError.md)
+- [RpcAbortError](classes/RpcAbortError.md)
+- [StatefulRpc](classes/StatefulRpc.md)
 - [TimeoutError](classes/TimeoutError.md)
+
+## Interfaces
+
+- [StatefulRpcTask](interfaces/StatefulRpcTask.md)
 
 ## Type Aliases
 
@@ -20,6 +26,9 @@
 - [RetryCallbackFn](type-aliases/RetryCallbackFn.md)
 - [RetryFnParams](type-aliases/RetryFnParams.md)
 - [RetryOptions](type-aliases/RetryOptions.md)
+- [StatefulRpcEvents](type-aliases/StatefulRpcEvents.md)
+- [StatefulRpcOptions](type-aliases/StatefulRpcOptions.md)
+- [StatefulRpcSettled](type-aliases/StatefulRpcSettled.md)
 
 ## Functions
 

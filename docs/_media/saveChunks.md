@@ -8,7 +8,7 @@
 
 > **saveChunks**(`chunks`, `filename`, `mimeType?`): `void`
 
-Defined in: [src/fetch-download/saveChunks.ts:17](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/fetch-download/saveChunks.ts#L17)
+Defined in: [src/fetch-download/saveChunks.ts:17](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/saveChunks.ts#L17)
 
 将 chunks 保存到本机，该方法只可在浏览器中执行
 

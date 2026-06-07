@@ -8,7 +8,7 @@
 
 > **ticker**(`key`, `callback`, `ms`): `Timeout`
 
-Defined in: [src/misc/timer.ts:41](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/misc/timer.ts#L41)
+Defined in: [src/misc/timer.ts:41](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/timer.ts#L41)
 
 命名 setInterval，同一 key 会先清除已有的间隔器再重新设置
 
