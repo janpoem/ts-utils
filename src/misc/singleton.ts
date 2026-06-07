@@ -52,12 +52,15 @@ export function singleton(factory: AnyFn): AnyFn {
 
     if (result instanceof Promise) {
       isAsync = true;
-      inflight = result.then((resolved: unknown) => {
-        instance = resolved;
-        ready = true;
-        inflight = undefined;
-        return resolved;
-      });
+      inflight = result
+        .then((resolved: unknown) => {
+          instance = resolved;
+          ready = true;
+          return resolved;
+        })
+        .finally(() => {
+          inflight = undefined;
+        });
       return inflight;
     }
 

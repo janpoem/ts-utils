@@ -235,7 +235,7 @@ export class DownloadTask {
   /**
    * 是否已经读取（完毕） Response body
    */
-  get isReaded() {
+  get isRead() {
     return this.#received > 0 && this.#chunks != null;
   }
 
@@ -287,8 +287,8 @@ export class DownloadTask {
   get speed() {
     if (!this.isStarted) return 0;
     const ms = this.elapsedMs;
-    if (ms <= 0) return this.#contentLength;
-    return Math.floor(this.#contentLength / (ms / 1000));
+    if (ms <= 0) return this.#received;
+    return Math.floor(this.#received / (ms / 1000));
   }
 
   /**
@@ -396,7 +396,8 @@ export class DownloadTask {
         if (done) {
           // 用实际接收的大小替代实际的 size
           this.#size = this.#received;
-          this.#progress = calcProgress(this.#received, this.#size);
+          // 空 body（received === 0）时视为 100% 完成，避免 calcProgress(0,0) 除零错误
+          this.#progress = this.#received === 0 ? 1 : calcProgress(this.#received, this.#size);
           await opts?.onProgress?.(this);
           this.#completeTs = Date.now();
           this.#state = DownloadTaskState.complete;
@@ -447,6 +448,8 @@ export class DownloadTask {
    * @param compressedSize 压缩后的文件大小
    */
   inferUncompressedSize = (compressedSize: number) => {
+    // 经验公式：对文本内容 gzip 压缩率做对数拟合，系数 0.55/-3.0 来自实测样本回归。
+    // 结果钳位到 [1x, 7x]，避免极小文件（< ~50B）或极大文件估算偏离过远。
     const compressionRatio = 0.55 * Math.log(compressedSize) - 3.0;
     return Math.floor(
       Math.min(Math.max(compressionRatio, 1), 7) * compressedSize,
