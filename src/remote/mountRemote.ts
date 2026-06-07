@@ -167,7 +167,7 @@ export const createDomHandler = (
     }
   };
 
-  return (ctx, opts) => {
+  return async (ctx, opts) => {
     const { type, scope } = ctx;
     const id = scope;
 
@@ -175,7 +175,7 @@ export const createDomHandler = (
     const existing = document.getElementById(id);
     if (existing) {
       const res = { type, scope, ...opts, id, el: existing };
-      safeOnLoad(existing, res, opts);
+      await safeOnLoad(existing, res, opts);
       return res;
     }
 

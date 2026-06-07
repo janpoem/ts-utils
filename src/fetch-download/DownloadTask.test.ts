@@ -27,7 +27,7 @@ describe('DownloadTask', () => {
 
     expect(task.id).toBeDefined();
     expect(task.isStarted).toBe(false);
-    expect(task.isReaded).toBe(false);
+    expect(task.isRead).toBe(false);
     expect(task.state).toBe(DownloadTaskState.init);
     expect(task.chunks).toBeUndefined();
     expect(task.resp).toBe(resp);
@@ -36,7 +36,7 @@ describe('DownloadTask', () => {
 
     expect(task.state).toBe(DownloadTaskState.complete);
     expect(task.isStarted).toBe(true);
-    expect(task.isReaded).toBe(true);
+    expect(task.isRead).toBe(true);
     expect(task.mimeType).toBe(mimeType);
     expect(task.encoding).toBe(null);
     expect(task.contentLength).toBe(data.length);
@@ -82,7 +82,7 @@ describe('DownloadTask', () => {
         progress = task.progress;
       },
       onComplete: () => {
-        expect(task.isReaded).toBe(true);
+        expect(task.isRead).toBe(true);
       },
     });
 
@@ -110,7 +110,7 @@ describe('DownloadTask', () => {
         progress = task.progress;
       },
       onComplete: () => {
-        expect(task.isReaded).toBe(true);
+        expect(task.isRead).toBe(true);
       },
     });
 
@@ -138,7 +138,7 @@ describe('DownloadTask', () => {
         progress = task.progress;
       },
       onComplete: () => {
-        expect(task.isReaded).toBe(true);
+        expect(task.isRead).toBe(true);
       },
     });
 
@@ -166,7 +166,7 @@ describe('DownloadTask', () => {
         progress = task.progress;
       },
       onComplete: () => {
-        expect(task.isReaded).toBe(true);
+        expect(task.isRead).toBe(true);
       },
     });
 
@@ -203,7 +203,7 @@ describe('DownloadTask', () => {
   //   expect(task.progress).toBeGreaterThan(0);
   //   expect(task.received).toBe(task.chunks?.length ?? 0);
   //   expect(task.received).toBeLessThan(task.size);
-  //   expect(task.isReaded).toBe(true);
+  //   expect(task.isRead).toBe(true);
   // });
 
   it('task mock stream abort', async () => {
@@ -226,7 +226,7 @@ describe('DownloadTask', () => {
     expect(task.progress).toBeGreaterThan(0);
     expect(task.received).toBe(task.chunks?.length ?? 0);
     expect(task.received).toBeLessThan(task.size);
-    expect(task.isReaded).toBe(true);
+    expect(task.isRead).toBe(true);
   });
 
   it('test zero content length', async () => {

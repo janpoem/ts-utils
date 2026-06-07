@@ -74,4 +74,36 @@ describe('singleton (async)', () => {
     const result = await get(); // should return from cache
     expect(result).toBe(42);
   });
+
+  test('factory reject clears inflight — next call retries', async () => {
+    let calls = 0;
+    const get = singleton(async () => {
+      calls++;
+      if (calls === 1) throw new Error('first attempt fails');
+      return calls;
+    });
+
+    await expect(get()).rejects.toThrow('first attempt fails');
+    expect(calls).toBe(1);
+
+    // inflight cleared by .finally(); second call must invoke the factory again
+    const result = await get();
+    expect(calls).toBe(2);
+    expect(result).toBe(2);
+  });
+
+  test('concurrent calls after a reject all share the new inflight', async () => {
+    let calls = 0;
+    const get = singleton(async () => {
+      calls++;
+      if (calls === 1) throw new Error('boom');
+      await Bun.sleep(20);
+      return calls;
+    });
+
+    await get().catch(() => {});
+    const [a, b] = await Promise.all([get(), get()]);
+    expect(calls).toBe(2); // retried once, not twice
+    expect(a).toBe(b);
+  });
 });

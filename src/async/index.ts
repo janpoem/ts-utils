@@ -233,11 +233,12 @@ export const timeout = <F extends AnyFn>(
   ms: number,
 ): ((...args: Parameters<F>) => Promise<Awaited<ReturnType<F>>>) => {
   return (...args: Parameters<F>) => {
+    let timerId: ReturnType<typeof setTimeout>;
     return Promise.race([
-      Promise.resolve(fn(...args)),
-      new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new TimeoutError(ms)), ms),
-      ),
+      Promise.resolve(fn(...args)).finally(() => clearTimeout(timerId)),
+      new Promise<never>((_, reject) => {
+        timerId = setTimeout(() => reject(new TimeoutError(ms)), ms);
+      }),
     ]);
   };
 };

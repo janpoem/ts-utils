@@ -19,7 +19,7 @@ export const saveChunks = (
   filename: string | (() => string),
   mimeType?: string | null,
 ) => {
-  if (window == null || document == null) {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
     throw new Error('This method needs to be run in the browser');
   }
   const blob = new Blob([chunks as BlobPart], {
@@ -29,5 +29,6 @@ export const saveChunks = (
   link.href = window.URL.createObjectURL(blob);
   link.download = typeof filename === 'function' ? filename() : filename;
   link.click();
-  window.URL.revokeObjectURL(link.href);
+  // 延迟释放，确保浏览器缓冲下载完成后再撤销 URL
+  setTimeout(() => window.URL.revokeObjectURL(link.href), 100);
 };

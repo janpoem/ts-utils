@@ -122,7 +122,7 @@ export const decimalAdjust = (
   value: number,
   exp?: number,
 ): number => {
-  let _value: number | string[] = value;
+  let _value: number = value;
   let _exp = exp;
   if (typeof _exp === 'undefined' || +_exp === 0) {
     return Math[type](_value as number);
@@ -348,8 +348,8 @@ export const isPlainObj = <
   typeof val === 'object' &&
   val !== null &&
   !Array.isArray(val) &&
-  !(val instanceof Date) &&
-  !(val instanceof RegExp);
+  (Object.getPrototypeOf(val) === Object.prototype ||
+    Object.getPrototypeOf(val) === null);
 
 /**
  * 检查值是否为数组

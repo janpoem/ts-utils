@@ -8,13 +8,6 @@ export class TimeoutError extends Error {
   }
 }
 
-export class DuplicateIdError extends Error {
-  constructor(public readonly id: unknown) {
-    super(`Duplicate RPC id: ${String(id)}`);
-    this.name = 'DuplicateIdError';
-  }
-}
-
 export class RpcAbortError extends Error {
   constructor(public readonly reason?: unknown) {
     const detail =

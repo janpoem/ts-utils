@@ -43,5 +43,18 @@ describe('request', () => {
       );
       expect(signal).toBe(abortController1.signal);
     });
+
+    it('filters nulls before passing to AbortSignal.any', () => {
+      // Bug-1 regression: AbortSignal.any must receive items (filtered), not the raw signals array
+      const signal = mergeAbortSignals(
+        null,
+        abortController1.signal,
+        abortController2.signal,
+      );
+      let aborted = false;
+      signal?.addEventListener('abort', () => { aborted = true; });
+      abortController2.abort();
+      expect(aborted).toBe(true);
+    });
   });
 });
