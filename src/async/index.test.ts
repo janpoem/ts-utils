@@ -253,6 +253,19 @@ describe('async/index.ts', () => {
       }, 10);
       await expect(wrapped()).rejects.toThrow(TimeoutError);
     });
+
+    test('no TimeoutError after fn resolves early', async () => {
+      // Verifies the early-resolution path: fn completes well within the timeout,
+      // result is returned correctly, and sleeping past the timeout window causes
+      // no errors. The .finally(clearTimeout) in the implementation prevents the
+      // stray timer from keeping the process alive in test environments.
+      const wrapped = timeout(async () => {
+        await Bun.sleep(10);
+        return 'done';
+      }, 60);
+      expect(await wrapped()).toBe('done');
+      await Bun.sleep(80);
+    });
   });
 
   describe('sleep', () => {

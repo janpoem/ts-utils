@@ -145,6 +145,21 @@ describe('guards/index.ts - Number', () => {
       expect(decimalAdjust('floor', 55.59, -1)).toBe(55.5);
       expect(floor10(55.59, -1)).toBe(55.5);
     });
+
+    test('no exp or exp=0 falls back to plain Math method', () => {
+      expect(decimalAdjust('round', 1.5)).toBe(2);
+      expect(decimalAdjust('floor', 1.9)).toBe(1);
+      expect(decimalAdjust('ceil', 1.1)).toBe(2);
+      expect(decimalAdjust('round', 1.5, 0)).toBe(2);
+    });
+
+    test('NaN value returns NaN', () => {
+      expect(decimalAdjust('round', Number.NaN, -1)).toBeNaN();
+    });
+
+    test('non-integer exp returns NaN', () => {
+      expect(decimalAdjust('round', 1.5, 1.5)).toBeNaN();
+    });
   });
 
   describe('calcProgress', () => {
@@ -281,10 +296,21 @@ describe('guards/index.ts - Type Guards', () => {
       expect(isPlainObj({ a: 1 })).toBe(true);
     });
 
+    test('should return true for null-prototype objects', () => {
+      expect(isPlainObj(Object.create(null))).toBe(true);
+    });
+
     test('should return false for arrays and special objects', () => {
       expect(isPlainObj([])).toBe(false);
       expect(isPlainObj(new Date())).toBe(false);
       expect(isPlainObj(null)).toBe(false);
+    });
+
+    test('should return false for Map, Set, Error and other built-ins', () => {
+      expect(isPlainObj(new Map())).toBe(false);
+      expect(isPlainObj(new Set())).toBe(false);
+      expect(isPlainObj(new Error())).toBe(false);
+      expect(isPlainObj(/regex/)).toBe(false);
     });
   });
 
