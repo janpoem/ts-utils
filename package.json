@@ -10,7 +10,8 @@
     "functions",
     "utils",
     "type-guade",
-    "async"
+    "async",
+    "traits"
   ],
   "repository": {
     "type": "git",
@@ -109,6 +110,16 @@
       "require": {
         "default": "./dist/cjs/events/index.cjs",
         "types": "./dist/cjs/events/index.d.cts"
+      }
+    },
+    "./traits": {
+      "import": {
+        "default": "./dist/esm/traits/index.mjs",
+        "types": "./dist/esm/traits/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/traits/index.cjs",
+        "types": "./dist/cjs/traits/index.d.cts"
       }
     }
   },
