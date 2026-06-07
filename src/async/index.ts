@@ -11,6 +11,19 @@ export {
   pendingFn,
 } from './pending';
 
+export {
+  RpcAbortError,
+  StatefulRpc,
+  type StatefulRpcEvents,
+  type StatefulRpcOptions,
+  type StatefulRpcSettled,
+  type StatefulRpcTask,
+} from './StatefulRpc';
+
+export { TimeoutError } from './errors';
+
+import { TimeoutError } from './errors';
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -79,21 +92,6 @@ export class RetryExhaustedError extends Error {
     this.attempt = params.attempt;
     this.error = params.error;
     this.options = params.options;
-  }
-}
-
-/**
- * 超时错误
- *
- * 当异步操作超过指定时间仍未完成时抛出
- */
-export class TimeoutError extends Error {
-  /**
-   * @param ms 超时毫秒数
-   */
-  constructor(public readonly ms: number) {
-    super(`Operation timed out after ${ms}ms`);
-    this.name = 'TimeoutError';
   }
 }
 
