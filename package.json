@@ -8,7 +8,9 @@
     "typescript",
     "utility",
     "functions",
-    "utils"
+    "utils",
+    "type-guade",
+    "async"
   ],
   "repository": {
     "type": "git",
