@@ -8,7 +8,7 @@
 
 > **toAryHeaders**(`headers?`): [`AryHeaderItem`](../type-aliases/AryHeaderItem.md)[]
 
-Defined in: [src/http/headers.ts:38](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/http/headers.ts#L38)
+Defined in: [src/http/headers.ts:38](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/http/headers.ts#L38)
 
 将任意 `HeadersInit` 转为多个 [AryHeaderItem](../type-aliases/AryHeaderItem.md) 的数组
 

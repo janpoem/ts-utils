@@ -8,7 +8,7 @@
 
 > **retryFn**\<`T`, `Args`\>(`fn`, `options?`): (...`args`) => `Promise`\<`Awaited`\<`T`\>\>
 
-Defined in: [src/async/index.ts:200](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/async/index.ts#L200)
+Defined in: [src/async/index.ts:198](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L198)
 
 创建感知重试状态的函数
 

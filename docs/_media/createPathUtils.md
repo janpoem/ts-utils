@@ -8,7 +8,7 @@
 
 > **createPathUtils**(`options`): `object`
 
-Defined in: [src/path.ts:24](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/path.ts#L24)
+Defined in: [src/path.ts:24](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L24)
 
 创建路径处理工具
 

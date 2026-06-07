@@ -10,7 +10,7 @@
 
 > **singleton**\<`F`\>(`factory`): (...`args`) => `ReturnType`\<`F`\>
 
-Defined in: [src/misc/singleton.ts:33](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/misc/singleton.ts#L33)
+Defined in: [src/misc/singleton.ts:33](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/singleton.ts#L33)
 
 单例工厂
 
@@ -64,7 +64,7 @@ const [a, b] = await Promise.all([getClient(), getClient()]);
 
 > **singleton**\<`F`\>(`factory`): (...`args`) => `ReturnType`\<`F`\>
 
-Defined in: [src/misc/singleton.ts:36](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/misc/singleton.ts#L36)
+Defined in: [src/misc/singleton.ts:36](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/singleton.ts#L36)
 
 单例工厂
 

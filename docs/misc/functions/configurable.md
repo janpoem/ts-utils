@@ -8,7 +8,7 @@
 
 > **configurable**\<`T`\>(`presets`): [`Configurable`](../type-aliases/Configurable.md)\<`T`\>
 
-Defined in: [src/misc/configurable.ts:52](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/misc/configurable.ts#L52)
+Defined in: [src/misc/configurable.ts:52](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L52)
 
 创建可配置对象
 

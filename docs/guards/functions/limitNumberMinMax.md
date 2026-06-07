@@ -8,7 +8,7 @@
 
 > **limitNumberMinMax**(`val`, `min`, `max`, `dft?`): `number`
 
-Defined in: [src/guards/index.ts:101](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/guards/index.ts#L101)
+Defined in: [src/guards/index.ts:101](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/guards/index.ts#L101)
 
 限制 val 在最小值和最大值范围内
 

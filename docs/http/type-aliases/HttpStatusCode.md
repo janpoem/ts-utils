@@ -8,4 +8,4 @@
 
 > **HttpStatusCode** = `number`
 
-Defined in: [src/http/response.ts:4](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/http/response.ts#L4)
+Defined in: [src/http/response.ts:4](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/http/response.ts#L4)

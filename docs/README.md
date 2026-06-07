@@ -65,8 +65,11 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 **Classes:**
 
+- [`DuplicateIdError`](docs/async/classes/DuplicateIdError.md)
 - [`PendingScopeConflictError`](_media/PendingScopeConflictError.md)
 - [`RetryExhaustedError`](_media/RetryExhaustedError.md)
+- [`RpcAbortError`](_media/RpcAbortError.md)
+- [`StatefulRpc`](_media/StatefulRpc.md)
 - [`TimeoutError`](_media/TimeoutError.md)
 
 **Functions:**

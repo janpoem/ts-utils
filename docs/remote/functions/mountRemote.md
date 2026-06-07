@@ -8,7 +8,7 @@
 
 > **mountRemote**\<`K`\>(`scope`, `options`): `Promise`\<[`MountRemoteResult`](../type-aliases/MountRemoteResult.md)\<`Record`\<`string`, `unknown`\>\>\>
 
-Defined in: [src/remote/mountRemote.ts:304](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/remote/mountRemote.ts#L304)
+Defined in: [src/remote/mountRemote.ts:304](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/remote/mountRemote.ts#L304)
 
 挂载远程资源
 

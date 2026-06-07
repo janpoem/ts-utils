@@ -6,7 +6,7 @@
 
 # Interface: EventsDelegator\<E\>
 
-Defined in: [src/events/index.ts:57](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/events/index.ts#L57)
+Defined in: [src/events/index.ts:57](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L57)
 
 事件委托者接口
 
@@ -24,7 +24,7 @@ Defined in: [src/events/index.ts:57](https://github.com/janpoem/ts-utils/blob/cc
 
 > **eject**(`emitter?`): `void`
 
-Defined in: [src/events/index.ts:61](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/events/index.ts#L61)
+Defined in: [src/events/index.ts:61](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L61)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [src/events/index.ts:61](https://github.com/janpoem/ts-utils/blob/cc
 
 > **inject**(`emitter?`): `void`
 
-Defined in: [src/events/index.ts:60](https://github.com/janpoem/ts-utils/blob/cc47b42336ba4f377a5b240d70447dc1812f8c94/src/events/index.ts#L60)
+Defined in: [src/events/index.ts:60](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L60)
 
 #### Parameters
 
