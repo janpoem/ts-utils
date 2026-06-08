@@ -13,6 +13,8 @@
 
 使用 Bun.js 开发，兼容 Node.js 运行时。
 
+API 文档见 [GitHub Wiki](https://github.com/janpoem/ts-utils/wiki)（由 TypeDoc + `typedoc-github-wiki-theme` 生成）。
+
 ## 安装
 
 ```bash
@@ -44,152 +46,151 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 
 | 模块 | 说明 | 导入路径 |
 |------|------|----------|
-| [`async`](docs/async/README.md) | 异步工具函数 | `@zenstone/ts-utils/async` |
-| [`guards`](docs/guards/README.md) | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
-| [`path`](docs/path/README.md) | 路径处理 | `@zenstone/ts-utils/path` |
-| [`http`](docs/http/README.md) | HTTP 相关工具 | `@zenstone/ts-utils/http` |
-| [`remote`](docs/remote/README.md) | 远程模块加载 | `@zenstone/ts-utils/remote` |
-| [`fetch-download`](docs/fetch-download/README.md) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
-| [`misc`](docs/misc/README.md) | 杂项工具（timer、singleton、configurable 等） | `@zenstone/ts-utils/misc` |
-| [`events`](docs/events/README.md) | 事件发布订阅 | `@zenstone/ts-utils/events` |
+| [`async`](https://github.com/janpoem/ts-utils/wiki/async) | 异步工具函数 | `@zenstone/ts-utils/async` |
+| [`guards`](https://github.com/janpoem/ts-utils/wiki/guards) | Type Guards 和基础类型工具 | `@zenstone/ts-utils/guards` |
+| [`path`](https://github.com/janpoem/ts-utils/wiki/path) | 路径处理 | `@zenstone/ts-utils/path` |
+| [`http`](https://github.com/janpoem/ts-utils/wiki/http) | HTTP 相关工具 | `@zenstone/ts-utils/http` |
+| [`remote`](https://github.com/janpoem/ts-utils/wiki/remote) | 远程模块加载 | `@zenstone/ts-utils/remote` |
+| [`fetch-download`](https://github.com/janpoem/ts-utils/wiki/fetch-download) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
+| [`misc`](https://github.com/janpoem/ts-utils/wiki/misc) | 杂项工具（timer、singleton、configurable 等） | `@zenstone/ts-utils/misc` |
+| [`events`](https://github.com/janpoem/ts-utils/wiki/events) | 事件发布订阅 | `@zenstone/ts-utils/events` |
 
 ## 模块详情
 
-### [`async`](docs/async/README.md)
+### [`async`](https://github.com/janpoem/ts-utils/wiki/async)
 
 异步工具函数
 
 **Classes:**
 
-- [`DuplicateIdError`](docs/async/classes/DuplicateIdError.md)
-- [`PendingScopeConflictError`](docs/async/classes/PendingScopeConflictError.md)
-- [`RetryExhaustedError`](docs/async/classes/RetryExhaustedError.md)
-- [`RpcAbortError`](docs/async/classes/RpcAbortError.md)
-- [`StatefulRpc`](docs/async/classes/StatefulRpc.md)
-- [`TimeoutError`](docs/async/classes/TimeoutError.md)
+- [`PendingScopeConflictError`](https://github.com/janpoem/ts-utils/wiki/async.Class.PendingScopeConflictError)
+- [`RetryExhaustedError`](https://github.com/janpoem/ts-utils/wiki/async.Class.RetryExhaustedError)
+- [`RpcAbortError`](https://github.com/janpoem/ts-utils/wiki/async.Class.RpcAbortError)
+- [`StatefulRpc`](https://github.com/janpoem/ts-utils/wiki/async.Class.StatefulRpc)
+- [`TimeoutError`](https://github.com/janpoem/ts-utils/wiki/async.Class.TimeoutError)
 
 **Functions:**
 
-- [`clearPendingRegistry`](docs/async/functions/clearPendingRegistry.md)
-- [`pending`](docs/async/functions/pending.md)
-- [`pendingFn`](docs/async/functions/pendingFn.md)
-- [`retry`](docs/async/functions/retry.md)
-- [`retryFn`](docs/async/functions/retryFn.md)
-- [`sleep`](docs/async/functions/sleep.md)
-- [`timeout`](docs/async/functions/timeout.md)
+- [`clearPendingRegistry`](https://github.com/janpoem/ts-utils/wiki/async.Function.clearPendingRegistry)
+- [`pending`](https://github.com/janpoem/ts-utils/wiki/async.Function.pending)
+- [`pendingFn`](https://github.com/janpoem/ts-utils/wiki/async.Function.pendingFn)
+- [`retry`](https://github.com/janpoem/ts-utils/wiki/async.Function.retry)
+- [`retryFn`](https://github.com/janpoem/ts-utils/wiki/async.Function.retryFn)
+- [`sleep`](https://github.com/janpoem/ts-utils/wiki/async.Function.sleep)
+- [`timeout`](https://github.com/janpoem/ts-utils/wiki/async.Function.timeout)
 
-### [`guards`](docs/guards/README.md)
+### [`guards`](https://github.com/janpoem/ts-utils/wiki/guards)
 
 Type Guards 和基础类型工具
 
 **Functions:**
 
-- [`and`](docs/guards/functions/and.md)
-- [`aryGuard`](docs/guards/functions/aryGuard.md)
-- [`calcProgress`](docs/guards/functions/calcProgress.md)
-- [`ceil10`](docs/guards/functions/ceil10.md)
-- [`decimalAdjust`](docs/guards/functions/decimalAdjust.md)
-- [`errMsg`](docs/guards/functions/errMsg.md)
-- [`floor10`](docs/guards/functions/floor10.md)
-- [`isAry`](docs/guards/functions/isAry.md)
-- [`isBool`](docs/guards/functions/isBool.md)
-- [`isErrLike`](docs/guards/functions/isErrLike.md)
-- [`isInferObj`](docs/guards/functions/isInferObj.md)
-- [`isNil`](docs/guards/functions/isNil.md)
-- [`isNull`](docs/guards/functions/isNull.md)
-- [`isNumber`](docs/guards/functions/isNumber.md)
-- [`isNumberVal`](docs/guards/functions/isNumberVal.md)
-- [`isPlainObj`](docs/guards/functions/isPlainObj.md)
-- [`isPresent`](docs/guards/functions/isPresent.md)
-- [`isPromise`](docs/guards/functions/isPromise.md)
-- [`isStr`](docs/guards/functions/isStr.md)
-- [`isUndefined`](docs/guards/functions/isUndefined.md)
-- [`limitNumberMax`](docs/guards/functions/limitNumberMax.md)
-- [`limitNumberMin`](docs/guards/functions/limitNumberMin.md)
-- [`limitNumberMinMax`](docs/guards/functions/limitNumberMinMax.md)
-- [`not`](docs/guards/functions/not.md)
-- [`notEmptyAry`](docs/guards/functions/notEmptyAry.md)
-- [`notEmptyStr`](docs/guards/functions/notEmptyStr.md)
-- [`or`](docs/guards/functions/or.md)
-- [`round10`](docs/guards/functions/round10.md)
-- [`toNumber`](docs/guards/functions/toNumber.md)
+- [`and`](https://github.com/janpoem/ts-utils/wiki/guards.Function.and)
+- [`aryGuard`](https://github.com/janpoem/ts-utils/wiki/guards.Function.aryGuard)
+- [`calcProgress`](https://github.com/janpoem/ts-utils/wiki/guards.Function.calcProgress)
+- [`ceil10`](https://github.com/janpoem/ts-utils/wiki/guards.Function.ceil10)
+- [`decimalAdjust`](https://github.com/janpoem/ts-utils/wiki/guards.Function.decimalAdjust)
+- [`errMsg`](https://github.com/janpoem/ts-utils/wiki/guards.Function.errMsg)
+- [`floor10`](https://github.com/janpoem/ts-utils/wiki/guards.Function.floor10)
+- [`isAry`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isAry)
+- [`isBool`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isBool)
+- [`isErrLike`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isErrLike)
+- [`isInferObj`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isInferObj)
+- [`isNil`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isNil)
+- [`isNull`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isNull)
+- [`isNumber`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isNumber)
+- [`isNumberVal`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isNumberVal)
+- [`isPlainObj`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isPlainObj)
+- [`isPresent`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isPresent)
+- [`isPromise`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isPromise)
+- [`isStr`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isStr)
+- [`isUndefined`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isUndefined)
+- [`limitNumberMax`](https://github.com/janpoem/ts-utils/wiki/guards.Function.limitNumberMax)
+- [`limitNumberMin`](https://github.com/janpoem/ts-utils/wiki/guards.Function.limitNumberMin)
+- [`limitNumberMinMax`](https://github.com/janpoem/ts-utils/wiki/guards.Function.limitNumberMinMax)
+- [`not`](https://github.com/janpoem/ts-utils/wiki/guards.Function.not)
+- [`notEmptyAry`](https://github.com/janpoem/ts-utils/wiki/guards.Function.notEmptyAry)
+- [`notEmptyStr`](https://github.com/janpoem/ts-utils/wiki/guards.Function.notEmptyStr)
+- [`or`](https://github.com/janpoem/ts-utils/wiki/guards.Function.or)
+- [`round10`](https://github.com/janpoem/ts-utils/wiki/guards.Function.round10)
+- [`toNumber`](https://github.com/janpoem/ts-utils/wiki/guards.Function.toNumber)
 
-### [`path`](docs/path/README.md)
+### [`path`](https://github.com/janpoem/ts-utils/wiki/path)
 
 路径处理
 
 **Functions:**
 
-- [`createPathUtils`](docs/path/functions/createPathUtils.md)
-- [`UnixDS`](docs/path/functions/UnixDS.md)
-- [`WinDS`](docs/path/functions/WinDS.md)
+- [`createPathUtils`](https://github.com/janpoem/ts-utils/wiki/path.Function.createPathUtils)
+- [`UnixDS`](https://github.com/janpoem/ts-utils/wiki/path.Function.UnixDS)
+- [`WinDS`](https://github.com/janpoem/ts-utils/wiki/path.Function.WinDS)
 
-### [`http`](docs/http/README.md)
+### [`http`](https://github.com/janpoem/ts-utils/wiki/http)
 
 HTTP 相关工具
 
 **Functions:**
 
-- [`mergeAbortSignals`](docs/http/functions/mergeAbortSignals.md)
-- [`mergeHeaders`](docs/http/functions/mergeHeaders.md)
-- [`mergeRespInit`](docs/http/functions/mergeRespInit.md)
-- [`toAryHeaders`](docs/http/functions/toAryHeaders.md)
+- [`mergeAbortSignals`](https://github.com/janpoem/ts-utils/wiki/http.Function.mergeAbortSignals)
+- [`mergeHeaders`](https://github.com/janpoem/ts-utils/wiki/http.Function.mergeHeaders)
+- [`mergeRespInit`](https://github.com/janpoem/ts-utils/wiki/http.Function.mergeRespInit)
+- [`toAryHeaders`](https://github.com/janpoem/ts-utils/wiki/http.Function.toAryHeaders)
 
-### [`remote`](docs/remote/README.md)
+### [`remote`](https://github.com/janpoem/ts-utils/wiki/remote)
 
 远程模块加载
 
 **Classes:**
 
-- [`MountRemoteError`](docs/remote/classes/MountRemoteError.md)
+- [`MountRemoteError`](https://github.com/janpoem/ts-utils/wiki/remote.Class.MountRemoteError)
 
 **Functions:**
 
-- [`createDomHandler`](docs/remote/functions/createDomHandler.md)
-- [`mountRemote`](docs/remote/functions/mountRemote.md)
-- [`registerMountHandler`](docs/remote/functions/registerMountHandler.md)
-- [`unmountDomRemote`](docs/remote/functions/unmountDomRemote.md)
+- [`createDomHandler`](https://github.com/janpoem/ts-utils/wiki/remote.Function.createDomHandler)
+- [`mountRemote`](https://github.com/janpoem/ts-utils/wiki/remote.Function.mountRemote)
+- [`registerMountHandler`](https://github.com/janpoem/ts-utils/wiki/remote.Function.registerMountHandler)
+- [`unmountDomRemote`](https://github.com/janpoem/ts-utils/wiki/remote.Function.unmountDomRemote)
 
-### [`fetch-download`](docs/fetch-download/README.md)
+### [`fetch-download`](https://github.com/janpoem/ts-utils/wiki/fetch-download)
 
 下载工具
 
 **Classes:**
 
-- [`DownloadQueue`](docs/fetch-download/classes/DownloadQueue.md)
-- [`DownloadQueueError`](docs/fetch-download/classes/DownloadQueueError.md)
-- [`DownloadTask`](docs/fetch-download/classes/DownloadTask.md)
-- [`DownloadTaskError`](docs/fetch-download/classes/DownloadTaskError.md)
-- [`DownloadTaskState`](docs/fetch-download/enumerations/DownloadTaskState.md)
+- [`DownloadQueue`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Class.DownloadQueue)
+- [`DownloadQueueError`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Class.DownloadQueueError)
+- [`DownloadTask`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Class.DownloadTask)
+- [`DownloadTaskError`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Class.DownloadTaskError)
+- [`DownloadTaskState`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Enumeration.DownloadTaskState)
 
 **Functions:**
 
-- [`fetchDownload`](docs/fetch-download/functions/fetchDownload.md)
-- [`saveChunks`](docs/fetch-download/functions/saveChunks.md)
+- [`fetchDownload`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Function.fetchDownload)
+- [`saveChunks`](https://github.com/janpoem/ts-utils/wiki/fetch-download.Function.saveChunks)
 
-### [`misc`](docs/misc/README.md)
+### [`misc`](https://github.com/janpoem/ts-utils/wiki/misc)
 
 杂项工具（timer、singleton、configurable 等）
 
 **Functions:**
 
-- [`clearTicker`](docs/misc/functions/clearTicker.md)
-- [`clearTimer`](docs/misc/functions/clearTimer.md)
-- [`cloneObj`](docs/misc/functions/cloneObj.md)
-- [`configurable`](docs/misc/functions/configurable.md)
-- [`singleton`](docs/misc/functions/singleton.md)
-- [`ticker`](docs/misc/functions/ticker.md)
-- [`timer`](docs/misc/functions/timer.md)
+- [`clearTicker`](https://github.com/janpoem/ts-utils/wiki/misc.Function.clearTicker)
+- [`clearTimer`](https://github.com/janpoem/ts-utils/wiki/misc.Function.clearTimer)
+- [`cloneObj`](https://github.com/janpoem/ts-utils/wiki/misc.Function.cloneObj)
+- [`configurable`](https://github.com/janpoem/ts-utils/wiki/misc.Function.configurable)
+- [`singleton`](https://github.com/janpoem/ts-utils/wiki/misc.Function.singleton)
+- [`ticker`](https://github.com/janpoem/ts-utils/wiki/misc.Function.ticker)
+- [`timer`](https://github.com/janpoem/ts-utils/wiki/misc.Function.timer)
 
-### [`events`](docs/events/README.md)
+### [`events`](https://github.com/janpoem/ts-utils/wiki/events)
 
 事件发布订阅
 
 **Functions:**
 
-- [`createDelegator`](docs/events/functions/createDelegator.md)
-- [`createEmitter`](docs/events/functions/createEmitter.md)
-- [`initEventsEmitter`](docs/events/functions/initEventsEmitter.md)
-- [`isEventsDelegator`](docs/events/functions/isEventsDelegator.md)
-- [`isEventsEmitter`](docs/events/functions/isEventsEmitter.md)
-- [`linkEvents`](docs/events/functions/linkEvents.md)
+- [`createDelegator`](https://github.com/janpoem/ts-utils/wiki/events.Function.createDelegator)
+- [`createEmitter`](https://github.com/janpoem/ts-utils/wiki/events.Function.createEmitter)
+- [`initEventsEmitter`](https://github.com/janpoem/ts-utils/wiki/events.Function.initEventsEmitter)
+- [`isEventsDelegator`](https://github.com/janpoem/ts-utils/wiki/events.Function.isEventsDelegator)
+- [`isEventsEmitter`](https://github.com/janpoem/ts-utils/wiki/events.Function.isEventsEmitter)
+- [`linkEvents`](https://github.com/janpoem/ts-utils/wiki/events.Function.linkEvents)

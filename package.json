@@ -1,6 +1,6 @@
 {
   "name": "@zenstone/ts-utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A collection of utility functions for TypeScript",
   "author": "Jiankai Zeng <janpoem@163.com>",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "utility",
     "functions",
     "utils",
-    "type-guade",
+    "type-guard",
     "async",
     "traits"
   ],
@@ -135,6 +135,7 @@
     "genExports": "bun run ./scripts/genExports.ts",
     "genReadme": "bun run ./scripts/genReadme.ts",
     "doc": "bun typedoc --options typedoc.json --cleanOutputDir",
+    "doc:wiki": "bun run genReadme && bun typedoc --options typedoc.wiki.json --cleanOutputDir && bun run ./scripts/copyWikiHome.ts",
     "build": "bun run rollup",
     "pub": "npm publish",
     "check-dist": "bun tests/check-dist.ts"
@@ -150,6 +151,7 @@
     "rollup-plugin-dts": "^6.4.1",
     "rollup-plugin-swc3": "^0.12.1",
     "typedoc": "^0.28.19",
+    "typedoc-github-wiki-theme": "2.1.0",
     "typedoc-plugin-markdown": "^4.12.0"
   },
   "peerDependencies": {

@@ -183,3 +183,6 @@ opencode.json
 skills-lock.json
 
 backup
+
+# TypeDoc GitHub Wiki output (publish via Actions)
+docs-wiki/
