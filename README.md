@@ -54,6 +54,7 @@ import { createPathUtils } from '@zenstone/ts-utils/path';
 | [`fetch-download`](https://github.com/janpoem/ts-utils/wiki/fetch-download) | 下载工具 | `@zenstone/ts-utils/fetch-download` |
 | [`misc`](https://github.com/janpoem/ts-utils/wiki/misc) | 杂项工具（timer、singleton、configurable 等） | `@zenstone/ts-utils/misc` |
 | [`events`](https://github.com/janpoem/ts-utils/wiki/events) | 事件发布订阅 | `@zenstone/ts-utils/events` |
+| [`traits`](https://github.com/janpoem/ts-utils/wiki/traits) | traits | `@zenstone/ts-utils/traits` |
 
 ## 模块详情
 
@@ -94,6 +95,7 @@ Type Guards 和基础类型工具
 - [`floor10`](https://github.com/janpoem/ts-utils/wiki/guards.Function.floor10)
 - [`isAry`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isAry)
 - [`isBool`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isBool)
+- [`isCtor`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isCtor)
 - [`isErrLike`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isErrLike)
 - [`isInferObj`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isInferObj)
 - [`isNil`](https://github.com/janpoem/ts-utils/wiki/guards.Function.isNil)
@@ -194,3 +196,13 @@ HTTP 相关工具
 - [`isEventsDelegator`](https://github.com/janpoem/ts-utils/wiki/events.Function.isEventsDelegator)
 - [`isEventsEmitter`](https://github.com/janpoem/ts-utils/wiki/events.Function.isEventsEmitter)
 - [`linkEvents`](https://github.com/janpoem/ts-utils/wiki/events.Function.linkEvents)
+
+### [`traits`](https://github.com/janpoem/ts-utils/wiki/traits)
+
+traits
+
+**Functions:**
+
+- [`createDebuggableTrait`](https://github.com/janpoem/ts-utils/wiki/traits.Function.createDebuggableTrait)
+- [`debugTimeFlag`](https://github.com/janpoem/ts-utils/wiki/traits.Function.debugTimeFlag)
+- [`implTraits`](https://github.com/janpoem/ts-utils/wiki/traits.Function.implTraits)
