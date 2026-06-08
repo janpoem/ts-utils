@@ -139,6 +139,76 @@ describe('traits/core', () => {
       expect(() => implTraits(arrow as never, { x() {} })).not.toThrow();
     });
   });
+
+  describe('Symbol key support', () => {
+    it('[Symbol.iterator] is copied to prototype', () => {
+      class NumberList {
+        items: number[];
+        constructor(...items: number[]) {
+          this.items = items;
+        }
+      }
+
+      implTraits(NumberList, {
+        [Symbol.iterator](this: NumberList) {
+          return this.items[Symbol.iterator]();
+        },
+      });
+
+      const list = new NumberList(1, 2, 3);
+      expect([...(list as unknown as Iterable<number>)]).toEqual([1, 2, 3]);
+    });
+
+    it('[Symbol.toPrimitive] is copied to prototype', () => {
+      class Box {
+        value: number;
+        constructor(v: number) {
+          this.value = v;
+        }
+      }
+
+      implTraits(Box, {
+        [Symbol.toPrimitive](this: Box, hint: string) {
+          return hint === 'string' ? `Box(${this.value})` : this.value;
+        },
+      });
+
+      const box = new Box(42);
+      expect(+box).toBe(42);
+      expect(`${box}`).toBe('Box(42)');
+    });
+
+    it('user-defined Symbol method is copied', () => {
+      const kTag = Symbol('tag');
+
+      class Tagged {}
+
+      implTraits(Tagged, {
+        [kTag](this: Tagged) {
+          return 'tagged';
+        },
+      });
+
+      const t = new Tagged();
+      // biome-ignore lint/suspicious/noExplicitAny: symbol indexing requires any cast
+      expect((t as any)[kTag]()).toBe('tagged');
+    });
+
+    it('Symbol methods live on the prototype, not the instance', () => {
+      class Thing {}
+
+      implTraits(Thing, {
+        [Symbol.iterator](this: Thing) {
+          return [][Symbol.iterator]();
+        },
+      });
+
+      const t = new Thing();
+      expect(Object.hasOwn(t, Symbol.iterator)).toBe(false);
+      // biome-ignore lint/suspicious/noExplicitAny: symbol indexing requires any cast
+      expect(typeof (Thing.prototype as any)[Symbol.iterator]).toBe('function');
+    });
+  });
 });
 
 // ════════════════════════════════════════════════════════════════════════════
