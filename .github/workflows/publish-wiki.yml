@@ -40,10 +40,6 @@ jobs:
 
           cd wiki-repo
 
-          if [ -f README.md ] && [ ! -f Home.md ]; then
-            cp -f README.md Home.md
-          fi
-
           git add -A
           if git diff --staged --quiet; then
             echo "Wiki unchanged, skip push"

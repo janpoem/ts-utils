@@ -124,7 +124,7 @@
     "genExports": "bun run ./scripts/genExports.ts",
     "genReadme": "bun run ./scripts/genReadme.ts",
     "doc": "bun typedoc --options typedoc.json --cleanOutputDir",
-    "doc:wiki": "bun typedoc --options typedoc.wiki.json --cleanOutputDir",
+    "doc:wiki": "bun run genReadme && bun typedoc --options typedoc.wiki.json --cleanOutputDir && bun run ./scripts/copyWikiHome.ts",
     "build": "bun run rollup",
     "pub": "npm publish",
     "check-dist": "bun tests/check-dist.ts"
