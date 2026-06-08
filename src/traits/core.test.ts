@@ -142,7 +142,6 @@ describe('traits/core', () => {
 
   describe('Symbol key support', () => {
     it('[Symbol.iterator] is copied to prototype', () => {
-      // biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
       class NumberList {
         items: number[];
         constructor(...items: number[]) {
@@ -161,7 +160,6 @@ describe('traits/core', () => {
     });
 
     it('[Symbol.toPrimitive] is copied to prototype', () => {
-      // biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
       class Box {
         value: number;
         constructor(v: number) {
@@ -183,7 +181,6 @@ describe('traits/core', () => {
     it('user-defined Symbol method is copied', () => {
       const kTag = Symbol('tag');
 
-      // biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
       class Tagged {}
 
       implTraits(Tagged, {
@@ -198,7 +195,6 @@ describe('traits/core', () => {
     });
 
     it('Symbol methods live on the prototype, not the instance', () => {
-      // biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
       class Thing {}
 
       implTraits(Thing, {
