@@ -10,7 +10,8 @@
     "src/remote/index.ts",
     "src/fetch-download/index.ts",
     "src/events/index.ts",
-    "src/misc/index.ts"
+    "src/misc/index.ts",
+    "src/traits/index.ts"
   ],
   "entryPointStrategy": "resolve",
   "plugin": ["typedoc-plugin-markdown", "typedoc-github-wiki-theme"],
