@@ -8,7 +8,7 @@
 
 > **joinHttpPath**: (...`paths`) => `string`
 
-Defined in: [src/path.ts:116](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L116)
+Defined in: [src/path.ts:116](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L116)
 
 连接多个路径，当 '..' 超过最大路径时（顶部）时，会保留下来。
 

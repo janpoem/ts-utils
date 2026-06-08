@@ -8,7 +8,7 @@
 
 > **retry**\<`F`\>(`fn`, `options?`): (...`args`) => `Promise`\<`Awaited`\<`ReturnType`\<`F`\>\>\>
 
-Defined in: [src/async/index.ts:166](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L166)
+Defined in: [src/async/index.ts:166](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L166)
 
 透明包装异步/同步函数，返回自动重试的版本
 

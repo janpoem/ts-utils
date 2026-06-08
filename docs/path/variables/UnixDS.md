@@ -8,4 +8,4 @@
 
 > `const` **UnixDS**: `"/"` = `'/'`
 
-Defined in: [src/path.ts:4](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L4)
+Defined in: [src/path.ts:4](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L4)

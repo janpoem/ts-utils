@@ -6,7 +6,7 @@
 
 # Class: RpcAbortError
 
-Defined in: [src/async/errors.ts:18](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L18)
+Defined in: [src/async/errors.ts:11](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L11)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/async/errors.ts:18](https://github.com/janpoem/ts-utils/blob/a6
 
 > **new RpcAbortError**(`reason?`): `RpcAbortError`
 
-Defined in: [src/async/errors.ts:19](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L19)
+Defined in: [src/async/errors.ts:12](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L12)
 
 #### Parameters
 
@@ -78,7 +78,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` `optional` **reason?**: `unknown`
 
-Defined in: [src/async/errors.ts:19](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L19)
+Defined in: [src/async/errors.ts:12](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L12)
 
 ***
 
@@ -190,7 +190,7 @@ a();
 
 > `static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
 
-Defined in: node\_modules/bun-types/globals.d.ts:985
+Defined in: node\_modules/bun-types/globals.d.ts:1042
 
 Create .stack property on a target object
 
@@ -242,7 +242,7 @@ Indicates whether the argument provided is a built-in Error instance or not.
 
 > `static` **isError**(`value`): `value is Error`
 
-Defined in: node\_modules/bun-types/globals.d.ts:980
+Defined in: node\_modules/bun-types/globals.d.ts:1037
 
 Check if a value is an instance of Error
 

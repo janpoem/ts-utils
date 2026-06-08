@@ -8,7 +8,7 @@
 
 > **clearTicker**(`key`): `void`
 
-Defined in: [src/misc/timer.ts:56](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/timer.ts#L56)
+Defined in: [src/misc/timer.ts:56](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/timer.ts#L56)
 
 清除命名 setInterval
 

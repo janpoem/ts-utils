@@ -8,7 +8,7 @@
 
 > **mergeRespInit**(...`opts`): `ResponseInit`
 
-Defined in: [src/http/response.ts:34](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/http/response.ts#L34)
+Defined in: [src/http/response.ts:34](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/http/response.ts#L34)
 
 合并多个 [ResponseInitInput](../type-aliases/ResponseInitInput.md) 为 `ResponseInit` 对象
 

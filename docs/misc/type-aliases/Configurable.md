@@ -8,7 +8,7 @@
 
 > **Configurable**\<`T`\> = `object`
 
-Defined in: [src/misc/configurable.ts:3](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L3)
+Defined in: [src/misc/configurable.ts:3](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L3)
 
 ## Type Parameters
 
@@ -22,7 +22,7 @@ Defined in: [src/misc/configurable.ts:3](https://github.com/janpoem/ts-utils/blo
 
 > **get**\<`K`\>(`key`): `T`\[`K`\]
 
-Defined in: [src/misc/configurable.ts:7](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L7)
+Defined in: [src/misc/configurable.ts:7](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L7)
 
 读取配置值，优先级：用户设置 > 预设值
 
@@ -48,7 +48,7 @@ Defined in: [src/misc/configurable.ts:7](https://github.com/janpoem/ts-utils/blo
 
 > **getAll**(): `T`
 
-Defined in: [src/misc/configurable.ts:15](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L15)
+Defined in: [src/misc/configurable.ts:15](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L15)
 
 获取合并后的完整配置：{ ...presets, ...users }
 
@@ -62,7 +62,7 @@ Defined in: [src/misc/configurable.ts:15](https://github.com/janpoem/ts-utils/bl
 
 > **reset**(): `void`
 
-Defined in: [src/misc/configurable.ts:23](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L23)
+Defined in: [src/misc/configurable.ts:23](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L23)
 
 重置用户设置，回退到预设值
 
@@ -76,7 +76,7 @@ Defined in: [src/misc/configurable.ts:23](https://github.com/janpoem/ts-utils/bl
 
 > **set**\<`K`\>(`key`, `value`): `void`
 
-Defined in: [src/misc/configurable.ts:11](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L11)
+Defined in: [src/misc/configurable.ts:11](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L11)
 
 设置单个配置值（写入用户空间）
 
@@ -106,7 +106,7 @@ Defined in: [src/misc/configurable.ts:11](https://github.com/janpoem/ts-utils/bl
 
 > **setAll**(`data`): `void`
 
-Defined in: [src/misc/configurable.ts:19](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/misc/configurable.ts#L19)
+Defined in: [src/misc/configurable.ts:19](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/misc/configurable.ts#L19)
 
 批量设置配置值（写入用户空间）
 

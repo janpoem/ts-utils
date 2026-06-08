@@ -6,7 +6,7 @@
 
 # Interface: EventsEmitter\<E\>
 
-Defined in: [src/events/index.ts:41](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L41)
+Defined in: [src/events/index.ts:41](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L41)
 
 事件发射器接口
 
@@ -24,7 +24,7 @@ Defined in: [src/events/index.ts:41](https://github.com/janpoem/ts-utils/blob/a6
 
 > **emit**\<`N`\>(`name`, `params`): `Promise`\<`void`\>
 
-Defined in: [src/events/index.ts:49](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L49)
+Defined in: [src/events/index.ts:49](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L49)
 
 #### Type Parameters
 
@@ -52,7 +52,7 @@ Defined in: [src/events/index.ts:49](https://github.com/janpoem/ts-utils/blob/a6
 
 > **off**\<`N`\>(`name`, `callback`): `void`
 
-Defined in: [src/events/index.ts:47](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L47)
+Defined in: [src/events/index.ts:47](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L47)
 
 #### Type Parameters
 
@@ -80,7 +80,7 @@ Defined in: [src/events/index.ts:47](https://github.com/janpoem/ts-utils/blob/a6
 
 > **on**\<`N`\>(`name`, `callback`): [`EventUnsubscribeFn`](../type-aliases/EventUnsubscribeFn.md)
 
-Defined in: [src/events/index.ts:42](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L42)
+Defined in: [src/events/index.ts:42](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L42)
 
 #### Type Parameters
 

@@ -8,7 +8,7 @@
 
 > **RetryCallbackFn**\<`T`, `Args`\> = (`params`, ...`args`) => `T`
 
-Defined in: [src/async/index.ts:61](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L61)
+Defined in: [src/async/index.ts:61](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L61)
 
 retryFn 的回调函数类型
 

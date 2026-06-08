@@ -6,7 +6,7 @@
 
 # Class: RetryExhaustedError
 
-Defined in: [src/async/index.ts:82](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L82)
+Defined in: [src/async/index.ts:82](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L82)
 
 重试耗尽错误
 
@@ -22,7 +22,7 @@ Defined in: [src/async/index.ts:82](https://github.com/janpoem/ts-utils/blob/a61
 
 > **new RetryExhaustedError**(`params`): `RetryExhaustedError`
 
-Defined in: [src/async/index.ts:87](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L87)
+Defined in: [src/async/index.ts:87](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L87)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [src/async/index.ts:87](https://github.com/janpoem/ts-utils/blob/a61
 
 > `readonly` **attempt**: `number`
 
-Defined in: [src/async/index.ts:83](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L83)
+Defined in: [src/async/index.ts:83](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L83)
 
 ***
 
@@ -66,7 +66,7 @@ The cause of the error.
 
 > `readonly` **error**: `unknown`
 
-Defined in: [src/async/index.ts:84](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L84)
+Defined in: [src/async/index.ts:84](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L84)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` **options**: [`RetryOptions`](../type-aliases/RetryOptions.md)
 
-Defined in: [src/async/index.ts:85](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/index.ts#L85)
+Defined in: [src/async/index.ts:85](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/index.ts#L85)
 
 ***
 
@@ -210,7 +210,7 @@ a();
 
 > `static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
 
-Defined in: node\_modules/bun-types/globals.d.ts:985
+Defined in: node\_modules/bun-types/globals.d.ts:1042
 
 Create .stack property on a target object
 
@@ -262,7 +262,7 @@ Indicates whether the argument provided is a built-in Error instance or not.
 
 > `static` **isError**(`value`): `value is Error`
 
-Defined in: node\_modules/bun-types/globals.d.ts:980
+Defined in: node\_modules/bun-types/globals.d.ts:1037
 
 Check if a value is an instance of Error
 

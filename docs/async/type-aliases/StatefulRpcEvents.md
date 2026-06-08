@@ -8,7 +8,7 @@
 
 > **StatefulRpcEvents**\<`Result`, `Params`\> = `object`
 
-Defined in: [src/async/StatefulRpc.ts:13](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L13)
+Defined in: [src/async/StatefulRpc.ts:13](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L13)
 
 事件映射：pending / resolve / reject / settle
 
@@ -28,7 +28,7 @@ Defined in: [src/async/StatefulRpc.ts:13](https://github.com/janpoem/ts-utils/bl
 
 > **pending**: `object`
 
-Defined in: [src/async/StatefulRpc.ts:14](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L14)
+Defined in: [src/async/StatefulRpc.ts:14](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L14)
 
 #### task
 
@@ -40,7 +40,7 @@ Defined in: [src/async/StatefulRpc.ts:14](https://github.com/janpoem/ts-utils/bl
 
 > **reject**: `object`
 
-Defined in: [src/async/StatefulRpc.ts:16](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L16)
+Defined in: [src/async/StatefulRpc.ts:16](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L16)
 
 #### result
 
@@ -56,7 +56,7 @@ Defined in: [src/async/StatefulRpc.ts:16](https://github.com/janpoem/ts-utils/bl
 
 > **resolve**: `object`
 
-Defined in: [src/async/StatefulRpc.ts:15](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L15)
+Defined in: [src/async/StatefulRpc.ts:15](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L15)
 
 #### result
 
@@ -72,7 +72,7 @@ Defined in: [src/async/StatefulRpc.ts:15](https://github.com/janpoem/ts-utils/bl
 
 > **settle**: [`StatefulRpcSettled`](StatefulRpcSettled.md)\<`Result`\> & `object`
 
-Defined in: [src/async/StatefulRpc.ts:17](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L17)
+Defined in: [src/async/StatefulRpc.ts:17](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L17)
 
 #### Type Declaration
 

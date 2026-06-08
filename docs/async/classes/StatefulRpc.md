@@ -6,7 +6,7 @@
 
 # Class: StatefulRpc\<Result, Params\>
 
-Defined in: [src/async/StatefulRpc.ts:92](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L92)
+Defined in: [src/async/StatefulRpc.ts:92](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L92)
 
 有状态的 RPC 等待注册表。
 
@@ -48,7 +48,7 @@ rpc.resolve('user:42', profile);
 
 > **new StatefulRpc**\<`Result`, `Params`\>(`__namedParameters?`): `StatefulRpc`\<`Result`, `Params`\>
 
-Defined in: [src/async/StatefulRpc.ts:103](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L103)
+Defined in: [src/async/StatefulRpc.ts:103](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L103)
 
 #### Parameters
 
@@ -68,7 +68,7 @@ Defined in: [src/async/StatefulRpc.ts:103](https://github.com/janpoem/ts-utils/b
 
 > **get** **id**(): `string`
 
-Defined in: [src/async/StatefulRpc.ts:115](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L115)
+Defined in: [src/async/StatefulRpc.ts:115](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L115)
 
 实例唯一 id
 
@@ -84,7 +84,7 @@ Defined in: [src/async/StatefulRpc.ts:115](https://github.com/janpoem/ts-utils/b
 
 > **get** **timeout**(): `number`
 
-Defined in: [src/async/StatefulRpc.ts:120](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L120)
+Defined in: [src/async/StatefulRpc.ts:120](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L120)
 
 实例级默认超时毫秒数
 
@@ -98,7 +98,7 @@ Defined in: [src/async/StatefulRpc.ts:120](https://github.com/janpoem/ts-utils/b
 
 > **abort**(`key`, `reason?`): `this`
 
-Defined in: [src/async/StatefulRpc.ts:258](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L258)
+Defined in: [src/async/StatefulRpc.ts:258](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L258)
 
 以 `RpcAbortError` 中止指定 key 的所有 task。
 
@@ -126,7 +126,7 @@ Defined in: [src/async/StatefulRpc.ts:258](https://github.com/janpoem/ts-utils/b
 
 > **addPendingItem**(`item`): `PendingItem`\<`Result`, `Params`\>
 
-Defined in: [src/async/StatefulRpc.ts:149](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L149)
+Defined in: [src/async/StatefulRpc.ts:149](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L149)
 
 **`Internal`**
 
@@ -148,7 +148,7 @@ Defined in: [src/async/StatefulRpc.ts:149](https://github.com/janpoem/ts-utils/b
 
 > **clear**(`reason?`): `this`
 
-Defined in: [src/async/StatefulRpc.ts:266](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L266)
+Defined in: [src/async/StatefulRpc.ts:266](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L266)
 
 以 `RpcAbortError` 中止**所有** key 下的全部 task。
 通常在连接断开、组件卸载等场景下调用。
@@ -171,7 +171,7 @@ Defined in: [src/async/StatefulRpc.ts:266](https://github.com/janpoem/ts-utils/b
 
 > **getPendingCount**(`key?`): `number`
 
-Defined in: [src/async/StatefulRpc.ts:128](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L128)
+Defined in: [src/async/StatefulRpc.ts:128](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L128)
 
 返回当前挂起的 task 数量。
 
@@ -193,7 +193,7 @@ Defined in: [src/async/StatefulRpc.ts:128](https://github.com/janpoem/ts-utils/b
 
 > **newPendingItem**(`key`, `params`, `rest`): `PendingItem`\<`Result`, `Params`\>
 
-Defined in: [src/async/StatefulRpc.ts:136](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L136)
+Defined in: [src/async/StatefulRpc.ts:136](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L136)
 
 **`Internal`**
 
@@ -223,7 +223,7 @@ Defined in: [src/async/StatefulRpc.ts:136](https://github.com/janpoem/ts-utils/b
 
 > `protected` **onTimeout**(`__namedParameters`): `void`
 
-Defined in: [src/async/StatefulRpc.ts:169](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L169)
+Defined in: [src/async/StatefulRpc.ts:169](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L169)
 
 task 超时时触发，默认行为：以 `TimeoutError` reject 整个 key 下的所有 task。
 
@@ -245,7 +245,7 @@ task 超时时触发，默认行为：以 `TimeoutError` reject 整个 key 下�
 
 > **pending**(`key`, `params`, `timeout?`): `Promise`\<`Result`\>
 
-Defined in: [src/async/StatefulRpc.ts:201](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L201)
+Defined in: [src/async/StatefulRpc.ts:201](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L201)
 
 注册一个等待 `key` 结果的 Promise。
 
@@ -282,7 +282,7 @@ Defined in: [src/async/StatefulRpc.ts:201](https://github.com/janpoem/ts-utils/b
 
 > **reject**(`key`, `result`): `this`
 
-Defined in: [src/async/StatefulRpc.ts:250](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L250)
+Defined in: [src/async/StatefulRpc.ts:250](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L250)
 
 reject 指定 key 的所有 task。
 
@@ -310,7 +310,7 @@ reject 指定 key 的所有 task。
 
 > **removePendingItem**(`item`): `PendingItem`\<`Result`, `Params`\>
 
-Defined in: [src/async/StatefulRpc.ts:178](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L178)
+Defined in: [src/async/StatefulRpc.ts:178](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L178)
 
 **`Internal`**
 
@@ -332,7 +332,7 @@ Defined in: [src/async/StatefulRpc.ts:178](https://github.com/janpoem/ts-utils/b
 
 > **resolve**(`key`, `result`): `this`
 
-Defined in: [src/async/StatefulRpc.ts:242](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L242)
+Defined in: [src/async/StatefulRpc.ts:242](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L242)
 
 resolve 指定 key 的所有 task。
 
@@ -360,7 +360,7 @@ resolve 指定 key 的所有 task。
 
 > **settle**(`settled`): `this`
 
-Defined in: [src/async/StatefulRpc.ts:219](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L219)
+Defined in: [src/async/StatefulRpc.ts:219](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L219)
 
 以指定的 `settled` 结果一次性 settle `key` 下的所有 task，
 并触发对应事件。settle 后该 key 的所有 task 及定时器均被清除。

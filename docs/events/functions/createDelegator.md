@@ -8,7 +8,7 @@
 
 > **createDelegator**\<`E`\>(`callbacks`): [`EventsDelegator`](../interfaces/EventsDelegator.md)\<`E`\>
 
-Defined in: [src/events/index.ts:259](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L259)
+Defined in: [src/events/index.ts:259](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L259)
 
 创建函数式事件委托者
 

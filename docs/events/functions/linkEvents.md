@@ -8,7 +8,7 @@
 
 > **linkEvents**\<`E`\>(`emitter`, `input`, `mode?`): [`EventsEmitter`](../interfaces/EventsEmitter.md)\<`E`\>
 
-Defined in: [src/events/index.ts:183](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/events/index.ts#L183)
+Defined in: [src/events/index.ts:183](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/events/index.ts#L183)
 
 将 callbacks 对象或 delegator 附加到（或从）emitter 上
 

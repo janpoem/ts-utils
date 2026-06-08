@@ -8,7 +8,7 @@
 
 > **PendingFnParams** = `object`
 
-Defined in: [src/async/pending.ts:28](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/pending.ts#L28)
+Defined in: [src/async/pending.ts:28](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/pending.ts#L28)
 
 pendingFn 回调函数接收的参数
 
@@ -18,7 +18,7 @@ pendingFn 回调函数接收的参数
 
 > **getPendingCount**: () => `number`
 
-Defined in: [src/async/pending.ts:32](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/pending.ts#L32)
+Defined in: [src/async/pending.ts:32](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/pending.ts#L32)
 
 获取当前等待中的 caller 数量（实时值）
 
@@ -32,6 +32,6 @@ Defined in: [src/async/pending.ts:32](https://github.com/janpoem/ts-utils/blob/a
 
 > **scope**: `string`
 
-Defined in: [src/async/pending.ts:30](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/pending.ts#L30)
+Defined in: [src/async/pending.ts:30](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/pending.ts#L30)
 
 解析后的 scope key

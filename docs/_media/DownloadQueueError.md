@@ -6,7 +6,7 @@
 
 # Class: DownloadQueueError
 
-Defined in: [src/fetch-download/DownloadQueue.ts:5](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadQueue.ts#L5)
+Defined in: [src/fetch-download/DownloadQueue.ts:5](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadQueue.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/fetch-download/DownloadQueue.ts:5](https://github.com/janpoem/t
 
 > **new DownloadQueueError**(`msg`, `queue`): `DownloadQueueError`
 
-Defined in: [src/fetch-download/DownloadQueue.ts:6](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadQueue.ts#L6)
+Defined in: [src/fetch-download/DownloadQueue.ts:6](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadQueue.ts#L6)
 
 #### Parameters
 
@@ -82,7 +82,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` **queue**: [`DownloadQueue`](DownloadQueue.md)
 
-Defined in: [src/fetch-download/DownloadQueue.ts:8](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadQueue.ts#L8)
+Defined in: [src/fetch-download/DownloadQueue.ts:8](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadQueue.ts#L8)
 
 ***
 
@@ -194,7 +194,7 @@ a();
 
 > `static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
 
-Defined in: node\_modules/bun-types/globals.d.ts:985
+Defined in: node\_modules/bun-types/globals.d.ts:1042
 
 Create .stack property on a target object
 
@@ -246,7 +246,7 @@ Indicates whether the argument provided is a built-in Error instance or not.
 
 > `static` **isError**(`value`): `value is Error`
 
-Defined in: node\_modules/bun-types/globals.d.ts:980
+Defined in: node\_modules/bun-types/globals.d.ts:1037
 
 Check if a value is an instance of Error
 

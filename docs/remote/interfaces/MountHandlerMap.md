@@ -6,7 +6,7 @@
 
 # Interface: MountHandlerMap
 
-Defined in: [src/remote/mountRemote.ts:85](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/remote/mountRemote.ts#L85)
+Defined in: [src/remote/mountRemote.ts:85](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/remote/mountRemote.ts#L85)
 
 Handler 类型映射表
 
@@ -25,7 +25,7 @@ declare module '@zenstone/ts-utils/remote' {
 
 > **css**: [`MountHandlerFn`](../type-aliases/MountHandlerFn.md)\<[`MountDomOptions`](../type-aliases/MountDomOptions.md), [`MountDomResult`](../type-aliases/MountDomResult.md)\>
 
-Defined in: [src/remote/mountRemote.ts:87](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/remote/mountRemote.ts#L87)
+Defined in: [src/remote/mountRemote.ts:87](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/remote/mountRemote.ts#L87)
 
 ***
 
@@ -33,7 +33,7 @@ Defined in: [src/remote/mountRemote.ts:87](https://github.com/janpoem/ts-utils/b
 
 > **js**: [`MountHandlerFn`](../type-aliases/MountHandlerFn.md)\<[`MountDomOptions`](../type-aliases/MountDomOptions.md), [`MountDomResult`](../type-aliases/MountDomResult.md)\>
 
-Defined in: [src/remote/mountRemote.ts:86](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/remote/mountRemote.ts#L86)
+Defined in: [src/remote/mountRemote.ts:86](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/remote/mountRemote.ts#L86)
 
 ***
 
@@ -41,4 +41,4 @@ Defined in: [src/remote/mountRemote.ts:86](https://github.com/janpoem/ts-utils/b
 
 > **mjs**: [`MountHandlerFn`](../type-aliases/MountHandlerFn.md)\<[`MountDomOptions`](../type-aliases/MountDomOptions.md), [`MountDomResult`](../type-aliases/MountDomResult.md)\>
 
-Defined in: [src/remote/mountRemote.ts:88](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/remote/mountRemote.ts#L88)
+Defined in: [src/remote/mountRemote.ts:88](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/remote/mountRemote.ts#L88)

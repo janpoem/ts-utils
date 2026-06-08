@@ -8,7 +8,7 @@
 
 > **PathUtilsOptions** = `object`
 
-Defined in: [src/path.ts:12](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L12)
+Defined in: [src/path.ts:12](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L12)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/path.ts:12](https://github.com/janpoem/ts-utils/blob/a618127304
 
 > `optional` **dangerReplace?**: [`PathReplacementCallback`](PathReplacementCallback.md)
 
-Defined in: [src/path.ts:14](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L14)
+Defined in: [src/path.ts:14](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L14)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/path.ts:14](https://github.com/janpoem/ts-utils/blob/a618127304
 
 > `optional` **duplicateReplace?**: [`PathReplacementCallback`](PathReplacementCallback.md)
 
-Defined in: [src/path.ts:15](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L15)
+Defined in: [src/path.ts:15](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L15)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [src/path.ts:15](https://github.com/janpoem/ts-utils/blob/a618127304
 
 > **separator**: `string`
 
-Defined in: [src/path.ts:13](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/path.ts#L13)
+Defined in: [src/path.ts:13](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/path.ts#L13)

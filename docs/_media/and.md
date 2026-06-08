@@ -8,7 +8,7 @@
 
 > **and**\<`T`\>(...`guards`): [`TypeGuard`](../type-aliases/TypeGuard.md)\<`T`\>
 
-Defined in: [src/guards/index.ts:455](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/guards/index.ts#L455)
+Defined in: [src/guards/index.ts:455](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/guards/index.ts#L455)
 
 组合守卫（AND）
 

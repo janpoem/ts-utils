@@ -6,7 +6,7 @@
 
 # Interface: StatefulRpcTask\<Params\>
 
-Defined in: [src/async/StatefulRpc.ts:33](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L33)
+Defined in: [src/async/StatefulRpc.ts:33](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L33)
 
 单次异步任务的描述信息，创建后冻结，不可修改。
 
@@ -22,7 +22,7 @@ Defined in: [src/async/StatefulRpc.ts:33](https://github.com/janpoem/ts-utils/bl
 
 > `readonly` **date**: `Date`
 
-Defined in: [src/async/StatefulRpc.ts:41](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L41)
+Defined in: [src/async/StatefulRpc.ts:41](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L41)
 
 task 创建时间
 
@@ -32,7 +32,7 @@ task 创建时间
 
 > `readonly` **key**: `string`
 
-Defined in: [src/async/StatefulRpc.ts:35](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L35)
+Defined in: [src/async/StatefulRpc.ts:35](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L35)
 
 外部资源 key，同一个 key 可同时存在多个 task
 
@@ -42,7 +42,7 @@ Defined in: [src/async/StatefulRpc.ts:35](https://github.com/janpoem/ts-utils/bl
 
 > `readonly` **params**: `Params`
 
-Defined in: [src/async/StatefulRpc.ts:39](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L39)
+Defined in: [src/async/StatefulRpc.ts:39](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L39)
 
 调用 `pending()` 时传入的参数
 
@@ -52,6 +52,6 @@ Defined in: [src/async/StatefulRpc.ts:39](https://github.com/janpoem/ts-utils/bl
 
 > `readonly` **taskId**: `string`
 
-Defined in: [src/async/StatefulRpc.ts:37](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/StatefulRpc.ts#L37)
+Defined in: [src/async/StatefulRpc.ts:37](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/StatefulRpc.ts#L37)
 
 内部唯一 task id，格式：`{instanceId}:{key}:{counter}`

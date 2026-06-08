@@ -8,7 +8,7 @@
 
 > **isPlainObj**\<`T`\>(`val`): `val is T`
 
-Defined in: [src/guards/index.ts:343](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/guards/index.ts#L343)
+Defined in: [src/guards/index.ts:343](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/guards/index.ts#L343)
 
 检查值是否为一个普通对象（不包括数组、Date、RegExp 等特殊对象）
 

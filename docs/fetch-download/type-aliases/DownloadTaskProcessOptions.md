@@ -8,7 +8,7 @@
 
 > **DownloadTaskProcessOptions** = `object`
 
-Defined in: [src/fetch-download/DownloadTask.ts:31](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L31)
+Defined in: [src/fetch-download/DownloadTask.ts:31](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L31)
 
 ## Properties
 
@@ -16,7 +16,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:31](https://github.com/janpoem/t
 
 > `optional` **onComplete?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:35](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L35)
+Defined in: [src/fetch-download/DownloadTask.ts:35](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L35)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:35](https://github.com/janpoem/t
 
 > `optional` **onError?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:36](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L36)
+Defined in: [src/fetch-download/DownloadTask.ts:36](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L36)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:36](https://github.com/janpoem/t
 
 > `optional` **onFetch?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:32](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L32)
+Defined in: [src/fetch-download/DownloadTask.ts:32](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L32)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [src/fetch-download/DownloadTask.ts:32](https://github.com/janpoem/t
 
 > `optional` **onHeaders?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:33](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L33)
+Defined in: [src/fetch-download/DownloadTask.ts:33](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L33)
 
 ***
 
@@ -48,4 +48,4 @@ Defined in: [src/fetch-download/DownloadTask.ts:33](https://github.com/janpoem/t
 
 > `optional` **onProgress?**: [`DownloadTaskProcessCallback`](DownloadTaskProcessCallback.md)
 
-Defined in: [src/fetch-download/DownloadTask.ts:34](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/fetch-download/DownloadTask.ts#L34)
+Defined in: [src/fetch-download/DownloadTask.ts:34](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/fetch-download/DownloadTask.ts#L34)

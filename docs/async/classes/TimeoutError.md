@@ -6,7 +6,7 @@
 
 # Class: TimeoutError
 
-Defined in: [src/async/errors.ts:1](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L1)
+Defined in: [src/async/errors.ts:1](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L1)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/async/errors.ts:1](https://github.com/janpoem/ts-utils/blob/a61
 
 > **new TimeoutError**(`ms`, `data?`): `TimeoutError`
 
-Defined in: [src/async/errors.ts:2](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L2)
+Defined in: [src/async/errors.ts:2](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L2)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ The cause of the error.
 
 > `readonly` `optional` **data?**: `unknown`
 
-Defined in: [src/async/errors.ts:4](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L4)
+Defined in: [src/async/errors.ts:4](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L4)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 > `readonly` **ms**: `number`
 
-Defined in: [src/async/errors.ts:3](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/async/errors.ts#L3)
+Defined in: [src/async/errors.ts:3](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/async/errors.ts#L3)
 
 ***
 
@@ -202,7 +202,7 @@ a();
 
 > `static` **captureStackTrace**(`targetObject`, `constructorOpt?`): `void`
 
-Defined in: node\_modules/bun-types/globals.d.ts:985
+Defined in: node\_modules/bun-types/globals.d.ts:1042
 
 Create .stack property on a target object
 
@@ -254,7 +254,7 @@ Indicates whether the argument provided is a built-in Error instance or not.
 
 > `static` **isError**(`value`): `value is Error`
 
-Defined in: node\_modules/bun-types/globals.d.ts:980
+Defined in: node\_modules/bun-types/globals.d.ts:1037
 
 Check if a value is an instance of Error
 

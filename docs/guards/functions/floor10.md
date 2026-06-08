@@ -8,7 +8,7 @@
 
 > **floor10**(`value`, `exp?`): `number`
 
-Defined in: [src/guards/index.ts:151](https://github.com/janpoem/ts-utils/blob/a6181273044ad30164507cc181a58cccd8e952df/src/guards/index.ts#L151)
+Defined in: [src/guards/index.ts:151](https://github.com/janpoem/ts-utils/blob/e6f0e2dae5b274785affda26cac7db86fc0832b2/src/guards/index.ts#L151)
 
 ## Parameters
 

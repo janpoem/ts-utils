@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Generate markdown API docs
-        run: bun run doc
+      - name: Generate GitHub Wiki markdown
+        run: bun run doc:wiki
 
       - name: Push to GitHub Wiki
         env:
@@ -34,13 +34,15 @@ jobs:
 
           git clone "$WIKI_URL" wiki-repo
 
-          rsync -av --delete docs/ wiki-repo/ \
+          rsync -av --delete docs-wiki/ wiki-repo/ \
             --exclude '.git' \
             --exclude '.DS_Store'
 
           cd wiki-repo
 
-          cp -f README.md Home.md
+          if [ -f README.md ] && [ ! -f Home.md ]; then
+            cp -f README.md Home.md
+          fi
 
           git add -A
           if git diff --staged --quiet; then
