@@ -253,8 +253,12 @@ export const createDebuggableTrait = <
       const vars = { flag, name, scope: scope as string };
       const styles = {
         flag: 'color: gray',
-        name: style ? style : `color: ${color}`,
-        scope: scopeStyle ? scopeStyle : `color: ${scopeColor}`,
+        name: style ? style : color ? `color: ${color}` : undefined,
+        scope: scopeStyle
+          ? scopeStyle
+          : scopeColor
+            ? `color: ${scopeColor}`
+            : undefined,
       };
 
       fn(...getHeads(format, vars, styles), ...args);
