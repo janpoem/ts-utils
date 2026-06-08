@@ -3,6 +3,7 @@ import { dirname, join, resolve } from 'node:path';
 import { scanEntries } from './module';
 
 const README_PATH = join(process.cwd(), 'README.md');
+const PKG_PATH = join(process.cwd(), 'package.json');
 const SRC_DIR = join(process.cwd(), 'src');
 
 const MODULE_DESCRIPTIONS: Record<string, string> = {
@@ -31,6 +32,41 @@ type ModuleInfo = {
   functions: ExportItem[];
 };
 
+const wikiBaseUrl = (): string => {
+  const pkg = JSON.parse(readFileSync(PKG_PATH, 'utf-8')) as {
+    repository?: { url?: string };
+  };
+  const raw = pkg.repository?.url ?? 'https://github.com/janpoem/ts-utils';
+  const repoPath = raw
+    .replace(/^git\+/, '')
+    .replace(/\.git$/, '')
+    .replace(/^https?:\/\/github\.com\//, '');
+  return `https://github.com/${repoPath}/wiki`;
+};
+
+/** typedoc-github-wiki-theme 页面名：{module}.{Kind}.{name} */
+const wikiMemberPage = (
+  moduleName: string,
+  item: Pick<ExportItem, 'name' | 'kind'>,
+): string => {
+  const kind =
+    item.kind === 'class'
+      ? 'Class'
+      : item.kind === 'enum'
+        ? 'Enumeration'
+        : 'Function';
+  return `${moduleName}.${kind}.${item.name}`;
+};
+
+const wikiModuleUrl = (base: string, moduleName: string): string =>
+  `${base}/${moduleName}`;
+
+const wikiMemberUrl = (
+  base: string,
+  moduleName: string,
+  item: Pick<ExportItem, 'name' | 'kind'>,
+): string => `${base}/${wikiMemberPage(moduleName, item)}`;
+
 // 从源文件中提取 export 的 class 和 function/const，递归跟踪 export *
 const scanExports = (
   filePath: string,
@@ -43,7 +79,6 @@ const scanExports = (
   try {
     content = readFileSync(filePath, 'utf-8');
   } catch {
-    // 可能是 .ts 扩展名缺失
     try {
       content = readFileSync(`${filePath}.ts`, 'utf-8');
     } catch {
@@ -54,7 +89,6 @@ const scanExports = (
   const items: ExportItem[] = [];
   const names = new Set<string>();
 
-  // export class Name
   for (const m of content.matchAll(/^export\s+class\s+(\w+)/gm)) {
     if (!names.has(m[1])) {
       names.add(m[1]);
@@ -62,7 +96,6 @@ const scanExports = (
     }
   }
 
-  // export const name = / export function name(
   for (const m of content.matchAll(
     /^export\s+(?:const|function)\s+(\w+)/gm,
   )) {
@@ -72,7 +105,6 @@ const scanExports = (
     }
   }
 
-  // export enum Name
   for (const m of content.matchAll(/^export\s+enum\s+(\w+)/gm)) {
     if (!names.has(m[1])) {
       names.add(m[1]);
@@ -80,7 +112,6 @@ const scanExports = (
     }
   }
 
-  // 递归跟踪 export * from './xxx' 和 export { ... } from './xxx'
   const dir = dirname(filePath);
   for (const m of content.matchAll(
     /^export\s+(?:\*|\{[^}]+\})\s+from\s+['"](\.\/[^'"]+)['"]/gm,
@@ -98,14 +129,13 @@ const scanExports = (
   return items;
 };
 
-// 从 entry 解析模块名
 const getModuleName = (entry: { exportEntry: string }): string =>
   entry.exportEntry.replace(/^\.\//, '').replace(/^\.$/, 'index');
 
 const generateReadme = () => {
+  const wikiBase = wikiBaseUrl();
   const entries = scanEntries(SRC_DIR);
 
-  // 按 MODULE_DESCRIPTIONS 的顺序排列，未定义的追加到末尾
   const descKeys = Object.keys(MODULE_DESCRIPTIONS);
   const sorted = entries
     .map((entry) => ({ entry, name: getModuleName(entry) }))
@@ -128,13 +158,7 @@ const generateReadme = () => {
     const functions: ExportItem[] = [];
 
     for (const item of items) {
-      const docDir =
-        item.kind === 'enum'
-          ? 'enumerations'
-          : item.kind === 'class'
-            ? 'classes'
-            : 'functions';
-      item.link = `docs/${moduleName}/${docDir}/${item.name}.md`;
+      item.link = wikiMemberUrl(wikiBase, moduleName, item);
       if (item.kind === 'class' || item.kind === 'enum') {
         classes.push(item);
       } else {
@@ -149,7 +173,7 @@ const generateReadme = () => {
       name: moduleName,
       description: MODULE_DESCRIPTIONS[moduleName] ?? moduleName,
       importPath: `@zenstone/ts-utils/${moduleName}`,
-      globalsLink: `docs/${moduleName}/README.md`,
+      globalsLink: wikiModuleUrl(wikiBase, moduleName),
       classes,
       functions,
     });
@@ -157,7 +181,6 @@ const generateReadme = () => {
 
   const lines: string[] = [];
 
-  // Header
   lines.push('# @zenstone/ts-utils');
   lines.push('');
   lines.push(
@@ -185,8 +208,11 @@ const generateReadme = () => {
   lines.push('');
   lines.push('使用 Bun.js 开发，兼容 Node.js 运行时。');
   lines.push('');
+  lines.push(
+    `API 文档见 [GitHub Wiki](${wikiBase})（由 TypeDoc + \`typedoc-github-wiki-theme\` 生成）。`,
+  );
+  lines.push('');
 
-  // Install
   lines.push('## 安装');
   lines.push('');
   lines.push('```bash');
@@ -197,7 +223,6 @@ const generateReadme = () => {
   lines.push('```');
   lines.push('');
 
-  // Usage
   lines.push('## 使用');
   lines.push('');
   lines.push('### 整体导入');
@@ -221,7 +246,6 @@ const generateReadme = () => {
   lines.push('```');
   lines.push('');
 
-  // Module list table
   lines.push('## 模块列表');
   lines.push('');
   lines.push('| 模块 | 说明 | 导入路径 |');
@@ -233,7 +257,6 @@ const generateReadme = () => {
   }
   lines.push('');
 
-  // Module details
   lines.push('## 模块详情');
   lines.push('');
 
@@ -264,7 +287,7 @@ const generateReadme = () => {
 
   const content = lines.join('\n');
   writeFileSync(README_PATH, content);
-  console.log(`README.md generated (${modules.length} modules)`);
+  console.log(`README.md generated (${modules.length} modules, wiki: ${wikiBase})`);
 
   for (const mod of modules) {
     const total = mod.classes.length + mod.functions.length;
