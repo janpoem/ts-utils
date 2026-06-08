@@ -6,3 +6,12 @@
  */
 
 export { implTraits } from './core';
+export {
+  createDebuggableTrait,
+  debugTimeFlag,
+  type DebugConfiguration,
+  type DebugFunction,
+  type DebuggableTrait,
+  type DebugSettings,
+  type TimeFlagFunction,
+} from './debuggable';

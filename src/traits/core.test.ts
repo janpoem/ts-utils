@@ -220,3 +220,191 @@ describe('implTraits — User', () => {
     expect(u.greet()).toBe("Hi, I'm Alice, I am minor.");
   });
 });
+
+// ════════════════════════════════════════════════════════════════════════════
+// 继承与重载测试
+//
+// 核心问题：
+//   1. 子类是否能通过原型链自动继承父类 trait？
+//   2. 子类能否 implTraits 覆盖父类同名方法，且两者互不影响？
+//   3. 父类 trait 方法的 this，在子类实例上调用时是否指向子类实例？
+//   4. 描述符 configurable 是否为 true（覆盖得了）？
+// ════════════════════════════════════════════════════════════════════════════
+
+// ── 场景 A / B / C：基础继承 + 子类覆盖 ─────────────────────────────────────
+
+const VehicleStep = 20;
+const MoveInitX = 0;
+const MoveInitY = 0;
+
+// biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
+class Vehicle {
+  type = 'vehicle';
+  config = { color: 'gray' }; // 父类默认配置
+  step = VehicleStep;
+}
+
+type MotionTrait = { x: number; y: number; move(): string; describe(): string };
+
+implTraits(Vehicle, {
+  x: MoveInitX,
+  y: MoveInitY,
+  move() {
+    this.x += this.step;
+    this.y += this.step;
+    return `${this.type} is moving`;
+  },
+  describe() {
+    return `[${this.config.color}] ${this.type}`;
+  },
+});
+
+// biome-ignore lint/correctness/noUnusedVariables: trait type extension via implTraits
+interface Vehicle extends MotionTrait {}
+
+const CarStartX = 100;
+
+// Car：不单独调用 implTraits，完全依赖原型链继承父类 trait
+class Car extends Vehicle {
+  constructor() {
+    super();
+    this.type = 'car';
+    this.config = { color: 'red' }; // 子类在构造器里覆盖配置
+    this.x = CarStartX;
+  }
+}
+
+const TrackStep = 30;
+const TrackStartY = 20;
+
+// Truck：通过 implTraits 覆盖父类的 move()，describe() 仍继承自父类
+class Truck extends Vehicle {
+  y = TrackStartY;
+
+  constructor() {
+    super();
+    this.type = 'truck';
+    this.step = TrackStep;
+  }
+
+  move() {
+    super.move();
+    return `heavy ${this.type} is moving slowly`;
+  }
+}
+
+// ── 场景 D：父类默认 config，子类构造器覆盖 ──────────────────────────────────
+// 验证：trait 方法通过 this 访问 config 时，
+//       读到的是各自实例的值，而不是父类原型上的默认值
+
+// biome-ignore lint/suspicious/noUnsafeDeclarationMerging: implTraits guarantees runtime implementation
+class Service {
+  name = 'service';
+  config = { color: 'blue', prefix: 'svc' }; // 父类默认
+}
+
+type ServiceTrait = { label(): string };
+
+implTraits(Service, {
+  label() {
+    return `[${this.config.color}/${this.config.prefix}] ${this.name}`;
+  },
+});
+
+// biome-ignore lint/correctness/noUnusedVariables: trait type extension via implTraits
+interface Service extends ServiceTrait {}
+
+class ApiService extends Service {
+  constructor() {
+    super();
+    this.name = 'api';
+    this.config = { color: 'green', prefix: 'api' }; // 子类覆盖
+  }
+}
+
+// ── 断言 ────────────────────────────────────────────────────────────────────
+
+describe('implTraits — inheritance & override', () => {
+  describe('prototype chain inheritance', () => {
+    it('child instance has access to parent trait methods', () => {
+      const car = new Car();
+      expect(car.move()).toBe('car is moving');
+      expect(car.x).toBe(CarStartX + VehicleStep);
+      expect(car.y).toBe(MoveInitY + VehicleStep);
+    });
+
+    it('this in parent trait reflects child instance properties', () => {
+      const car = new Car();
+      expect(car.describe()).toBe('[red] car'); // config.color from Car constructor
+    });
+
+    it('child inherits parent trait method reference (same prototype slot)', () => {
+      const car = new Car();
+      const v = new Vehicle();
+      expect(car.move).toBe(v.move); // Car has no own move, walks up to Vehicle.prototype
+    });
+  });
+
+  describe('child override via implTraits', () => {
+    it('child override applies only to child prototype', () => {
+      const truck = new Truck();
+      expect(truck.move()).toBe('heavy truck is moving slowly');
+      expect(truck.x).toBe(MoveInitX + TrackStep);
+      expect(truck.y).toBe(TrackStartY + TrackStep);
+    });
+
+    it('parent prototype is unchanged after child override', () => {
+      const v = new Vehicle();
+      expect(v.move()).toBe('vehicle is moving');
+    });
+
+    it('child and parent have different prototype slot for overridden method', () => {
+      expect(Truck.prototype.move).not.toBe(Vehicle.prototype.move);
+    });
+
+    it('non-overridden methods still walk up to parent prototype', () => {
+      const truck = new Truck();
+      expect(truck.describe()).toBe('[gray] truck'); // describe not overridden
+      expect(truck.describe).toBe(Vehicle.prototype.describe);
+    });
+  });
+
+  describe('configurable descriptor allows child override', () => {
+    it('trait methods on prototype have configurable: true', () => {
+      const d = Object.getOwnPropertyDescriptor(Vehicle.prototype, 'move');
+      expect(d?.configurable).toBe(true);
+    });
+
+    it('child can redefine parent trait via implTraits (confirms configurable)', () => {
+      // If configurable were false, implTraits on Truck would throw TypeError
+      expect(() => {
+        class TestChild extends Vehicle {}
+        implTraits(TestChild, {
+          move() {
+            return 'redefined';
+          },
+        });
+        expect(new TestChild().move()).toBe('redefined');
+      }).not.toThrow();
+    });
+  });
+
+  describe('per-instance config (parent default, child override in constructor)', () => {
+    it('parent instance uses its own config', () => {
+      const svc = new Service();
+      expect(svc.label()).toBe('[blue/svc] service');
+    });
+
+    it('child instance uses its overridden config from constructor', () => {
+      const api = new ApiService();
+      expect(api.label()).toBe('[green/api] api');
+    });
+
+    it('child and parent instances are independent — no shared state', () => {
+      const svc = new Service();
+      const api = new ApiService();
+      svc.config.color = 'purple'; // mutate parent instance
+      expect(api.config.color).toBe('green'); // child unaffected
+    });
+  });
+});
