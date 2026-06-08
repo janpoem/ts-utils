@@ -5,3 +5,4 @@ export * from './http';
 export * from './misc';
 export * from './path';
 export * from './remote';
+export * from './traits';

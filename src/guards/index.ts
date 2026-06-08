@@ -276,6 +276,37 @@ export const errMsg = (err: unknown): string => {
 // ============================================================================
 
 /**
+ * 可 `new` 调用的构造函数类型
+ *
+ * @example
+ * ```ts
+ * function create<T>(ctor: Constructor<T>): T {
+ *   return new ctor();
+ * }
+ * ```
+ */
+// biome-ignore lint/suspicious/noExplicitAny: constructor args are intentionally open
+export type Constructor<T = object> = new (...args: any[]) => T;
+
+/**
+ * 检查值是否为可 `new` 调用的构造函数（class 或普通函数）
+ *
+ * 箭头函数没有 `prototype`，返回 `false`；class 和普通函数返回 `true`。
+ *
+ * @param val 任意值
+ *
+ * @example
+ * ```ts
+ * isCtor(class Foo {})        // true  → val is Constructor<object>
+ * isCtor<Foo>(class Foo {})   // true  → val is Constructor<Foo>
+ * isCtor(() => {})             // false
+ * isCtor(null)                 // false
+ * ```
+ */
+export const isCtor = <T = object>(val: unknown): val is Constructor<T> =>
+  typeof val === 'function' && !!(val as { prototype: unknown }).prototype;
+
+/**
  * 检查值是否为布尔值
  *
  * @param val 任意值
