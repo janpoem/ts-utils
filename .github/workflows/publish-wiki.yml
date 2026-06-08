@@ -1,0 +1,59 @@
+name: Publish docs to Wiki
+
+on:
+  workflow_dispatch:
+
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Bun.js setup
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate markdown API docs
+        run: bun run doc
+
+      - name: Push to GitHub Wiki
+        env:
+          WIKI_PAT: ${{ secrets.WIKI_PAT }}
+        run: |
+          set -euo pipefail
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          REPO="${{ github.repository }}"
+          WIKI_URL="https://x-access-token:${WIKI_PAT}@github.com/${REPO}.wiki.git"
+
+          git clone "$WIKI_URL" wiki-repo
+
+          rsync -av --delete docs/ wiki-repo/ \
+            --exclude '.git' \
+            --exclude '.DS_Store'
+
+          cd wiki-repo
+
+          cp -f README.md Home.md
+
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Wiki unchanged, skip push"
+            exit 0
+          fi
+
+          git commit -m "docs: sync from ${{ github.repository }}@${{ github.sha }}"
+
+          if git show-ref --verify --quiet refs/heads/main; then
+            BRANCH=main
+          else
+            BRANCH=master
+          fi
+
+          git push origin "HEAD:${BRANCH}"
