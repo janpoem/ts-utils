@@ -332,6 +332,7 @@ export class DownloadTask {
     if (this.#chunks != null) return this;
 
     const chunkAry: Uint8Array[] = [];
+    let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
 
     try {
       if (this.isStarted) {
@@ -358,7 +359,7 @@ export class DownloadTask {
         throw this.newErr('Invalid response');
       }
 
-      const reader = this.#resp.body.getReader();
+      reader = this.#resp.body.getReader();
       if (reader == null) {
         throw this.newErr('Create stream reader error');
       }
@@ -410,13 +411,14 @@ export class DownloadTask {
           this.#size = this.#received;
         }
 
-        // 当 content-length === 0 时候，progress 一直都是 1
-        this.#progress = calcProgress(this.#received, this.#size);
+        this.#progress = this.#size === 0 ? 1 : calcProgress(this.#received, this.#size);
         await opts?.onProgress?.(this);
       }
     } catch (err) {
       this.#state = DownloadTaskState.error;
       this.#error = err;
+      await reader?.cancel().catch(() => {});
+      reader = undefined;
     }
 
     if (this.#received > 0) {

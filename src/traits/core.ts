@@ -77,6 +77,7 @@ type UnionToIntersection<U> = (U extends unknown ? (k: U) => void : never) exten
  * ### 注意事项
  * - 跳过 `constructor` 属性，避免破坏原型链
  * - 使用 `defineProperty` 而非赋值，能正确处理 getter / setter
+ * - 同时复制字符串键和 Symbol 键（`Object.getOwnPropertySymbols`），支持 `[Symbol.iterator]` 等 Well-Known Symbol
  * - 类型侧需配合 `interface MyClass extends TraitA, TraitB {}` 声明合并
  * - 使用 Biome 时需加两处 biome-ignore：class 声明前 suppress `noUnsafeDeclarationMerging`，
  *   interface 声明前 suppress `noUnusedVariables`：
@@ -99,7 +100,11 @@ export function implTraits<T extends object, Traits extends object[]>(
 ): void {
   if (!isCtor(ctor)) return;
   for (const trait of traits as object[]) {
-    for (const name of Object.getOwnPropertyNames(trait)) {
+    const keys: (string | symbol)[] = [
+      ...Object.getOwnPropertyNames(trait),
+      ...Object.getOwnPropertySymbols(trait),
+    ];
+    for (const name of keys) {
       if (name === 'constructor') continue;
       const descriptor = Object.getOwnPropertyDescriptor(trait, name);
       if (descriptor) {
